@@ -5,8 +5,15 @@ import { useEffect } from 'react';
 
 export default function GlobalError({ error }: { error: Error & { digest?: string } }) {
   useEffect(() => {
-    // Log error to console for now
-    console.error('Global error:', error);
+    // Only load Sentry if DSN is configured
+    if (process.env.NEXT_PUBLIC_SENTRY_DSN) {
+      import('@sentry/nextjs').then((Sentry) => {
+        Sentry.captureException(error);
+      });
+    } else {
+      // Fallback: log to console
+      console.error('Global error:', error);
+    }
   }, [error]);
 
   return (
