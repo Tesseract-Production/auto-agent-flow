@@ -13,8 +13,8 @@ import { Footer } from '@/components/Footer';
 import { SocialProofPopup } from '@/components/SocialProofPopup';
 import { FreeEbookResources } from '@/components/FreeEbookResources';
 import { ResourcesBonuses } from '@/components/ResourcesBonuses';
-import { NodeversePromotion } from '@/components/NodeversePromotion'
-import { LaunchDiscountPopup } from '@/components/LaunchDiscountPopup'
+import { NodeversePromotion } from '@/components/NodeversePromotion';
+import { LaunchDiscountPopup } from '@/components/LaunchDiscountPopup';
 
 export default function Home() {
   return (

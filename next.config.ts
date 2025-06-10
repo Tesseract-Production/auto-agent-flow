@@ -64,21 +64,23 @@ const nextConfig: NextConfig = {
   },
 };
 
-// Sentry configuration
-export default withSentryConfig(nextConfig, {
-  // Sentry webpack plugin options
-  org: process.env.SENTRY_ORG,
-  project: process.env.SENTRY_PROJECT,
+// Export config with conditional Sentry integration
+export default process.env.SENTRY_DSN 
+  ? withSentryConfig(nextConfig, {
+      // Sentry webpack plugin options
+      org: process.env.SENTRY_ORG,
+      project: process.env.SENTRY_PROJECT,
 
-  // Only upload source maps in production
-  silent: !process.env.CI,
+      // Only upload source maps in production
+      silent: !process.env.CI,
 
-  // Source maps configuration
-  sourcemaps: {
-    disable: false,
-    deleteSourcemapsAfterUpload: true,
-  },
+      // Source maps configuration
+      sourcemaps: {
+        disable: false,
+        deleteSourcemapsAfterUpload: true,
+      },
 
-  // Disable Sentry in development
-  disableLogger: process.env.NODE_ENV === 'development',
-});
+      // Disable Sentry in development
+      disableLogger: process.env.NODE_ENV === 'development',
+    })
+  : nextConfig;
