@@ -1,26 +1,141 @@
-@import "tailwindcss";
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
-
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
+@layer base {
   :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+    /* Brand Colors */
+    --brand-dark: 23 23 23;
+    --brand-primary: 218 50 41;
+    --brand-secondary: 92 38 35;
+    --brand-accent: 224 57 47;
+
+    /* Background */
+    --background: 255 255 255;
+    --background-dark: 23 23 23;
+
+    /* Surface Colors */
+    --surface: 249 250 251;
+    --surface-dark: 30 30 30;
+
+    /* Text Colors */
+    --foreground: 23 23 23;
+    --foreground-dark: 245 245 245;
+
+    /* Muted Colors */
+    --muted: 156 163 175;
+    --muted-dark: 107 114 128;
+
+    /* Border Radius */
+    --radius-sm: 8px;
+    --radius: 12px;
+    --radius-lg: 16px;
+    --radius-xl: 24px;
+
+    /* Shadows */
+    --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+    --shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1);
+    --shadow-lg: 0 20px 25px -5px rgb(0 0 0 / 0.1);
+    --shadow-xl: 0 25px 50px -12px rgb(0 0 0 / 0.25);
+    --shadow-glow: 0 0 32px -8px;
+  }
+
+  .dark {
+    --background: 10 10 10;
+    --foreground: 245 245 245;
+    --surface: 30 30 30;
+    --muted: 107 114 128;
+  }
+
+  body {
+    @apply bg-white text-foreground dark:bg-background-dark dark:text-foreground-dark;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  * {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
   }
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+@layer components {
+  /* Buttons */
+  .btn-primary {
+    @apply transform rounded-brand bg-brand-accent px-8 py-4 font-semibold text-white transition-all duration-300 hover:scale-105 hover:bg-brand-primary hover:shadow-brand-glow active:scale-95;
+  }
+
+  .btn-secondary {
+    @apply rounded-brand border-2 border-muted bg-surface px-8 py-4 font-semibold text-brand-dark transition-all duration-300 hover:border-brand-accent hover:shadow-brand dark:border-muted-dark dark:bg-surface-dark dark:text-white;
+  }
+
+  /* Text Effects */
+  .gradient-text {
+    @apply animate-gradient bg-gradient-to-r from-brand-primary via-brand-accent to-brand-primary bg-[size:200%] bg-clip-text text-transparent;
+  }
+
+  /* Glass Effect */
+  .glass-effect {
+    @apply border border-white/20 bg-white/80 backdrop-blur-xl dark:border-white/10 dark:bg-brand-dark/80;
+  }
+
+  /* Border Radius */
+  .rounded-brand-sm {
+    border-radius: var(--radius-sm);
+  }
+
+  .rounded-brand {
+    border-radius: var(--radius);
+  }
+
+  .rounded-brand-lg {
+    border-radius: var(--radius-lg);
+  }
+
+  .rounded-brand-xl {
+    border-radius: var(--radius-xl);
+  }
+
+  /* Shadows */
+  .shadow-brand-sm {
+    box-shadow: var(--shadow-sm);
+  }
+
+  .shadow-brand {
+    box-shadow: var(--shadow);
+  }
+
+  .shadow-brand-lg {
+    box-shadow: var(--shadow-lg);
+  }
+
+  .shadow-brand-xl {
+    box-shadow: var(--shadow-xl);
+  }
+
+  .shadow-brand-glow {
+    box-shadow: var(--shadow-glow) rgb(var(--brand-accent) / 0.25);
+  }
 }
+
+@layer utilities {
+  /* Animation for gradient text */
+  @keyframes gradient {
+    0%,
+    100% {
+      background-position: 0% 50%;
+    }
+    50% {
+      background-position: 100% 50%;
+    }
+  }
+
+  .animate-gradient {
+    animation: gradient 6s ease infinite;
+  }
+}
+
+/* Import Liquid Glass Styles */
+@import '../styles/liquid-glass.css';
