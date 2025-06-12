@@ -58,7 +58,7 @@ export default function RootLayout({
       <body
         className={cn(
           inter.className,
-          'min-h-screen bg-white text-gray-900 dark:bg-brand-dark dark:text-gray-100'
+          'min-h-screen bg-white text-foreground antialiased'
         )}
       >
         {children}

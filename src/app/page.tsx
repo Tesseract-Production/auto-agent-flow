@@ -20,7 +20,7 @@ export default function Home() {
   return (
     <>
       <Navigation />
-      <main className="min-h-screen">
+      <main className="min-h-screen bg-white">
         <Hero />
         <VideoPreview />
         <FreeEbookResources />
