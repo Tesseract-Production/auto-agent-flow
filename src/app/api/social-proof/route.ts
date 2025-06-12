@@ -5,7 +5,7 @@ export async function GET() {
   try {
     // Get recent subscribers for social proof
     const { data, error } = await supabaseServer
-      .rpc('get_recent_subscribers_for_social_proof', { limit_count: 10 })
+      .rpc('get_recent_subscribers', { limit_count: 10 })
     
     if (error) {
       console.error('Error fetching social proof data:', error)

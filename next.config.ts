@@ -2,6 +2,18 @@ import type { NextConfig } from 'next';
 import { withSentryConfig } from '@sentry/nextjs';
 
 const nextConfig: NextConfig = {
+  // Suppress Sentry OpenTelemetry warnings in development
+  webpack: (config, { isServer }) => {
+    if (isServer) {
+      config.ignoreWarnings = [
+        {
+          module: /@opentelemetry\/instrumentation/,
+          message: /Critical dependency/,
+        },
+      ];
+    }
+    return config;
+  },
   // Security headers
   async headers() {
     return [
