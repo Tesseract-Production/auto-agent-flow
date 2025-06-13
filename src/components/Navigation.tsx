@@ -5,6 +5,7 @@ import { motion } from 'framer-motion';
 import { Menu, X, Moon, Sun } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { TesseractLiquidGlass } from './TesseractLiquidGlass';
+import Image from 'next/image';
 
 export function Navigation() {
   const [isOpen, setIsOpen] = useState(false);
@@ -33,11 +34,11 @@ export function Navigation() {
   ];
 
   return (
-    <nav className="fixed left-0 right-0 top-0 z-50">
+    <nav className="fixed left-0 right-0 top-3 z-50 px-4">
       <TesseractLiquidGlass
         variant="nav"
         enableScrollEffects={true}
-        className={cn('transition-all duration-300', scrolled ? 'shadow-brand' : '')}
+        className={cn('mx-auto max-w-7xl rounded-brand-lg transition-all duration-300', scrolled ? 'shadow-brand' : '')}
       >
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="flex h-16 items-center justify-between sm:h-20">
@@ -45,9 +46,17 @@ export function Navigation() {
             <motion.div
               initial={{ opacity: 0, x: -20 }}
               animate={{ opacity: 1, x: 0 }}
-              className="text-2xl font-bold"
+              className="flex items-center"
             >
-              <span className="gradient-text">Tesseract</span>
+              {/* Replace /assets/logos/tesseract-logo.webp with your actual logo file */}
+              <Image
+                src="/assets/logos/tesseract-logo.webp"
+                alt="Tesseract n8n Masterclass"
+                width={180}
+                height={48}
+                priority
+                className="h-10 w-auto sm:h-12"
+              />
             </motion.div>
 
             {/* Desktop Nav */}

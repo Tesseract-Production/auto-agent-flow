@@ -1,133 +1,72 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { X, CheckCircle } from 'lucide-react';
+import { X, Sparkles, Users } from 'lucide-react';
 import { TesseractLiquidGlass } from './TesseractLiquidGlass';
 
-interface SocialProofItem {
-  id: number;
-  name: string;
-  location: string;
-  action: string;
-  timeAgo: string;
-}
-
-const socialProofData: SocialProofItem[] = [
-  {
-    id: 1,
-    name: 'Sarah M.',
-    location: 'San Francisco',
-    action: 'just enrolled in the Professional plan',
-    timeAgo: '2 minutes ago',
-  },
-  {
-    id: 2,
-    name: 'Michael K.',
-    location: 'London',
-    action: 'completed Module 3: Advanced Workflows',
-    timeAgo: '5 minutes ago',
-  },
-  {
-    id: 3,
-    name: 'Jessica R.',
-    location: 'Toronto',
-    action: 'landed a $95k automation role',
-    timeAgo: '12 minutes ago',
-  },
-  {
-    id: 4,
-    name: 'David L.',
-    location: 'Sydney',
-    action: 'just enrolled in the Self-Paced plan',
-    timeAgo: '18 minutes ago',
-  },
-  {
-    id: 5,
-    name: 'Maria G.',
-    location: 'Madrid',
-    action: 'earned $15k from first automation project',
-    timeAgo: '25 minutes ago',
-  },
-  {
-    id: 6,
-    name: 'James W.',
-    location: 'New York',
-    action: 'just enrolled in the Team License',
-    timeAgo: '31 minutes ago',
-  },
-  {
-    id: 7,
-    name: 'Anna P.',
-    location: 'Berlin',
-    action: 'completed the entire masterclass',
-    timeAgo: '38 minutes ago',
-  },
-  {
-    id: 8,
-    name: 'Ryan T.',
-    location: 'Vancouver',
-    action: 'started their automation agency',
-    timeAgo: '42 minutes ago',
-  },
-];
-
 export function SocialProofPopup() {
-  const [currentNotification, setCurrentNotification] = useState<SocialProofItem | null>(null);
   const [isVisible, setIsVisible] = useState(false);
-  const [notificationIndex, setNotificationIndex] = useState(0);
-  const [liveProofData, setLiveProofData] = useState<SocialProofItem[]>(socialProofData);
+  const [signupCount, setSignupCount] = useState(0);
+  const [hasScrolledPastHero, setHasScrolledPastHero] = useState(false);
+  const hasShownRef = useRef(false);
 
-  // Fetch real social proof data from Supabase
+  // Fetch real signup count from API
   useEffect(() => {
-    const fetchSocialProofData = async () => {
+    const fetchSignupCount = async () => {
       try {
         const response = await fetch('/api/social-proof')
         if (response.ok) {
           const data = await response.json()
-          if (data.socialProofItems && data.socialProofItems.length > 0) {
-            setLiveProofData(data.socialProofItems)
+          // Use the total count from API
+          if (data.totalSignups) {
+            setSignupCount(data.totalSignups)
           }
         }
       } catch {
-        console.warn('Using fallback social proof data')
-        // Keep using static data if API fails
+        // Use fallback count if API fails
+        setSignupCount(2847)
       }
     }
 
-    fetchSocialProofData()
+    fetchSignupCount()
     
-    // Refresh social proof data every 5 minutes
-    const refreshInterval = setInterval(fetchSocialProofData, 5 * 60 * 1000)
+    // Refresh count every minute
+    const refreshInterval = setInterval(fetchSignupCount, 60 * 1000)
     return () => clearInterval(refreshInterval)
   }, [])
 
+  // Monitor scroll position to show popup after hero
   useEffect(() => {
-    const showNotification = () => {
-      const notification = liveProofData[notificationIndex]
-      setCurrentNotification(notification)
-      setIsVisible(true)
+    const handleScroll = () => {
+      const heroHeight = window.innerHeight // Assuming hero is full viewport height
+      const scrollPosition = window.scrollY
+      
+      if (scrollPosition > heroHeight * 0.8 && !hasScrolledPastHero) {
+        setHasScrolledPastHero(true)
+      }
+    }
 
-      // Hide after 4 seconds
+    window.addEventListener('scroll', handleScroll)
+    return () => window.removeEventListener('scroll', handleScroll)
+  }, [hasScrolledPastHero])
+
+  // Show popup once after scrolling past hero
+  useEffect(() => {
+    if (hasScrolledPastHero && !hasShownRef.current) {
+      hasShownRef.current = true
+      
+      // Show popup after a short delay
       setTimeout(() => {
-        setIsVisible(false)
-      }, 4000)
-
-      // Update index for next notification
-      setNotificationIndex((prev) => (prev + 1) % liveProofData.length)
+        setIsVisible(true)
+        
+        // Auto-hide after 10 seconds
+        setTimeout(() => {
+          setIsVisible(false)
+        }, 10000)
+      }, 1000)
     }
-
-    // Show first notification after 3 seconds
-    const initialDelay = setTimeout(showNotification, 3000)
-
-    // Then show subsequent notifications every 8 seconds
-    const interval = setInterval(showNotification, 8000)
-
-    return () => {
-      clearTimeout(initialDelay)
-      clearInterval(interval)
-    }
-  }, [notificationIndex, liveProofData])
+  }, [hasScrolledPastHero])
 
   const handleClose = () => {
     setIsVisible(false);
@@ -135,7 +74,7 @@ export function SocialProofPopup() {
 
   return (
     <AnimatePresence>
-      {isVisible && currentNotification && (
+      {isVisible && (
         <motion.div
           initial={{ opacity: 0, x: 100, y: 20 }}
           animate={{ opacity: 1, x: 0, y: 0 }}
@@ -146,39 +85,70 @@ export function SocialProofPopup() {
           <TesseractLiquidGlass
             variant="interactive"
             enableShimmer={true}
-            className="border border-brand-primary/20 p-4 shadow-[0_25px_50px_-12px_rgba(218,50,41,0.25)]"
+            className="border border-brand-primary/20 p-6 shadow-[0_25px_50px_-12px_rgba(218,50,41,0.25)]"
           >
-            <div className="flex items-start gap-3">
-              <div className="flex-shrink-0">
-                <CheckCircle className="mt-0.5 h-5 w-5 text-brand-accent" />
+            <a 
+              href="https://academy.tesseract.nexus/course/n8n-full-stack-masterclass-2025-building-generative-multimedia-production-system"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="block space-y-4 no-underline"
+            >
+              {/* 50% Discount Offer */}
+              <div className="flex items-center gap-3">
+                <div className="flex-shrink-0">
+                  <Sparkles className="h-6 w-6 text-brand-accent animate-pulse" />
+                </div>
+                <div className="flex-1">
+                  <p className="font-bold text-lg text-gray-900">
+                    Limited Time: <span className="text-brand-accent">50% OFF</span>
+                  </p>
+                  <p className="text-sm text-gray-600">
+                    Early Access Pricing Ends Soon
+                  </p>
+                  <p className="text-xs font-mono text-brand-primary mt-1">
+                    Code: N8NSUMMER50AAFLAUNCH2311
+                  </p>
+                </div>
               </div>
 
-              <div className="min-w-0 flex-1">
-                <p className="text-sm font-medium text-gray-900 dark:text-gray-100">
-                  <span className="font-semibold text-brand-accent">
-                    {currentNotification.name}
-                  </span>
-                  {' from '}
-                  <span className="text-gray-600 dark:text-gray-400">
-                    {currentNotification.location}
-                  </span>
-                </p>
-                <p className="mt-1 text-sm text-gray-700 dark:text-gray-300">
-                  {currentNotification.action}
-                </p>
-                <p className="mt-1 text-xs text-gray-500 dark:text-gray-500">
-                  {currentNotification.timeAgo}
+              {/* Divider */}
+              <div className="border-t border-gray-200/50" />
+
+              {/* Dynamic Signup Count */}
+              <div className="flex items-center gap-3">
+                <div className="flex-shrink-0">
+                  <Users className="h-5 w-5 text-brand-primary" />
+                </div>
+                <div className="flex-1">
+                  <p className="text-sm text-gray-700">
+                    <span className="font-semibold text-brand-dark">{signupCount.toLocaleString()}</span> people just signed up
+                  </p>
+                  <p className="text-xs text-gray-500 mt-1">
+                    Join the automation revolution
+                  </p>
+                </div>
+              </div>
+
+              {/* Click to enroll text */}
+              <div className="text-center pt-2 border-t border-gray-200/50">
+                <p className="text-xs font-medium text-brand-accent">
+                  Click to enroll now →
                 </p>
               </div>
 
+              {/* Close button */}
               <button
-                onClick={handleClose}
-                className="flex-shrink-0 rounded p-1 transition-colors hover:bg-gray-100 dark:hover:bg-gray-800"
+                onClick={(e) => {
+                  e.preventDefault();
+                  e.stopPropagation();
+                  handleClose();
+                }}
+                className="absolute top-2 right-2 rounded p-1 transition-colors hover:bg-gray-100"
                 aria-label="Close notification"
               >
                 <X className="h-4 w-4 text-gray-400" />
               </button>
-            </div>
+            </a>
           </TesseractLiquidGlass>
         </motion.div>
       )}
