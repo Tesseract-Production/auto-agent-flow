@@ -7,39 +7,53 @@ import { TesseractLiquidGlass } from './TesseractLiquidGlass';
 const ebooks = [
   {
     id: 1,
-    title: 'n8n Quick Start Guide',
-    description: 'Get up and running with n8n in under 30 minutes',
+    title: 'Getting Started with AWS S3 & n8n',
+    description: 'Complete guide to integrating Amazon S3 with your workflows',
     icon: Zap,
-    pages: '24 pages',
+    pages: 'PDF Guide',
     downloadCount: '2,847+',
+    downloadUrl: 'https://geenuity-mantra-ai-generated.s3.us-west-2.amazonaws.com/n8n-masterclass-website-media/Getting_Started_with_AWS_S3_and_n8n_FINAL_FOR_DISTRIBUTION.pdf'
   },
   {
     id: 2,
-    title: 'AI Automation Blueprints',
-    description: '15 proven automation templates for business growth',
+    title: 'Getting Started with Supabase & n8n',
+    description: 'Master database automation with Supabase integration',
     icon: FileText,
-    pages: '68 pages',
+    pages: 'PDF Guide',
     downloadCount: '1,923+',
+    downloadUrl: 'https://geenuity-mantra-ai-generated.s3.us-west-2.amazonaws.com/n8n-masterclass-website-media/n8n_Summer_2025_Masterclass_-_Supabase_Setup_Guide_FINAL_STANDARD_ISSUE.pdf'
   },
   {
     id: 3,
-    title: 'Workflow Optimization Handbook',
-    description: 'Advanced techniques to 10x your automation efficiency',
+    title: 'Getting Started with Fal AI Developer Cloud & n8n',
+    description: 'AI-powered automation with cutting-edge machine learning',
     icon: BookOpen,
-    pages: '94 pages',
+    pages: 'PDF Guide',
     downloadCount: '1,456+',
+    downloadUrl: 'https://geenuity-mantra-ai-generated.s3.us-west-2.amazonaws.com/n8n-masterclass-website-media/Getting_Started_with_FAL.AI_n8n_FINAL_PUBLIC.pdf'
   },
   {
     id: 4,
-    title: 'Enterprise Integration Playbook',
-    description: 'Scale your automations across teams and departments',
+    title: 'Getting Started with Flowise & n8n',
+    description: 'Build intelligent conversational AI workflows',
     icon: Users,
-    pages: '112 pages',
+    pages: 'PDF Guide',
     downloadCount: '892+',
+    downloadUrl: 'https://geenuity-mantra-ai-generated.s3.us-west-2.amazonaws.com/n8n-masterclass-website-media/Getting_Started_With_n8n_and_Flowise.pdf'
   },
 ];
 
 export function FreeEbookResources() {
+  const handleDownloadAll = () => {
+    ebooks.forEach(ebook => {
+      window.open(ebook.downloadUrl, '_blank');
+    });
+  };
+
+  const handleDownload = (url: string) => {
+    window.open(url, '_blank');
+  };
+
   return (
     <section className="bg-gradient-to-b from-transparent via-brand-primary/5 to-transparent px-4 py-20 sm:px-6 lg:px-8">
       <div className="mx-auto max-w-7xl">
@@ -54,11 +68,11 @@ export function FreeEbookResources() {
             <span>Free Implementation Resources</span>
           </div>
           <h2 className="mb-4 text-4xl font-bold sm:text-5xl">
-            Get Your Free <span className="gradient-text">Implementation Ebooks</span>
+            Get Your Free <span className="gradient-text">Setup & Integration Guides</span>
           </h2>
           <p className="mx-auto max-w-3xl text-xl text-gray-600 dark:text-gray-400">
-            Download our comprehensive guides and start implementing automation strategies today.
-            Used by 7,000+ professionals worldwide.
+            Download our comprehensive setup guides for the most essential integrations. 
+            Master AWS S3, Supabase, FAL.AI, and Flowise integration with n8n.
           </p>
         </motion.div>
 
@@ -70,16 +84,12 @@ export function FreeEbookResources() {
             viewport={{ once: true }}
             className="order-2 lg:order-1"
           >
-            <div className="flex aspect-[4/3] items-center justify-center rounded-brand-xl border border-brand-primary/20 bg-gradient-to-br from-brand-primary/10 to-brand-accent/10">
-              <div className="text-center">
-                <BookOpen className="mx-auto mb-4 h-16 w-16 text-brand-accent" />
-                <p className="font-medium text-gray-600 dark:text-gray-400">
-                  Hero Image Placeholder
-                </p>
-                <p className="text-sm text-gray-500 dark:text-gray-500">
-                  (Image URL to be provided)
-                </p>
-              </div>
+            <div className="relative overflow-hidden rounded-brand-xl">
+              <img
+                src="/assets/images/n8n-masterclass-website-ebooks-final.webp"
+                alt="n8n Masterclass Ebooks Collection"
+                className="h-full w-full object-cover"
+              />
             </div>
           </motion.div>
 
@@ -90,15 +100,18 @@ export function FreeEbookResources() {
             viewport={{ once: true }}
             className="order-1 lg:order-2"
           >
-            <h3 className="mb-6 text-3xl font-bold">Everything You Need to Get Started</h3>
+            <h3 className="mb-6 text-3xl font-bold">Essential Integration Mastery</h3>
             <p className="mb-8 text-lg text-gray-600 dark:text-gray-400">
-              These comprehensive guides have helped thousands of professionals implement automation
-              successfully. Download all 4 ebooks instantly and start your automation journey today.
+              These comprehensive guides cover the most critical integrations for n8n automation.
+              Download all 4 setup guides instantly and start building powerful workflows today.
             </p>
 
-            <button className="btn-primary flex items-center gap-2">
+            <button 
+              onClick={handleDownloadAll}
+              className="btn-primary flex items-center gap-2"
+            >
               <Download className="h-4 w-4" />
-              Download All Ebooks
+              Download All Guides
             </button>
           </motion.div>
         </div>
@@ -122,11 +135,18 @@ export function FreeEbookResources() {
                   <ebook.icon className="h-6 w-6 text-brand-accent" />
                 </div>
                 <h4 className="mb-2 font-semibold">{ebook.title}</h4>
-                <p className="mb-3 text-sm text-gray-600 dark:text-gray-400">{ebook.description}</p>
-                <div className="flex justify-between text-xs text-gray-500 dark:text-gray-500">
+                <p className="mb-4 text-sm text-gray-600 dark:text-gray-400">{ebook.description}</p>
+                <div className="mb-4 flex justify-between text-xs text-gray-500 dark:text-gray-500">
                   <span>{ebook.pages}</span>
                   <span>{ebook.downloadCount} downloads</span>
                 </div>
+                <button
+                  onClick={() => handleDownload(ebook.downloadUrl)}
+                  className="btn-secondary flex w-full items-center justify-center gap-2 text-sm"
+                >
+                  <Download className="h-3 w-3" />
+                  Download
+                </button>
               </TesseractLiquidGlass>
             </motion.div>
           ))}

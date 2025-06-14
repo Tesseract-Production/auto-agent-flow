@@ -9,6 +9,81 @@ const subscribeSchema = z.object({
   metadata: z.record(z.any()).optional(),
 });
 
+// Integration result types
+type IntegrationResult = {
+  success: boolean;
+  data?: any;
+  error?: string;
+};
+
+// Kit API integration
+async function subscribeToKit(email: string, firstName?: string): Promise<IntegrationResult> {
+  try {
+    const kitApiKey = process.env.KIT_API_KEY;
+    if (!kitApiKey) {
+      console.warn('KIT_API_KEY not configured');
+      return { success: false, error: 'Kit API key not configured' };
+    }
+
+    const response = await fetch('https://api.kit.com/v4/subscribers', {
+      method: 'POST',
+      headers: {
+        'Authorization': `Bearer ${kitApiKey}`,
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        email,
+        first_name: firstName,
+        tags: ['n8n-masterclass', 'hero-signup'],
+        state: 'active'
+      }),
+    });
+
+    if (!response.ok) {
+      const errorData = await response.text();
+      console.error('Kit API error:', errorData);
+      return { success: false, error: `Kit API error: ${response.status}` };
+    }
+
+    const data = await response.json();
+    return { success: true, data };
+  } catch (error) {
+    console.error('Kit integration error:', error);
+    return { success: false, error: 'Failed to integrate with Kit' };
+  }
+}
+
+// External webhook integration
+async function triggerExternalWebhook(email: string, firstName?: string): Promise<IntegrationResult> {
+  try {
+    const response = await fetch('https://api.tesseract.nexus/v1/auto-agent-flow-new-lead-processor', {
+      method: 'POST',
+      headers: {
+        'Authorization': '36429048-8653-444a-90d3-49ce15500f4a',
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        email,
+        firstName,
+        source: 'hero-email-capture',
+        timestamp: new Date().toISOString(),
+      }),
+    });
+
+    if (!response.ok) {
+      const errorData = await response.text();
+      console.error('External webhook error:', errorData);
+      return { success: false, error: `Webhook error: ${response.status}` };
+    }
+
+    const data = await response.json();
+    return { success: true, data };
+  } catch (error) {
+    console.error('External webhook error:', error);
+    return { success: false, error: 'Failed to trigger external webhook' };
+  }
+}
+
 export async function POST(request: NextRequest) {
   try {
     const body = await request.json();
@@ -60,10 +135,47 @@ export async function POST(request: NextRequest) {
       return NextResponse.json({ error: 'Failed to subscribe email' }, { status: 500 });
     }
 
+    // After successful Supabase insertion, trigger additional integrations
+    const integrationResults: {
+      supabase: IntegrationResult;
+      kit: IntegrationResult;
+      webhook: IntegrationResult;
+    } = {
+      supabase: { success: true, data },
+      kit: { success: false, error: 'Not attempted' },
+      webhook: { success: false, error: 'Not attempted' }
+    };
+
+    // 1. Subscribe to Kit platform
+    try {
+      const kitResult = await subscribeToKit(validatedData.email, firstName);
+      integrationResults.kit = kitResult;
+      if (!kitResult.success) {
+        console.warn('Kit integration failed:', kitResult.error);
+      }
+    } catch (error) {
+      console.error('Kit integration error:', error);
+      integrationResults.kit = { success: false, error: 'Kit integration failed' };
+    }
+
+    // 2. Trigger external webhook
+    try {
+      const webhookResult = await triggerExternalWebhook(validatedData.email, firstName);
+      integrationResults.webhook = webhookResult;
+      if (!webhookResult.success) {
+        console.warn('External webhook failed:', webhookResult.error);
+      }
+    } catch (error) {
+      console.error('External webhook error:', error);
+      integrationResults.webhook = { success: false, error: 'Webhook integration failed' };
+    }
+
+    // Return success even if integrations fail (as Supabase succeeded)
     return NextResponse.json(
       {
         message: 'Successfully subscribed!',
         subscriber: data,
+        integrations: integrationResults,
       },
       { status: 201 }
     );

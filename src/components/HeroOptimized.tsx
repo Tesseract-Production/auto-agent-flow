@@ -28,7 +28,7 @@ const MuxPlayer = dynamic(() => import('@mux/mux-player-react'), {
 
 export function HeroOptimized() {
   const titleComponent = (
-    <div className="pt-28 sm:pt-32"> {/* Add padding: 112px mobile, 128px desktop to clear navbar with extra spacing */}
+    <div className="pt-20 sm:pt-24"> {/* Reduced padding: 80px mobile, 96px desktop to make section more compact */}
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
@@ -40,7 +40,7 @@ export function HeroOptimized() {
           className="mb-8 inline-flex items-center gap-2 rounded-full px-6 py-3 text-sm font-medium"
         >
           <Sparkles className="h-4 w-4 text-brand-accent" />
-          <span>Limited Early Access - Save $148</span>
+          <span className="text-gray-700 dark:text-gray-300">Limited Early Access - Save $148</span>
         </TesseractLiquidGlassOptimized>
       </motion.div>
 
@@ -48,7 +48,7 @@ export function HeroOptimized() {
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.5, delay: 0.1 }}
-        className="mb-6 text-4xl font-bold sm:text-5xl lg:text-6xl"
+        className="mb-6 text-4xl font-bold text-gray-900 dark:text-white sm:text-5xl lg:text-6xl"
       >
         Master <span className="gradient-text">AI Orchestration</span>
         <br />
@@ -87,7 +87,7 @@ export function HeroOptimized() {
   );
 
   return (
-    <section className="relative min-h-screen overflow-hidden">
+    <section className="relative overflow-hidden pb-8">
       <NodeNetworkBackground />
 
       <ContainerScroll titleComponent={titleComponent}>
@@ -110,7 +110,7 @@ export function HeroOptimized() {
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.5, delay: 0.5 }}
-        className="relative z-10 -mt-8 flex justify-center px-4 pb-8"
+        className="relative z-10 mt-4 flex justify-center px-4 pb-8"
       >
         <HeroEmailCapture />
       </motion.div>

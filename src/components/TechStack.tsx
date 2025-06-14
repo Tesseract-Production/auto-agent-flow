@@ -49,6 +49,57 @@ export function TechStack() {
             </motion.div>
           ))}
         </div>
+
+        {/* Workflow Visualization Section */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          className="mt-20 text-center"
+        >
+          <h3 className="mb-4 text-3xl font-bold">
+            See the <span className="gradient-text">Workflows in Action</span>
+          </h3>
+          <p className="mb-12 text-xl text-gray-600 dark:text-gray-400">
+            Real workflow canvases from our masterclass
+          </p>
+
+          <div className="grid gap-8 md:grid-cols-2">
+            <motion.div
+              initial={{ opacity: 0, x: -20 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              className="glass-effect rounded-brand-xl p-4"
+            >
+              <img
+                src="/assets/images/flowise-agent-canvas-beauty-image-1.webp"
+                alt="Flowise Agent Canvas - AI Workflow Design"
+                className="w-full rounded-brand-lg"
+              />
+              <h4 className="mt-4 font-semibold">AI Agent Canvas</h4>
+              <p className="text-sm text-gray-600 dark:text-gray-400">
+                Advanced agent workflow with custom tools
+              </p>
+            </motion.div>
+
+            <motion.div
+              initial={{ opacity: 0, x: 20 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              className="glass-effect rounded-brand-xl p-4"
+            >
+              <img
+                src="/assets/images/flowise-business-logic-flows-as-agents-canvas-shot-1.webp"
+                alt="Flowise Business Logic Flow Canvas"
+                className="w-full rounded-brand-lg"
+              />
+              <h4 className="mt-4 font-semibold">Business Logic Flows</h4>
+              <p className="text-sm text-gray-600 dark:text-gray-400">
+                Complex business automation workflows
+              </p>
+            </motion.div>
+          </div>
+        </motion.div>
       </div>
     </section>
   );

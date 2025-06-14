@@ -26,7 +26,7 @@ export function VideoPreview() {
   );
 
   return (
-    <section className="py-12 bg-gradient-to-b from-transparent to-brand-primary/5">
+    <section className="-mt-40 py-12 bg-gradient-to-b from-transparent to-brand-primary/5">
       <ContainerScroll titleComponent={titleComponent}>
         <div className="h-full w-full rounded-lg overflow-hidden">
           {!isPlaying ? (

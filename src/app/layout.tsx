@@ -4,6 +4,8 @@ import './globals.css';
 import { cn } from '@/lib/utils';
 import { Analytics } from '@vercel/analytics/react';
 import { SpeedInsights } from '@vercel/speed-insights/next';
+import { SubtleNodeBackground } from '@/components/SubtleNodeBackground';
+// import { PageLoader } from '@/components/PageLoader';
 
 const inter = Inter({ subsets: ['latin'] });
 
@@ -61,6 +63,8 @@ export default function RootLayout({
           'min-h-screen text-foreground antialiased'
         )}
       >
+        <SubtleNodeBackground />
+        {/* <PageLoader /> */}
         {children}
         <Analytics />
         <SpeedInsights />

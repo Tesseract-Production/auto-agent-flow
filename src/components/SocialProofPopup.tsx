@@ -71,7 +71,7 @@ export function SocialProofPopup() {
           <TesseractLiquidGlass
             variant="card"
             enableShimmer={true}
-            className="relative overflow-hidden border border-green-200 bg-white/95 p-4 shadow-xl backdrop-blur-sm dark:border-green-800 dark:bg-gray-900/95"
+            className="relative overflow-hidden rounded-brand-lg border border-green-200 bg-white/95 p-4 shadow-xl backdrop-blur-sm dark:border-green-800 dark:bg-gray-900/95"
           >
             <button
               onClick={() => setIsVisible(false)}

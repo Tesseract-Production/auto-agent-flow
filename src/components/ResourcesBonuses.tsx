@@ -1,7 +1,7 @@
 'use client';
 
 import { motion } from 'framer-motion';
-import { Settings, Package } from 'lucide-react';
+import { Settings } from 'lucide-react';
 import { TesseractLiquidGlass } from './TesseractLiquidGlass';
 
 export function ResourcesBonuses() {
@@ -39,16 +39,12 @@ export function ResourcesBonuses() {
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
             >
-              <div className="flex aspect-[4/3] items-center justify-center rounded-brand-xl border border-brand-primary/20 bg-gradient-to-br from-brand-primary/10 to-brand-accent/10">
-                <div className="text-center">
-                  <Package className="mx-auto mb-4 h-16 w-16 text-brand-accent" />
-                  <p className="font-medium text-gray-600 dark:text-gray-400">
-                    Placeholder for Tools Image
-                  </p>
-                  <p className="text-sm text-gray-500 dark:text-gray-500">
-                    (Image URL to be provided)
-                  </p>
-                </div>
+              <div className="relative overflow-hidden rounded-brand-xl">
+                <img
+                  src="/assets/images/n8n-masterclass-website-resource-pack-final.webp"
+                  alt="Flowise Agents and Tools Resource Pack"
+                  className="h-full w-full object-cover"
+                />
               </div>
             </motion.div>
 
@@ -64,6 +60,38 @@ export function ResourcesBonuses() {
               </p>
             </motion.div>
           </div>
+
+          {/* Additional Tool Examples */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="mt-16 grid gap-6 md:grid-cols-2"
+          >
+            <div className="glass-effect rounded-brand-xl p-4">
+              <img
+                src="/assets/images/flowise-agent-canvas-beauty-image-2.jpg.webp"
+                alt="Advanced Flowise Agent Canvas"
+                className="w-full rounded-brand-lg"
+              />
+              <h4 className="mt-4 font-semibold">Advanced Agent Design</h4>
+              <p className="text-sm text-gray-600 dark:text-gray-400">
+                Multi-step agent workflows with conditional logic
+              </p>
+            </div>
+
+            <div className="glass-effect rounded-brand-xl p-4">
+              <img
+                src="/assets/images/flowise-custom-tools-resources-beauty-image-1.jpg.webp"
+                alt="Custom Flowise Tools and Resources"
+                className="w-full rounded-brand-lg"
+              />
+              <h4 className="mt-4 font-semibold">Custom Tool Integration</h4>
+              <p className="text-sm text-gray-600 dark:text-gray-400">
+                Specialized tools for enhanced functionality
+              </p>
+            </div>
+          </motion.div>
         </TesseractLiquidGlass>
       </div>
     </section>

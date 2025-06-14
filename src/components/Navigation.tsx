@@ -52,10 +52,10 @@ export function Navigation() {
               <Image
                 src="/assets/logos/tesseract-logo.webp"
                 alt="Tesseract n8n Masterclass"
-                width={180}
-                height={48}
+                width={140}
+                height={36}
                 priority
-                className="h-10 w-auto sm:h-12"
+                className="h-8 w-auto sm:h-9"
               />
             </motion.div>
 
