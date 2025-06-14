@@ -12,23 +12,23 @@ export const ContainerScroll = ({
   const containerRef = useRef<HTMLDivElement>(null);
   const { scrollYProgress } = useScroll({
     target: containerRef,
-    offset: ["start end", "end start"]
+    offset: ["start center", "end start"]
   });
 
   // Memoize transforms to prevent recalculation
-  const rotate = useTransform(scrollYProgress, [0, 0.5, 1], [10, 5, 0], {
+  const rotate = useTransform(scrollYProgress, [0, 0.3, 0.7, 1], [8, 4, 1, 0], {
     clamp: true
   });
-  const scale = useTransform(scrollYProgress, [0, 0.5, 1], [0.95, 0.975, 1], {
+  const scale = useTransform(scrollYProgress, [0, 0.3, 0.7, 1], [0.96, 0.98, 0.99, 1], {
     clamp: true
   });
-  const translateY = useTransform(scrollYProgress, [0, 1], [0, -30], {
+  const translateY = useTransform(scrollYProgress, [0, 0.5, 1], [40, 0, -20], {
     clamp: true
   });
 
   return (
     <div
-      className="relative flex min-h-[60vh] items-center justify-center p-2 md:p-8"
+      className="relative flex min-h-[50vh] items-center justify-center p-2 md:p-4"
       ref={containerRef}
       style={{ position: 'relative' }}
     >

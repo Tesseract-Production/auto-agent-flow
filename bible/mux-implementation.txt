@@ -42,3 +42,48 @@ EMBED
   allow="accelerometer; gyroscope; autoplay; encrypted-media; picture-in-picture;"
   allowfullscreen
 ></iframe>
+
+
+----------------------
+---------------------
+
+VIDEO FOR HERO 2 - SUB MAIN HERO SECONDARY VIDEO
+
+ASSET ID: C2jwqV1glrsFMAT4ACFqDvlAgxG8X81r9aEjdT02TNgg
+
+EMBED scripts
+
+HTML
+
+<script src="https://cdn.jsdelivr.net/npm/@mux/mux-player"></script>
+<mux-player
+  playback-id="3TrhHX1Lr00IseXZdb3oOVyP7WnMvpUyVDL8wh99c8YQ"
+  metadata-viewer-user-id="Placeholder (optional)"
+  metadata-video-title="n8n Masterclass - Previewing Generated Automation Item"
+  accent-color="#ffffff"
+  primary-color="#da3229"
+  secondary-color="#00000e"
+></mux-player>
+
+Reactimport MuxPlayer from '@mux/mux-player-react';
+
+<MuxPlayer
+  playbackId="3TrhHX1Lr00IseXZdb3oOVyP7WnMvpUyVDL8wh99c8YQ"
+  metadata={{
+    video_title: 'n8n Masterclass - Previewing Generated Automation Item',
+    viewer_user_id: 'Placeholder (optional)',
+  }}
+  accentColor="#ffffff"
+  primaryColor="#da3229"
+  secondaryColor="#00000e"
+/>
+
+EMBED
+<!--NOTE: Hex colors must be encoded before being sent (encodeURIComponent() in JS) -->
+
+<iframe
+  src="https://player.mux.com/3TrhHX1Lr00IseXZdb3oOVyP7WnMvpUyVDL8wh99c8YQ?metadata-video-title=n8n+Masterclass+-+Previewing+Generated+Automation+Item&accent-color=%23ffffff&primary-color=%23da3229&secondary-color=%2300000e"
+  style="width: 100%; border: none; aspect-ratio: 16/9;"
+  allow="accelerometer; gyroscope; autoplay; encrypted-media; picture-in-picture;"
+  allowfullscreen
+></iframe>
