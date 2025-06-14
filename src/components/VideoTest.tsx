@@ -39,17 +39,10 @@ export function VideoTest() {
       <div className="mb-4 h-40 border rounded overflow-hidden">
         <MuxPlayer
           playbackId={testVideos[testVideo as keyof typeof testVideos]}
-          metadata={{
-            video_title: testVideo === 'yours' ? 'Your Video' : 'Mux Demo Video',
-            viewer_user_id: 'test-user',
-          }}
           primaryColor="#da3229"
           controls={true}
           muted={true}
           style={{ width: '100%', height: '100%' }}
-          onLoadStart={() => console.log(`🧪 TEST: Loading started for ${testVideo}`)}
-          onError={(e) => console.error(`🧪 TEST: Error for ${testVideo}:`, e)}
-          onCanPlay={() => console.log(`🧪 TEST: Can play ${testVideo}`)}
         />
       </div>
       
