@@ -86,15 +86,14 @@ export default process.env.SENTRY_DSN
       project: process.env.SENTRY_PROJECT,
 
       // Only upload source maps in production
-      silent: !process.env.CI,
+      silent: true,
 
       // Source maps configuration
       sourcemaps: {
-        disable: false,
-        deleteSourcemapsAfterUpload: true,
+        disable: true, // Disable source map upload for now
       },
 
       // Disable Sentry in development
-      disableLogger: process.env.NODE_ENV === 'development',
+      disableLogger: true,
     })
   : nextConfig;

@@ -94,10 +94,6 @@ export function HeroOptimized() {
         <div className="h-full w-full rounded-lg overflow-hidden">
           <MuxPlayer
               playbackId="H9KiKlFIc3p7KStkJmV18GpJ2xl3sILy77EPdY5td00c"
-              metadata={{
-                video_title: 'n8n Masterclass - Review & Fast Full Automation Walkthrough',
-                viewer_user_id: 'hero-section-viewer',
-              }}
               primaryColor="#da3229"
               accentColor="#e0392f"
               autoPlay={true}
@@ -105,7 +101,6 @@ export function HeroOptimized() {
               loop={true}
               controls={true}
               style={{ width: '100%', height: '100%' }}
-              onError={(e) => console.error('🚨 Video error:', e)}
             />
         </div>
       </ContainerScroll>
