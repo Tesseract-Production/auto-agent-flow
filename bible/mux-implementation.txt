@@ -1,0 +1,44 @@
+This file contains our MUX assets and their embed scripts and React Code
+
+---
+
+HTML
+<script src="https://cdn.jsdelivr.net/npm/@mux/mux-player"></script>
+<mux-player
+  playback-id="H9KiKlFIc3p7KStkJmV18GpJ2xl3sILy77EPdY5td00c"
+  metadata-viewer-user-id="Placeholder (optional)"
+  metadata-video-title="n8n Masterclass - Review &amp; Fast Full Automation Walkthrough"
+  accent-color="#ffffff"
+  primary-color="#da3229"
+  secondary-color="#420000"
+></mux-player>
+
+---
+
+React
+
+import MuxPlayer from '@mux/mux-player-react';
+
+<MuxPlayer
+  playbackId="H9KiKlFIc3p7KStkJmV18GpJ2xl3sILy77EPdY5td00c"
+  metadata={{
+    video_title: 'n8n Masterclass - Review &amp; Fast Full Automation Walkthrough',
+    viewer_user_id: 'Placeholder (optional)',
+  }}
+  accentColor="#ffffff"
+  primaryColor="#da3229"
+  secondaryColor="#420000"
+/>
+
+---
+
+EMBED
+
+<!--NOTE: Hex colors must be encoded before being sent (encodeURIComponent() in JS) -->
+
+<iframe
+  src="https://player.mux.com/H9KiKlFIc3p7KStkJmV18GpJ2xl3sILy77EPdY5td00c?metadata-video-title=n8n+Masterclass+-+Review+%26+Fast+Full+Automation+Walkthrough&accent-color=%23ffffff&primary-color=%23da3229&secondary-color=%23420000"
+  style="width: 100%; border: none; aspect-ratio: 16/9;"
+  allow="accelerometer; gyroscope; autoplay; encrypted-media; picture-in-picture;"
+  allowfullscreen
+></iframe>

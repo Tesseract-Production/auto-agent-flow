@@ -231,3 +231,67 @@
   --liquid-glass-saturation: 200%;
   transform: translateZ(0) scale(1.02);
 }
+
+/* Optimized Liquid Glass for Performance */
+.liquid-glass-optimized {
+  background: rgba(255, 255, 255, var(--liquid-glass-opacity));
+  backdrop-filter: blur(var(--liquid-glass-blur));
+  -webkit-backdrop-filter: blur(var(--liquid-glass-blur));
+  
+  border: 0.5px solid rgba(255, 255, 255, var(--liquid-glass-border-opacity));
+  border-radius: 16px;
+  
+  /* Simplified shadow for better performance */
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+  
+  /* GPU acceleration without will-change */
+  transform: translate3d(0, 0, 0);
+  backface-visibility: hidden;
+  
+  /* Remove contain properties that can cause issues */
+  /* contain: layout style paint; */
+}
+
+/* Dark mode for optimized glass */
+.dark .liquid-glass-optimized {
+  background: rgba(0, 0, 0, var(--liquid-glass-opacity));
+  border-color: rgba(255, 255, 255, calc(var(--liquid-glass-border-opacity) * 0.5));
+}
+
+/* Simplified glass layer for hero section */
+.glass-layer-simple {
+  position: relative;
+  isolation: isolate;
+}
+
+.glass-layer-simple::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: linear-gradient(
+    135deg,
+    rgba(255, 255, 255, 0.2) 0%,
+    rgba(255, 255, 255, 0.05) 100%
+  );
+  pointer-events: none;
+}
+
+/* Visibility state for scroll effects */
+.liquid-glass-visible {
+  opacity: 1;
+  transform: translate3d(0, 0, 0);
+}
+
+/* Reduce motion for accessibility */
+@media (prefers-reduced-motion: reduce) {
+  .liquid-glass-optimized,
+  .liquid-glass {
+    transition: none !important;
+    animation: none !important;
+  }
+  
+  .glass-shimmer::before {
+    display: none;
+  }
+}

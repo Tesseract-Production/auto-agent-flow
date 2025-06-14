@@ -1,5 +1,5 @@
 import { Navigation } from '@/components/Navigation';
-import { Hero } from '@/components/Hero';
+import { HeroOptimized as Hero } from '@/components/HeroOptimized';
 import { VideoPreview } from '@/components/VideoPreview';
 import { CourseOutline } from '@/components/CourseOutline';
 import { TechStack } from '@/components/TechStack';
@@ -20,7 +20,7 @@ export default function Home() {
   return (
     <>
       <Navigation />
-      <main className="min-h-screen bg-white">
+      <main className="min-h-screen">
         <Hero />
         <VideoPreview />
         <FreeEbookResources />

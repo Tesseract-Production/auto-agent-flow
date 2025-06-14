@@ -24,11 +24,13 @@ const nextConfig: NextConfig = {
             key: 'Content-Security-Policy',
             value: `
               default-src 'self';
-              script-src 'self' 'unsafe-eval' 'unsafe-inline' *.vercel-insights.com *.sentry.io;
+              script-src 'self' 'unsafe-eval' 'unsafe-inline' *.vercel-insights.com *.sentry.io *.mux.com *.gstatic.com va.vercel-scripts.com;
               style-src 'self' 'unsafe-inline';
-              img-src 'self' blob: data: https:;
+              img-src 'self' blob: data: https: *.mux.com;
               font-src 'self' data:;
-              connect-src 'self' *.supabase.co *.sentry.io vitals.vercel-insights.com;
+              connect-src 'self' *.supabase.co *.sentry.io *.mux.com *.litix.io vitals.vercel-insights.com va.vercel-scripts.com;
+              media-src 'self' *.mux.com blob:;
+              frame-src 'self' *.mux.com;
               frame-ancestors 'none';
               upgrade-insecure-requests;
             `

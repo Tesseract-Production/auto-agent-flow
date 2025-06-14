@@ -12,7 +12,7 @@
 
 1. **Sentry** (Error Tracking)
 
-   - Create project at https://sentry.io
+   - Create project at <https://sentry.io>
    - Copy DSN to environment variables
    - Set up alerts and integrations
 
@@ -97,6 +97,7 @@
    ```
 
 5. **Deploy to Vercel**
+
    ```bash
    vercel --prod
    ```
@@ -111,14 +112,14 @@
 
 ## 📞 Support Contacts
 
-- **Vercel Support**: enterprise@vercel.com
-- **Sentry Support**: support@sentry.io
+- **Vercel Support**: <enterprise@vercel.com>
+- **Sentry Support**: <support@sentry.io>
 - **Urgent Issues**: Create incident in GitHub Issues
 
 ## 🔍 Monitoring URLs
 
-- Sentry Dashboard: https://sentry.io/organizations/[your-org]/
-- Vercel Dashboard: https://vercel.com/[your-team]/[your-project]
+- Sentry Dashboard: <https://sentry.io/organizations/[your-org]/>
+- Vercel Dashboard: <https://vercel.com/[your-team]/[your-project>]
 - Analytics: Built into Vercel dashboard
 
 Remember: Always test in staging before production deployment!

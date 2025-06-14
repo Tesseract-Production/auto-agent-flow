@@ -5,7 +5,12 @@ export async function GET() {
   try {
     // Get recent subscribers for social proof
     const { data, error } = await supabaseServer
-      .rpc('get_recent_subscribers', { limit_count: 10 })
+      .from('email_subscribers')
+      .select('first_name, created_at, source')
+      .not('first_name', 'is', null)
+      .neq('first_name', '')
+      .order('created_at', { ascending: false })
+      .limit(10)
     
     if (error) {
       console.error('Error fetching social proof data:', error)
@@ -17,7 +22,7 @@ export async function GET() {
 
     // Get total count of subscribers
     const { count: totalCount } = await supabaseServer
-      .from('landing_subscribers')
+      .from('email_subscribers')
       .select('*', { count: 'exact', head: true })
 
     // Transform data for social proof messages

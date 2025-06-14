@@ -96,7 +96,7 @@ const NodeNetworkBackground = React.memo(() => {
       {
         id: 0,
         x: window.innerWidth * 0.15,
-        y: window.innerHeight * 0.3,
+        y: window.innerHeight * 0.6,
         radius: 8,
         pulsePhase: 0,
         connections: [1],
@@ -106,7 +106,7 @@ const NodeNetworkBackground = React.memo(() => {
       {
         id: 1,
         x: window.innerWidth * 0.35,
-        y: window.innerHeight * 0.25,
+        y: window.innerHeight * 0.55,
         radius: 10,
         pulsePhase: Math.PI * 0.3,
         connections: [2, 3],
@@ -118,7 +118,7 @@ const NodeNetworkBackground = React.memo(() => {
       {
         id: 2,
         x: window.innerWidth * 0.55,
-        y: window.innerHeight * 0.2,
+        y: window.innerHeight * 0.5,
         radius: 9,
         pulsePhase: Math.PI * 0.6,
         connections: [4],
@@ -128,7 +128,7 @@ const NodeNetworkBackground = React.memo(() => {
       {
         id: 3,
         x: window.innerWidth * 0.55,
-        y: window.innerHeight * 0.35,
+        y: window.innerHeight * 0.65,
         radius: 8,
         pulsePhase: Math.PI * 0.9,
         connections: [4],
@@ -140,7 +140,7 @@ const NodeNetworkBackground = React.memo(() => {
       {
         id: 4,
         x: window.innerWidth * 0.75,
-        y: window.innerHeight * 0.28,
+        y: window.innerHeight * 0.58,
         radius: 9,
         pulsePhase: Math.PI * 1.2,
         connections: [5],
@@ -150,7 +150,7 @@ const NodeNetworkBackground = React.memo(() => {
       {
         id: 5,
         x: window.innerWidth * 0.85,
-        y: window.innerHeight * 0.32,
+        y: window.innerHeight * 0.62,
         radius: 7,
         pulsePhase: Math.PI * 1.5,
         connections: [],
@@ -165,7 +165,7 @@ const NodeNetworkBackground = React.memo(() => {
       networkNodes.push({
         id: i,
         x: Math.random() * window.innerWidth * 0.6 + window.innerWidth * 0.2,
-        y: Math.random() * window.innerHeight * 0.4 + window.innerHeight * 0.4,
+        y: Math.random() * window.innerHeight * 0.3 + window.innerHeight * 0.5,
         radius: Math.random() * 4 + 4,
         pulsePhase: Math.random() * Math.PI * 2,
         connections: [],

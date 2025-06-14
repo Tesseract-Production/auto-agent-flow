@@ -38,6 +38,11 @@ export async function POST(request: NextRequest) {
     // Extract first name from metadata
     const firstName = validatedData.metadata?.firstName || null;
     
+    // Remove firstName from metadata since it's now a separate column
+    const cleanMetadata = validatedData.metadata ? 
+      Object.fromEntries(Object.entries(validatedData.metadata).filter(([key]) => key !== 'firstName')) :
+      {};
+    
     // Insert new subscriber
     const { data, error } = await supabaseServer
       .from('email_subscribers')
@@ -45,7 +50,7 @@ export async function POST(request: NextRequest) {
         email: validatedData.email,
         first_name: firstName,
         source: validatedData.source,
-        metadata: validatedData.metadata || {},
+        metadata: cleanMetadata,
       })
       .select()
       .single();
