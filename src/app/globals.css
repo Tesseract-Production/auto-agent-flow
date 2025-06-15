@@ -5,30 +5,39 @@
 @layer base {
   :root {
     /* Brand Colors */
-    --brand-dark: 23 23 23;
+    --brand-dark: 6 6 6;
     --brand-primary: 218 50 41;
     --brand-secondary: 92 38 35;
     --brand-accent: 224 57 47;
 
-    /* Background */
-    --background: 255 255 255;
-    --background-dark: 23 23 23;
+    /* Shadcn CSS Variables */
+    --background: 0 0% 100%;
+    --foreground: 240 10% 3.9%;
+    --card: 0 0% 100%;
+    --card-foreground: 240 10% 3.9%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 240 10% 3.9%;
+    --primary: 240 9% 89%;
+    --primary-foreground: 355.7 100% 97.3%;
+    --secondary: 240 4.8% 95.9%;
+    --secondary-foreground: 240 5.9% 10%;
+    --muted: 240 4.8% 95.9%;
+    --muted-foreground: 240 3.8% 46.1%;
+    --accent: 240 4.8% 95.9%;
+    --accent-foreground: 240 5.9% 10%;
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 240 5.9% 90%;
+    --input: 240 5.9% 90%;
+    --ring: 240 10% 3.9%;
+    --radius: 0.5rem;
 
     /* Surface Colors */
     --surface: 249 250 251;
     --surface-dark: 30 30 30;
 
-    /* Text Colors */
-    --foreground: 23 23 23;
-    --foreground-dark: 245 245 245;
-
-    /* Muted Colors */
-    --muted: 156 163 175;
-    --muted-dark: 107 114 128;
-
     /* Border Radius */
     --radius-sm: 8px;
-    --radius: 12px;
     --radius-lg: 16px;
     --radius-xl: 24px;
 
@@ -41,14 +50,30 @@
   }
 
   .dark {
-    --background: 10 10 10;
-    --foreground: 245 245 245;
+    --background: 240 10% 3.9%;
+    --foreground: 0 0% 98%;
+    --card: 240 10% 3.9%;
+    --card-foreground: 0 0% 98%;
+    --popover: 240 10% 3.9%;
+    --popover-foreground: 0 0% 98%;
+    --primary: 0 0% 98%;
+    --primary-foreground: 240 5.9% 10%;
+    --secondary: 240 3.7% 15.9%;
+    --secondary-foreground: 0 0% 98%;
+    --muted: 240 3.7% 15.9%;
+    --muted-foreground: 240 5% 64.9%;
+    --accent: 240 3.7% 15.9%;
+    --accent-foreground: 0 0% 98%;
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 240 3.7% 15.9%;
+    --input: 240 3.7% 15.9%;
+    --ring: 240 4.9% 83.9%;
     --surface: 30 30 30;
-    --muted: 107 114 128;
   }
 
   body {
-    @apply text-gray-900;
+    @apply text-gray-900 dark:text-gray-100;
   }
 
   html {
@@ -59,6 +84,10 @@
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
   }
+  .theme {
+    --animate-star-movement-bottom: star-movement-bottom linear infinite alternate;
+    --animate-star-movement-top: star-movement-top linear infinite alternate;
+  }
 }
 
 @layer components {
@@ -68,7 +97,7 @@
   }
 
   .btn-secondary {
-    @apply rounded-brand border-2 border-muted bg-surface px-8 py-4 font-semibold text-brand-dark transition-all duration-300 hover:border-brand-accent hover:shadow-brand dark:border-muted-dark dark:bg-surface-dark dark:text-white;
+    @apply rounded-brand border-2 border-muted bg-surface px-8 py-4 font-semibold text-brand-dark transition-all duration-300 hover:border-brand-accent hover:shadow-brand dark:border-muted dark:bg-surface-dark dark:text-white;
   }
 
   /* Text Effects */
@@ -141,9 +170,37 @@
   }
 }
 
-
 /* Import Liquid Glass Styles */
 @import '../styles/liquid-glass.css';
 
 /* Import Mux Video Fixes */
 @import '../styles/mux-video-fix.css';
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+}
+
+@theme inline {
+  @keyframes star-movement-bottom {
+  0% {
+    transform: translate(0%, 0%);
+    opacity: 1;
+    }
+  100% {
+    transform: translate(-100%, 0%);
+    opacity: 0;
+    }
+  }
+  @keyframes star-movement-top {
+  0% {
+    transform: translate(0%, 0%);
+    opacity: 1;
+    }
+  100% {
+    transform: translate(100%, 0%);
+    opacity: 0;
+    }
+  }
+}

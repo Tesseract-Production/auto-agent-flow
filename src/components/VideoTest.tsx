@@ -48,7 +48,7 @@ export function VideoTest() {
       
       <div className="text-xs space-y-1">
         <p><strong>Current ID:</strong> {testVideos[testVideo as keyof typeof testVideos]}</p>
-        <p className="text-gray-600">Check console for debugging info</p>
+        <p className="text-gray-600 dark:text-gray-400">Check console for debugging info</p>
       </div>
     </div>
   );

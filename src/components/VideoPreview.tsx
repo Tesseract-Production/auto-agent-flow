@@ -1,10 +1,12 @@
 'use client';
 
 import { motion } from 'framer-motion';
-import { Play, Users, Star, Clock } from 'lucide-react';
-import { useState } from 'react';
+import { Play, Users, Star, Clock, ChevronLeft, ChevronRight } from 'lucide-react';
+import { useState, useCallback } from 'react';
 import dynamic from 'next/dynamic';
 import { ContainerScroll } from './ui/container-scroll-animation-optimized';
+import { TesseractLiquidGlass } from './TesseractLiquidGlass';
+import useEmblaCarousel from 'embla-carousel-react';
 
 // Dynamic import for MuxPlayer
 const MuxPlayer = dynamic(() => import('@mux/mux-player-react'), {
@@ -13,20 +15,29 @@ const MuxPlayer = dynamic(() => import('@mux/mux-player-react'), {
 
 export function VideoPreview() {
   const [isPlaying, setIsPlaying] = useState(false);
+  const [emblaRef, emblaApi] = useEmblaCarousel({ loop: true, align: 'start' });
+
+  const scrollPrev = useCallback(() => {
+    if (emblaApi) emblaApi.scrollPrev();
+  }, [emblaApi]);
+
+  const scrollNext = useCallback(() => {
+    if (emblaApi) emblaApi.scrollNext();
+  }, [emblaApi]);
 
   const titleComponent = (
-    <>
-      <h2 className="mb-4 text-4xl font-bold sm:text-5xl">
-        See the <span className="gradient-text">Masterclass in Action</span>
+    <div className="mx-auto max-w-4xl text-center">
+      <h2 className="mb-4 text-4xl font-bold sm:text-5xl text-gray-900 dark:text-gray-100">
+        See the <span className="gradient-text">32-Node Automation</span> in Action
       </h2>
       <p className="text-xl text-gray-600 dark:text-gray-400">
-        Watch how we build a complete AI automation from scratch
+        Watch how we build a complete multi-agent workflow with visual models, Supabase, and publication-ready output
       </p>
-    </>
+    </div>
   );
 
   return (
-    <section className="-mt-40 py-12 bg-gradient-to-b from-transparent to-brand-primary/5">
+    <section className="-mt-40 pt-12 pb-20 bg-white dark:bg-[#060606]">
       <ContainerScroll titleComponent={titleComponent}>
         <div className="h-full w-full rounded-lg overflow-hidden">
           {!isPlaying ? (
@@ -38,7 +49,7 @@ export function VideoPreview() {
                   whileHover={{ scale: 1.1 }}
                   whileTap={{ scale: 0.95 }}
                   onClick={() => setIsPlaying(true)}
-                  className="group flex h-24 w-24 items-center justify-center rounded-full bg-white/20 backdrop-blur-md"
+                  className="group flex h-24 w-24 items-center justify-center rounded-full bg-white/20 dark:bg-gray-800/20 backdrop-blur-md"
                 >
                   <Play className="ml-1 h-10 w-10 text-white transition-transform group-hover:scale-110" />
                 </motion.button>
@@ -47,7 +58,7 @@ export function VideoPreview() {
               {/* Video Info Overlay */}
               <div className="absolute bottom-0 left-0 right-0 rounded-b-lg bg-gradient-to-t from-black/60 to-transparent p-6">
                 <h3 className="mb-2 text-2xl font-bold text-white">
-                  Preview: Building Complete AI Automation System
+                  Live Build: Sequential Orchestration Pipeline™
                 </h3>
                 <div className="flex flex-wrap gap-6 text-white/80">
                   <span className="flex items-center gap-2">
@@ -80,36 +91,94 @@ export function VideoPreview() {
       </ContainerScroll>
 
       <div className="mx-auto max-w-6xl px-4 pb-12 sm:px-6 lg:px-8">
-        {/* Video Chapters */}
+        {/* Workflow Images Carousel */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="mt-8 grid gap-6 md:grid-cols-3"
+          className="mt-20"
         >
-          {[
-            { time: '00:00', title: 'Course Introduction & Setup', views: '2.8K' },
-            { time: '02:45', title: 'Building Your First n8n Workflow', views: '2.4K' },
-            { time: '08:30', title: 'Integrating AI Models & APIs', views: '2.1K' },
-          ].map((chapter, index) => (
-            <motion.div
-              key={index}
-              whileHover={{ scale: 1.02 }}
-              className="glass-effect group cursor-pointer rounded-brand p-4"
-            >
-              <div className="flex items-center gap-3">
-                <div className="flex h-12 w-12 items-center justify-center rounded-brand bg-brand-accent/10 transition-colors group-hover:bg-brand-accent/20">
-                  <Play className="h-5 w-5 text-brand-accent" />
-                </div>
-                <div className="flex-1">
-                  <p className="font-semibold">{chapter.title}</p>
-                  <p className="text-sm text-gray-600 dark:text-gray-400">
-                    {chapter.time} • {chapter.views} views
-                  </p>
-                </div>
+          <h2 className="mb-6 text-center text-4xl font-bold sm:text-5xl text-gray-900 dark:text-gray-100">
+            See the <span className="gradient-text">Workflows in Action</span>
+          </h2>
+          
+          <div className="relative mx-auto max-w-4xl px-8 pb-16">
+            <div className="overflow-hidden" ref={emblaRef}>
+              <div className="flex">
+                {[
+                  { 
+                    image: '/assets/images/auto-agent-flow-site-image-main-n8n-workflow-beauty-image-1-prod.webp',
+                    title: 'Sequential Orchestration Method Overview',
+                    description: 'Complete workflow architecture with 32+ nodes'
+                  },
+                  { 
+                    image: '/assets/images/auto-agent-flow-site-image-main-n8n-wokflow-beauty-image-2-prod.webp',
+                    title: 'Multi-Agent Workflow Design',
+                    description: 'Advanced AI agent coordination patterns'
+                  },
+                  { 
+                    image: '/assets/images/auto-agent-flow-site-image-main-n8n-wokflow-beauty-image-3-prod.webp',
+                    title: 'Advanced Data Processing Pipeline',
+                    description: 'Complex data transformation workflows'
+                  },
+                  { 
+                    image: '/assets/images/auto-agent-flow-site-image-main-n8n-wokflow-beauty-image-4-prod.webp',
+                    title: 'AI Integration Patterns',
+                    description: 'Seamless AI model integration strategies'
+                  },
+                  { 
+                    image: '/assets/images/auto-agent-flow-site-image-main-n8n-wokflow-beauty-image-5-prod.webp',
+                    title: 'Production-Ready Automation',
+                    description: 'Scalable enterprise workflow solutions'
+                  },
+                ].map((workflow, index) => (
+                  <div key={index} className="flex-[0_0_100%] min-w-0 px-4">
+                    <motion.div
+                      whileHover={{ scale: 1.02 }}
+                      className="group cursor-pointer"
+                    >
+                      <TesseractLiquidGlass
+                        variant="card"
+                        enableScrollEffects={true}
+                        enableShimmer={true}
+                        className="overflow-hidden border border-gray-200/50 shadow-brand-lg transition-all duration-700 group-hover:border-brand-primary group-hover:shadow-brand-xl dark:border-gray-700/50"
+                      >
+                        <div className="aspect-video relative overflow-hidden rounded-t-brand">
+                          <img
+                            src={workflow.image}
+                            alt={workflow.title}
+                            className="h-full w-full object-cover transition-transform duration-300 group-hover:scale-105"
+                          />
+                        </div>
+                        <div className="p-6">
+                          <h4 className="mb-2 text-lg font-semibold text-gray-900 dark:text-gray-100">
+                            {workflow.title}
+                          </h4>
+                          <p className="text-sm text-gray-600 dark:text-gray-400">
+                            {workflow.description}
+                          </p>
+                        </div>
+                      </TesseractLiquidGlass>
+                    </motion.div>
+                  </div>
+                ))}
               </div>
-            </motion.div>
-          ))}
+            </div>
+            
+            {/* Navigation Buttons */}
+            <button
+              onClick={scrollPrev}
+              className="absolute left-6 top-1/2 -translate-y-1/2 flex h-10 w-10 items-center justify-center rounded-full bg-white/90 backdrop-blur-md shadow-lg transition-all hover:bg-white dark:bg-gray-800/90 dark:hover:bg-gray-800 z-10"
+            >
+              <ChevronLeft className="h-5 w-5 text-gray-700 dark:text-gray-300" />
+            </button>
+            <button
+              onClick={scrollNext}
+              className="absolute right-6 top-1/2 -translate-y-1/2 flex h-10 w-10 items-center justify-center rounded-full bg-white/90 backdrop-blur-md shadow-lg transition-all hover:bg-white dark:bg-gray-800/90 dark:hover:bg-gray-800 z-10"
+            >
+              <ChevronRight className="h-5 w-5 text-gray-700 dark:text-gray-300" />
+            </button>
+          </div>
         </motion.div>
       </div>
     </section>

@@ -5,6 +5,10 @@ import { cn } from '@/lib/utils';
 import { Analytics } from '@vercel/analytics/react';
 import { SpeedInsights } from '@vercel/speed-insights/next';
 import { SubtleNodeBackground } from '@/components/SubtleNodeBackground';
+import { EmailSubmissionProvider } from '@/contexts/EmailSubmissionContext';
+import { ClarityProvider } from '@/components/ClarityProvider';
+import { ThemeProvider } from '@/components/ThemeProvider';
+import { ThemeScript } from '@/components/ThemeScript';
 // import { PageLoader } from '@/components/PageLoader';
 
 const inter = Inter({ subsets: ['latin'] });
@@ -57,15 +61,23 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" suppressHydrationWarning>
+      <head>
+        <ThemeScript />
+      </head>
       <body
         className={cn(
           inter.className,
-          'min-h-screen text-foreground antialiased'
+          'min-h-screen bg-white dark:bg-[#060606] text-gray-900 dark:text-gray-100 antialiased'
         )}
       >
-        <SubtleNodeBackground />
-        {/* <PageLoader /> */}
-        {children}
+        <ThemeProvider defaultTheme="system" storageKey="theme">
+          <EmailSubmissionProvider>
+            <ClarityProvider />
+            <SubtleNodeBackground />
+            {/* <PageLoader /> */}
+            {children}
+          </EmailSubmissionProvider>
+        </ThemeProvider>
         <Analytics />
         <SpeedInsights />
         {process.env.NODE_ENV === 'development' && (

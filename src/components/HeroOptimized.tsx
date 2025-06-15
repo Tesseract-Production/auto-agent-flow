@@ -2,6 +2,7 @@
 
 import { motion } from 'framer-motion';
 import { Sparkles } from 'lucide-react';
+import { useState, useEffect, useMemo } from 'react';
 import dynamic from 'next/dynamic';
 import { HeroEmailCapture } from './HeroEmailCapture';
 import { TesseractLiquidGlassOptimized } from './TesseractLiquidGlassOptimized';
@@ -10,7 +11,7 @@ import { ContainerScroll } from './ui/container-scroll-animation-optimized';
 // Lazy load the background animation to improve initial render
 const NodeNetworkBackground = dynamic(() => import('./NodeNetworkBackground'), {
   ssr: false,
-  loading: () => <div className="absolute inset-0 -z-10 bg-gradient-to-b from-white/30 via-white/50 to-white/80 dark:from-black/30 dark:via-black/50 dark:to-black/80" />
+  loading: () => <div className="absolute inset-0 -z-10 bg-white/80 dark:bg-[#060606]/80" />
 });
 
 // Dynamic import for MuxPlayer to fix SSR issues
@@ -27,8 +28,28 @@ const MuxPlayer = dynamic(() => import('@mux/mux-player-react'), {
 });
 
 export function HeroOptimized() {
+  const [titleNumber, setTitleNumber] = useState(0);
+  const rotatingTexts = useMemo(() => [
+    'NODE AUTOMATION',
+    'AI DEVELOPMENT', 
+    'AGENTIC ORCHESTRATION',
+    'VIBE CODING',
+    'API SEQUENCING'
+  ], []);
+
+  useEffect(() => {
+    const timeoutId = setTimeout(() => {
+      if (titleNumber === rotatingTexts.length - 1) {
+        setTitleNumber(0);
+      } else {
+        setTitleNumber(titleNumber + 1);
+      }
+    }, 3000);
+    return () => clearTimeout(timeoutId);
+  }, [titleNumber, rotatingTexts]);
+
   const titleComponent = (
-    <div className="pt-20 sm:pt-24"> {/* Reduced padding: 80px mobile, 96px desktop to make section more compact */}
+    <div className="pt-16 sm:pt-20"> {/* Restored original spacing */}
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
@@ -40,7 +61,7 @@ export function HeroOptimized() {
           className="mb-8 inline-flex items-center gap-2 rounded-full px-6 py-3 text-sm font-medium"
         >
           <Sparkles className="h-4 w-4 text-brand-accent" />
-          <span className="text-gray-700 dark:text-gray-300">Limited Early Access - Save $148</span>
+          <span className="text-gray-900 dark:text-gray-100">Auto Agent Flow Academy - Launch Special</span>
         </TesseractLiquidGlassOptimized>
       </motion.div>
 
@@ -48,11 +69,35 @@ export function HeroOptimized() {
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.5, delay: 0.1 }}
-        className="mb-6 text-4xl font-bold text-gray-900 dark:text-white sm:text-5xl lg:text-6xl"
+        className="mb-6 text-4xl font-bold text-gray-900 dark:text-white sm:text-5xl lg:text-6xl text-center"
       >
-        Master <span className="gradient-text">AI Orchestration</span>
-        <br />
-        Transform Your Career
+        <div className="mb-2">Master</div>
+        <div className="relative flex justify-center overflow-hidden py-2" style={{ height: '5rem' }}>
+          &nbsp;
+          {rotatingTexts.map((text, index) => (
+            <motion.span
+              key={index}
+              className="absolute font-bold gradient-text text-3xl sm:text-4xl lg:text-5xl"
+              style={{ top: '0.8rem' }}
+              initial={{ opacity: 0, y: "-100" }}
+              transition={{ type: "spring", stiffness: 50 }}
+              animate={
+                titleNumber === index
+                  ? {
+                      y: 0,
+                      opacity: 1,
+                    }
+                  : {
+                      y: titleNumber > index ? -150 : 150,
+                      opacity: 0,
+                    }
+              }
+            >
+              {text}
+            </motion.span>
+          ))}
+        </div>
+        <div className="-mt-2">Develop Solutions Confidently</div>
       </motion.h1>
 
       <motion.p
@@ -61,8 +106,7 @@ export function HeroOptimized() {
         transition={{ duration: 0.5, delay: 0.2 }}
         className="mx-auto mb-8 max-w-3xl text-xl text-gray-600 dark:text-gray-400 sm:text-2xl"
       >
-        The most comprehensive n8n masterclass for beginners. Build AI-powered automations that
-        replace entire teams. From zero to production in weeks.
+        Build a production-ready 32-node automation using custom AI agents, visual models, and n8n's powerful orchestration platform. From zero to advanced workflows in one comprehensive masterclass.
       </motion.p>
 
       {/* Temporarily comment out buttons
@@ -87,7 +131,7 @@ export function HeroOptimized() {
   );
 
   return (
-    <section className="relative overflow-hidden pb-8">
+    <section className="relative overflow-hidden pb-20">
       <NodeNetworkBackground />
 
       <ContainerScroll titleComponent={titleComponent}>

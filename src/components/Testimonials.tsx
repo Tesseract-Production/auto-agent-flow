@@ -46,7 +46,7 @@ export function Testimonials() {
   const [activeIndex, setActiveIndex] = useState(0);
 
   return (
-    <section className="bg-gradient-to-b from-transparent to-brand-primary/5 px-4 py-20 sm:px-6 lg:px-8">
+    <section className="bg-white dark:bg-[#060606] px-4 py-20 sm:px-6 lg:px-8">
       <div className="mx-auto max-w-7xl">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -54,10 +54,12 @@ export function Testimonials() {
           viewport={{ once: true }}
           className="mb-12 text-center"
         >
-          <h2 className="mb-4 text-4xl font-bold sm:text-5xl">Real People, Real Transformations</h2>
-          <p className="text-xl text-gray-600 dark:text-gray-400">
-            Join thousands who've changed their careers with n8n automation
-          </p>
+          <div className="max-w-4xl mx-auto">
+            <h2 className="mb-4 text-4xl font-bold sm:text-5xl text-gray-900 dark:text-gray-100">Real People, Real Transformations</h2>
+            <p className="text-xl text-gray-600 dark:text-gray-400">
+              Join thousands who've changed their careers with n8n automation
+            </p>
+          </div>
         </motion.div>
 
         <div className="mb-12 grid gap-8 lg:grid-cols-3">

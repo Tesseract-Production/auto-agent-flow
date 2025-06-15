@@ -4,15 +4,15 @@ import { motion } from 'framer-motion';
 import { Award, Building2, Users2, Briefcase } from 'lucide-react';
 
 const achievements = [
-  { icon: Award, label: '9+ Years in Automation', value: 'Since 2015' },
-  { icon: Building2, label: 'Built 500+ Workflows', value: 'For Fortune 500s' },
-  { icon: Users2, label: 'Taught 2,847+ Students', value: 'Globally' },
-  { icon: Briefcase, label: '$2M+ Client Revenue', value: 'Generated' },
+  { icon: Award, label: '9 Years Product Development', value: 'AI & Legacy Software' },
+  { icon: Building2, label: 'Alumni Programs', value: 'Antler NYC, Founder Institute' },
+  { icon: Users2, label: 'Specialized AI Stacks', value: 'Privacy-First Agentic Systems' },
+  { icon: Briefcase, label: 'Ex. Native Instruments', value: 'Plugin Alliance' },
 ];
 
 export function Instructor() {
   return (
-    <section className="bg-gradient-to-b from-transparent to-brand-primary/5 px-4 py-20 sm:px-6 lg:px-8">
+    <section className="bg-white dark:bg-[#060606] px-4 py-20 sm:px-6 lg:px-8">
       <div className="mx-auto max-w-6xl">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -28,11 +28,11 @@ export function Instructor() {
                 <div className="text-center">
                   <div className="mx-auto mb-6 h-48 w-48 rounded-full bg-gradient-to-br from-brand-primary to-brand-accent p-1">
                     <div className="flex h-full w-full items-center justify-center rounded-full bg-white dark:bg-brand-dark">
-                      <span className="gradient-text text-6xl font-bold">TN</span>
+                      <span className="gradient-text text-6xl font-bold">V</span>
                     </div>
                   </div>
-                  <h3 className="mb-2 text-2xl font-bold">Tesseract Nexus</h3>
-                  <p className="text-gray-600 dark:text-gray-400">Lead Instructor</p>
+                  <h3 className="mb-2 text-2xl font-bold">Vadim</h3>
+                  <p className="text-gray-600 dark:text-gray-400">Full Stack Developer & Augmented AI Engineer</p>
                 </div>
               </div>
             </div>
@@ -40,12 +40,11 @@ export function Instructor() {
 
           {/* Content Section */}
           <div>
-            <h2 className="mb-6 text-4xl font-bold sm:text-5xl">
-              Learn from a <span className="gradient-text">Proven Expert</span>
+            <h2 className="mb-6 text-4xl font-bold sm:text-5xl text-gray-900 dark:text-gray-100">
+              Learn from a <span className="gradient-text">Product Creator & AI Builder</span>
             </h2>
             <p className="mb-8 text-xl text-gray-600 dark:text-gray-400">
-              I've spent the last 9 years mastering automation, building systems for Fortune 500
-              companies, and teaching thousands how to transform their careers with n8n.
+              For the past 9 years, I've been cultivating products and experiences in both AI-native and legacy software development. I specialize in personalized, privacy-first Agentic Stacks that produce higher quality outputs and are more cost-effective to scale.
             </p>
 
             <div className="mb-8 grid grid-cols-2 gap-6">
@@ -69,11 +68,9 @@ export function Instructor() {
 
             <blockquote className="glass-effect rounded-brand border-l-4 border-brand-accent p-6">
               <p className="mb-4 text-lg italic text-gray-700 dark:text-gray-300">
-                "My mission is simple: democratize automation. You don't need a CS degree or years
-                of coding experience. With the right guidance, anyone can build powerful AI
-                workflows that change lives."
+                "AI is the ultimate tool for productizing yourself into an extendable and autonomous system. I spend a lot of time working with those who have specialized domain knowledge and want to enrich it with the latest that Machine Learning and AI have to offer."
               </p>
-              <cite className="text-gray-600 dark:text-gray-400">— Tesseract Nexus</cite>
+              <cite className="text-gray-600 dark:text-gray-400">— Vadim</cite>
             </blockquote>
           </div>
         </motion.div>

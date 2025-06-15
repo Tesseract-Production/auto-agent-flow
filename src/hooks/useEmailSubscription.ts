@@ -4,6 +4,7 @@ interface SubscribeResponse {
   message: string;
   alreadySubscribed?: boolean;
   subscriber?: Record<string, unknown>;
+  showConfetti?: boolean;
   error?: string;
   details?: Record<string, unknown>;
 }

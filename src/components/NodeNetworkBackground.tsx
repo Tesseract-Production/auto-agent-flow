@@ -468,7 +468,7 @@ const NodeNetworkBackground = React.memo(() => {
           opacity: 0.6,
         }}
       />
-      <div className="absolute inset-0 bg-gradient-to-b from-white/30 via-white/50 to-white/80 dark:from-black/30 dark:via-black/50 dark:to-black/80" />
+      <div className="absolute inset-0 bg-white/80 dark:bg-[#060606]/80" />
     </motion.div>
   );
 });

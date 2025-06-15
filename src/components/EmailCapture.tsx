@@ -35,7 +35,7 @@ export function EmailCapture() {
   };
 
   return (
-    <section className="px-4 py-20 sm:px-6 lg:px-8">
+    <section className="bg-white dark:bg-[#060606] px-4 py-20 sm:px-6 lg:px-8">
         <div className="mx-auto max-w-4xl">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -49,12 +49,14 @@ export function EmailCapture() {
               className="rounded-brand-xl p-8 shadow-brand-xl sm:p-12"
             >
               <div className="mb-8 text-center">
-                <h2 className="mb-4 text-3xl font-bold sm:text-4xl">
-                  Join 2,847+ Automation Pioneers
-                </h2>
-                <p className="text-lg text-gray-600 dark:text-gray-400">
-                  Get instant access to the masterclass and start building today
-                </p>
+                <div className="max-w-4xl mx-auto">
+                  <h2 className="mb-4 text-3xl font-bold sm:text-4xl">
+                    Join 2,847+ Automation Pioneers
+                  </h2>
+                  <p className="text-lg text-gray-600 dark:text-gray-400">
+                    Get instant access to the masterclass and start building today
+                  </p>
+                </div>
               </div>
 
               {/* Countdown Timer */}

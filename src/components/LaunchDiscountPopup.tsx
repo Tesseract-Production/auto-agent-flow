@@ -134,7 +134,7 @@ export function LaunchDiscountPopup() {
                 Claim 40% Off Now
               </button>
 
-              <p className="text-xs text-center text-gray-500 dark:text-gray-500">
+              <p className="text-xs text-center text-gray-500 dark:text-gray-400">
                 No code needed • Automatically applied
               </p>
             </div>

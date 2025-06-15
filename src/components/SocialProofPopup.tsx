@@ -36,7 +36,7 @@ export function SocialProofPopup() {
     fetchSocialProof();
   }, []);
 
-  // Show popup every 10 seconds and cycle through items
+  // Show popup every 15 seconds and cycle through items
   useEffect(() => {
     if (socialProofItems.length === 0) return;
 
@@ -51,7 +51,7 @@ export function SocialProofPopup() {
 
       // Move to next item
       setCurrentIndex((prev) => (prev + 1) % socialProofItems.length);
-    }, 10000);
+    }, 15000);
 
     return () => clearInterval(interval);
   }, [socialProofItems, currentIndex]);

@@ -152,11 +152,11 @@ const SubtleNodeBackground = React.memo(() => {
   }, [isDark]);
 
   const backgroundStyle = isDark 
-    ? 'linear-gradient(to bottom, rgba(10,10,10,0.98) 0%, rgba(10,10,10,0.95) 50%, rgba(10,10,10,0.98) 100%)'
-    : 'linear-gradient(to bottom, rgba(255,255,255,0.98) 0%, rgba(255,255,255,0.95) 50%, rgba(255,255,255,0.98) 100%)';
+    ? 'rgb(6, 6, 6)'
+    : 'rgb(255, 255, 255)';
 
   return (
-    <div className="fixed inset-0 -z-10 overflow-hidden">
+    <div className="absolute inset-0 -z-10 overflow-hidden">
       <canvas
         ref={canvasRef}
         className="h-full w-full"

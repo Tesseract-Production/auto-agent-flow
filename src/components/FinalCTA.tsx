@@ -32,7 +32,7 @@ export function FinalCTA() {
   };
 
   return (
-    <section className="bg-gradient-to-b from-brand-primary/5 to-transparent px-4 py-20 sm:px-6 lg:px-8">
+    <section className="bg-white dark:bg-[#060606] px-4 py-20 sm:px-6 lg:px-8">
       <div className="mx-auto max-w-4xl">
         <motion.div
           initial={{ opacity: 0, scale: 0.95 }}
@@ -52,14 +52,16 @@ export function FinalCTA() {
             </div>
           </div>
 
-          <h2 className="mb-6 text-4xl font-bold sm:text-5xl">
-            Your Future in Automation <span className="gradient-text">Starts Today</span>
-          </h2>
+          <div className="max-w-4xl mx-auto">
+            <h2 className="mb-6 text-4xl font-bold sm:text-5xl">
+              Your Future in Automation <span className="gradient-text">Starts Today</span>
+            </h2>
 
-          <p className="mx-auto mb-8 max-w-2xl text-xl text-gray-600 dark:text-gray-400">
-            Join 2,847+ students who've transformed their careers. The demand for automation experts
-            is exploding. Will you be ready?
-          </p>
+            <p className="mb-8 text-xl text-gray-600 dark:text-gray-400">
+              Join 2,847+ students who've transformed their careers. The demand for automation experts
+              is exploding. Will you be ready?
+            </p>
+          </div>
 
           <div className="mb-8 flex flex-col justify-center gap-4 sm:flex-row">
             <motion.button

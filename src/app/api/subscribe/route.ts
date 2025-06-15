@@ -28,7 +28,7 @@ async function subscribeToKit(email: string, firstName?: string): Promise<Integr
     const response = await fetch('https://api.kit.com/v4/subscribers', {
       method: 'POST',
       headers: {
-        'Authorization': `Bearer ${kitApiKey}`,
+        'X-Kit-Api-Key': kitApiKey,
         'Content-Type': 'application/json',
       },
       body: JSON.stringify({
@@ -50,6 +50,50 @@ async function subscribeToKit(email: string, firstName?: string): Promise<Integr
   } catch (error) {
     console.error('Kit integration error:', error);
     return { success: false, error: 'Failed to integrate with Kit' };
+  }
+}
+
+// Sendgrid email integration
+async function sendWelcomeEmail(email: string, firstName?: string): Promise<IntegrationResult> {
+  try {
+    const sendgridApiKey = process.env.SENDGRID_API_KEY;
+    if (!sendgridApiKey) {
+      console.warn('SENDGRID_API_KEY not configured');
+      return { success: false, error: 'Sendgrid API key not configured' };
+    }
+
+    const response = await fetch('https://api.sendgrid.com/v3/mail/send', {
+      method: 'POST',
+      headers: {
+        'Authorization': `Bearer ${sendgridApiKey}`,
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        personalizations: [{
+          to: [{ email, name: firstName || '' }],
+          dynamic_template_data: {
+            first_name: firstName || 'there',
+            email: email
+          }
+        }],
+        from: {
+          email: 'academy@tesseract.nexus',
+          name: 'Auto Agent Flow Academy'
+        },
+        template_id: process.env.SENDGRID_TEMPLATE_ID || 'd-your-template-id',
+      }),
+    });
+
+    if (!response.ok) {
+      const errorData = await response.text();
+      console.error('Sendgrid API error:', errorData);
+      return { success: false, error: `Sendgrid API error: ${response.status}` };
+    }
+
+    return { success: true, data: { message: 'Welcome email sent' } };
+  } catch (error) {
+    console.error('Sendgrid integration error:', error);
+    return { success: false, error: 'Failed to send welcome email' };
   }
 }
 
@@ -105,7 +149,11 @@ export async function POST(request: NextRequest) {
 
     if (existingSubscriber) {
       return NextResponse.json(
-        { message: 'Email already subscribed', alreadySubscribed: true },
+        { 
+          message: 'Email already subscribed', 
+          alreadySubscribed: true,
+          showConfetti: true 
+        },
         { status: 200 }
       );
     }
@@ -139,10 +187,12 @@ export async function POST(request: NextRequest) {
     const integrationResults: {
       supabase: IntegrationResult;
       kit: IntegrationResult;
+      sendgrid: IntegrationResult;
       webhook: IntegrationResult;
     } = {
       supabase: { success: true, data },
       kit: { success: false, error: 'Not attempted' },
+      sendgrid: { success: false, error: 'Not attempted' },
       webhook: { success: false, error: 'Not attempted' }
     };
 
@@ -158,7 +208,19 @@ export async function POST(request: NextRequest) {
       integrationResults.kit = { success: false, error: 'Kit integration failed' };
     }
 
-    // 2. Trigger external webhook
+    // 2. Send welcome email via Sendgrid
+    try {
+      const sendgridResult = await sendWelcomeEmail(validatedData.email, firstName);
+      integrationResults.sendgrid = sendgridResult;
+      if (!sendgridResult.success) {
+        console.warn('Sendgrid integration failed:', sendgridResult.error);
+      }
+    } catch (error) {
+      console.error('Sendgrid integration error:', error);
+      integrationResults.sendgrid = { success: false, error: 'Sendgrid integration failed' };
+    }
+
+    // 3. Trigger external webhook
     try {
       const webhookResult = await triggerExternalWebhook(validatedData.email, firstName);
       integrationResults.webhook = webhookResult;
@@ -176,6 +238,7 @@ export async function POST(request: NextRequest) {
         message: 'Successfully subscribed!',
         subscriber: data,
         integrations: integrationResults,
+        showConfetti: true,
       },
       { status: 201 }
     );
