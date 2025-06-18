@@ -90,19 +90,19 @@ export function VideoPreview() {
         </div>
       </ContainerScroll>
 
-      <div className="mx-auto max-w-6xl px-4 pb-12 sm:px-6 lg:px-8">
+      <div className="mx-auto max-w-6xl px-4 pb-20 sm:px-6 lg:px-8">
         {/* Workflow Images Carousel */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="mt-20"
+          className="mt-24 px-4"
         >
-          <h2 className="mb-6 text-center text-4xl font-bold sm:text-5xl text-gray-900 dark:text-gray-100">
+          <h2 className="mb-12 text-center text-4xl font-bold sm:text-5xl text-gray-900 dark:text-gray-100">
             See the <span className="gradient-text">Workflows in Action</span>
           </h2>
           
-          <div className="relative mx-auto max-w-4xl px-8 pb-16">
+          <div className="relative mx-auto max-w-4xl px-12 py-8 pb-24">
             <div className="overflow-hidden" ref={emblaRef}>
               <div className="flex">
                 {[
@@ -132,7 +132,7 @@ export function VideoPreview() {
                     description: 'Scalable enterprise workflow solutions'
                   },
                 ].map((workflow, index) => (
-                  <div key={index} className="flex-[0_0_100%] min-w-0 px-4">
+                  <div key={index} className="flex-[0_0_100%] min-w-0 px-8 py-4">
                     <motion.div
                       whileHover={{ scale: 1.02 }}
                       className="group cursor-pointer"
@@ -141,7 +141,7 @@ export function VideoPreview() {
                         variant="card"
                         enableScrollEffects={true}
                         enableShimmer={true}
-                        className="overflow-hidden border border-gray-200/50 shadow-brand-lg transition-all duration-700 group-hover:border-brand-primary group-hover:shadow-brand-xl dark:border-gray-700/50"
+                        className="overflow-hidden border border-gray-200/50 shadow-brand transition-all duration-700 group-hover:border-brand-primary group-hover:shadow-brand-lg dark:border-gray-700/50"
                       >
                         <div className="aspect-video relative overflow-hidden rounded-t-brand">
                           <img
@@ -168,15 +168,15 @@ export function VideoPreview() {
             {/* Navigation Buttons */}
             <button
               onClick={scrollPrev}
-              className="absolute left-6 top-1/2 -translate-y-1/2 flex h-10 w-10 items-center justify-center rounded-full bg-white/90 backdrop-blur-md shadow-lg transition-all hover:bg-white dark:bg-gray-800/90 dark:hover:bg-gray-800 z-10"
+              className="absolute left-2 top-1/2 -translate-y-1/2 flex h-12 w-12 items-center justify-center rounded-full bg-white/90 backdrop-blur-md shadow-lg transition-all hover:bg-white hover:scale-110 dark:bg-gray-800/90 dark:hover:bg-gray-800 z-10"
             >
-              <ChevronLeft className="h-5 w-5 text-gray-700 dark:text-gray-300" />
+              <ChevronLeft className="h-6 w-6 text-gray-700 dark:text-gray-300" />
             </button>
             <button
               onClick={scrollNext}
-              className="absolute right-6 top-1/2 -translate-y-1/2 flex h-10 w-10 items-center justify-center rounded-full bg-white/90 backdrop-blur-md shadow-lg transition-all hover:bg-white dark:bg-gray-800/90 dark:hover:bg-gray-800 z-10"
+              className="absolute right-2 top-1/2 -translate-y-1/2 flex h-12 w-12 items-center justify-center rounded-full bg-white/90 backdrop-blur-md shadow-lg transition-all hover:bg-white hover:scale-110 dark:bg-gray-800/90 dark:hover:bg-gray-800 z-10"
             >
-              <ChevronRight className="h-5 w-5 text-gray-700 dark:text-gray-300" />
+              <ChevronRight className="h-6 w-6 text-gray-700 dark:text-gray-300" />
             </button>
           </div>
         </motion.div>

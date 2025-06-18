@@ -10,13 +10,14 @@ export function LaunchDiscountPopup() {
   const [hasScrolledPastHero, setHasScrolledPastHero] = useState(false)
   const [timeLeft, setTimeLeft] = useState(24 * 60 * 60) // 24 hours in seconds
 
-  // Monitor scroll position to show after hero
+  // Monitor scroll position to show after scrolling through half the page
   useEffect(() => {
     const handleScroll = () => {
-      const heroHeight = window.innerHeight // Assuming hero is full height
+      const pageHeight = document.documentElement.scrollHeight - window.innerHeight
       const scrollPosition = window.scrollY
+      const scrollPercentage = scrollPosition / pageHeight
       
-      if (scrollPosition > heroHeight * 0.8 && !hasScrolledPastHero) {
+      if (scrollPercentage > 0.5 && !hasScrolledPastHero) {
         setHasScrolledPastHero(true)
         // Show popup after a small delay
         setTimeout(() => {
@@ -78,18 +79,18 @@ export function LaunchDiscountPopup() {
     <AnimatePresence>
       {isVisible && (
         <motion.div
-          initial={{ opacity: 0, x: 100, y: -20 }}
+          initial={{ opacity: 0, x: 100, y: 20 }}
           animate={{ opacity: 1, x: 0, y: 0 }}
-          exit={{ opacity: 0, x: 100, y: -20 }}
+          exit={{ opacity: 0, x: 100, y: 20 }}
           transition={{ type: 'spring', damping: 25, stiffness: 300 }}
-          className="fixed top-4 right-4 z-50 max-w-sm"
+          className="fixed bottom-4 right-4 z-50 max-w-xs"
         >
           <TesseractLiquidGlass
             variant="interactive"
             enableShimmer={true}
-            className="p-4 border-2 border-brand-accent/30 shadow-[0_25px_50px_-12px_rgba(224,57,47,0.4)]"
+            className="p-3 border-2 border-brand-accent/30 shadow-[0_25px_50px_-12px_rgba(224,57,47,0.4)]"
           >
-            <div className="space-y-3">
+            <div className="space-y-2">
               {/* Header */}
               <div className="flex items-start justify-between">
                 <div className="flex items-center gap-2">
@@ -109,18 +110,18 @@ export function LaunchDiscountPopup() {
 
               {/* Main content */}
               <div>
-                <h3 className="font-bold text-lg text-gray-900 dark:text-gray-100 mb-1">
+                <h3 className="font-bold text-base text-gray-900 dark:text-gray-100 mb-1">
                   Save 40% Today!
                 </h3>
-                <p className="text-sm text-gray-600 dark:text-gray-400">
+                <p className="text-xs text-gray-600 dark:text-gray-400">
                   Limited-time launch discount on the complete n8n masterclass.
                 </p>
               </div>
 
               {/* Countdown */}
-              <div className="flex items-center gap-2 p-2 bg-brand-accent/10 rounded-lg">
-                <Clock className="w-4 h-4 text-brand-accent" />
-                <span className="text-sm font-mono text-brand-accent font-semibold">
+              <div className="flex items-center gap-2 p-1.5 bg-brand-accent/10 rounded-lg">
+                <Clock className="w-3 h-3 text-brand-accent" />
+                <span className="text-xs font-mono text-brand-accent font-semibold">
                   {formatTime(timeLeft)}
                 </span>
                 <span className="text-xs text-gray-600 dark:text-gray-400">left</span>
@@ -129,14 +130,10 @@ export function LaunchDiscountPopup() {
               {/* CTA */}
               <button
                 onClick={handleCTAClick}
-                className="w-full btn-primary text-sm py-2 px-4"
+                className="w-full btn-primary text-xs py-1.5 px-3"
               >
                 Claim 40% Off Now
               </button>
-
-              <p className="text-xs text-center text-gray-500 dark:text-gray-400">
-                No code needed • Automatically applied
-              </p>
             </div>
           </TesseractLiquidGlass>
         </motion.div>

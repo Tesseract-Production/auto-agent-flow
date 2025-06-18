@@ -28,31 +28,26 @@ export function StarBorder<T extends ElementType = "button">({
       )} 
       {...props}
     >
+      {/* Animated border gradient */}
       <div
-        className={cn(
-          "absolute w-[300%] h-[50%] bottom-[-11px] right-[-250%] rounded-full animate-star-movement-bottom z-0",
-          "opacity-20 dark:opacity-70" 
-        )}
+        className="absolute inset-0 rounded-[20px] opacity-75"
         style={{
-          background: `radial-gradient(circle, ${defaultColor}, transparent 10%)`,
-          animationDuration: speed,
+          background: `conic-gradient(from 0deg, transparent 0%, ${defaultColor} 25%, transparent 50%, ${defaultColor} 75%, transparent 100%)`,
+          animation: `spin ${speed} linear infinite`,
         }}
       />
-      <div
-        className={cn(
-          "absolute w-[300%] h-[50%] top-[-10px] left-[-250%] rounded-full animate-star-movement-top z-0",
-          "opacity-20 dark:opacity-70"
-        )}
-        style={{
-          background: `radial-gradient(circle, ${defaultColor}, transparent 10%)`,
-          animationDuration: speed,
-        }}
-      />
+      
+      {/* Inner background mask */}
+      <div className="absolute inset-[2px] rounded-[18px] bg-white dark:bg-[#060606] transition-all duration-500" />
+      
+      {/* Subtle default border */}
+      <div className="absolute inset-[1px] rounded-[19px] border border-gray-200 dark:border-gray-700 transition-all duration-500" />
+      
       <div className={cn(
-        "relative z-1 border text-foreground text-center text-base py-3 px-6 rounded-[20px] h-12 flex items-center justify-center",
-        "bg-gradient-to-b from-background/90 to-muted/90 border-border/40",
-        "hover:bg-gradient-to-b hover:from-brand-accent hover:to-brand-primary hover:text-white hover:border-brand-accent",
-        "dark:from-background dark:to-muted dark:border-border dark:hover:border-brand-accent dark:hover:text-white"
+        "relative z-10 text-center text-base py-3 px-6 rounded-[20px] h-12 flex items-center justify-center",
+        "bg-transparent transition-all duration-500 ease-out",
+        "hover:bg-brand-primary hover:text-white hover:shadow-lg hover:shadow-brand-accent/25 hover:-translate-y-0.5",
+        "dark:hover:bg-brand-primary dark:hover:text-white"
       )}>
         {children}
       </div>

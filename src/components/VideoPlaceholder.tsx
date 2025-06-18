@@ -55,7 +55,7 @@ export function VideoPlaceholder({
       {/* Play button */}
       <div className="absolute inset-0 flex justify-center items-center">
         <motion.button
-          className="bg-white/20 hover:bg-white/30 backdrop-blur-sm p-6 rounded-full focus:outline-none focus:ring-2 focus:ring-white/50 transition-all"
+          className="bg-white/20 hover:bg-white/30 dark:bg-black/20 dark:hover:bg-black/30 backdrop-blur-sm p-6 rounded-full focus:outline-none focus:ring-2 focus:ring-white/50 dark:focus:ring-white/30 transition-all"
           whileHover={{ scale: 1.1 }}
           whileTap={{ scale: 0.95 }}
           onClick={onPlayClick}

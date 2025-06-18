@@ -36,7 +36,12 @@ export function Navigation() {
       <TesseractLiquidGlass
         variant="nav"
         enableScrollEffects={true}
-        className={cn('mx-auto max-w-7xl rounded-brand-lg transition-all duration-300', scrolled ? 'shadow-brand' : '')}
+        className={cn(
+          'mx-auto max-w-7xl rounded-brand-lg transition-all duration-300',
+          'bg-white/95 dark:bg-gray-900/95 backdrop-blur-md',
+          'border border-gray-200/50 dark:border-gray-700/50',
+          scrolled ? 'shadow-brand bg-white/98 dark:bg-gray-900/98' : ''
+        )}
       >
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="flex h-16 items-center justify-between sm:h-20">
@@ -65,14 +70,14 @@ export function Navigation() {
                   href={item.href}
                   initial={{ opacity: 0, y: -10 }}
                   animate={{ opacity: 1, y: 0 }}
-                  className="text-gray-700 transition-colors hover:text-brand-accent dark:text-gray-300"
+                  className="text-gray-900 transition-colors hover:text-brand-accent dark:text-gray-100 font-medium"
                 >
                   {item.label}
                 </motion.a>
               ))}
               <button
                 onClick={toggleTheme}
-                className="rounded-brand p-2 transition-colors hover:bg-gray-100 dark:hover:bg-gray-800"
+                className="rounded-brand p-2 transition-colors hover:bg-gray-100 dark:hover:bg-gray-700"
               >
                 {theme === 'dark' ? <Sun className="h-5 w-5 text-gray-900 dark:text-gray-100" /> : <Moon className="h-5 w-5 text-gray-900 dark:text-gray-100" />}
               </button>
@@ -82,7 +87,7 @@ export function Navigation() {
                 target="_blank"
                 rel="noopener noreferrer"
                 color="rgb(224, 57, 47)"
-                speed="4s"
+                speed="8s"
                 className="no-underline"
               >
                 Enroll Now
@@ -90,7 +95,7 @@ export function Navigation() {
             </div>
 
             {/* Mobile Menu Button */}
-            <button onClick={() => setIsOpen(!isOpen)} className="p-2 md:hidden">
+            <button onClick={() => setIsOpen(!isOpen)} className="p-2 md:hidden text-gray-900 dark:text-gray-100">
               {isOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
             </button>
           </div>
@@ -101,7 +106,7 @@ export function Navigation() {
           <motion.div
             initial={{ opacity: 0, y: -20 }}
             animate={{ opacity: 1, y: 0 }}
-            className="glass-effect border-t border-gray-200 dark:border-gray-700 md:hidden"
+            className="bg-white/98 dark:bg-gray-900/98 backdrop-blur-md border-t border-gray-200 dark:border-gray-700 md:hidden"
           >
             <div className="space-y-4 px-4 py-6">
               {navItems.map((item) => (
@@ -109,18 +114,25 @@ export function Navigation() {
                   key={item.label}
                   href={item.href}
                   onClick={() => setIsOpen(false)}
-                  className="block text-lg font-medium text-gray-900 dark:text-gray-300"
+                  className="block text-lg font-medium text-gray-900 dark:text-gray-100"
                 >
                   {item.label}
                 </a>
               ))}
+              <button
+                onClick={toggleTheme}
+                className="flex items-center gap-2 rounded-brand p-2 text-lg font-medium text-gray-900 transition-colors hover:bg-gray-100 dark:text-gray-100 dark:hover:bg-gray-700"
+              >
+                {theme === 'dark' ? <Sun className="h-5 w-5" /> : <Moon className="h-5 w-5" />}
+                {theme === 'dark' ? 'Light Mode' : 'Dark Mode'}
+              </button>
               <StarBorder 
                 as="a"
                 href="https://academy.tesseract.nexus/course/n8n-full-stack-masterclass-2025-building-generative-multimedia-production-system"
                 target="_blank"
                 rel="noopener noreferrer"
                 color="rgb(224, 57, 47)"
-                speed="4s"
+                speed="8s"
                 className="no-underline w-full"
               >
                 Enroll Now

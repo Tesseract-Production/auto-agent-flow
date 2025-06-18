@@ -28,17 +28,17 @@ export function ThemeProvider({
   storageKey = 'theme',
   ...props
 }: ThemeProviderProps) {
-  const [theme, setTheme] = useState<Theme>(defaultTheme);
+  const [theme, setThemeState] = useState<Theme>(defaultTheme);
 
   useEffect(() => {
     // Check localStorage first, then system preference
     const storedTheme = localStorage.getItem(storageKey) as Theme;
     if (storedTheme && ['dark', 'light', 'system'].includes(storedTheme)) {
-      setTheme(storedTheme);
+      setThemeState(storedTheme);
     } else {
       // Detect system preference
       const systemPrefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-      setTheme(systemPrefersDark ? 'dark' : 'light');
+      setThemeState(systemPrefersDark ? 'dark' : 'light');
     }
   }, [storageKey]);
 
@@ -63,7 +63,7 @@ export function ThemeProvider({
     theme,
     setTheme: (theme: Theme) => {
       localStorage.setItem(storageKey, theme);
-      setTheme(theme);
+      setThemeState(theme);
     },
   };
 
