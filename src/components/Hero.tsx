@@ -21,7 +21,7 @@ export function Hero() {
           className="mb-8 inline-flex items-center gap-2 rounded-full px-6 py-3 text-sm font-medium"
         >
           <Sparkles className="h-4 w-4 text-brand-accent" />
-          <span>Limited Early Access - Save $148</span>
+          <span className="text-gray-900 dark:text-gray-100">Limited Early Access - Save $148</span>
         </TesseractLiquidGlass>
       </motion.div>
 

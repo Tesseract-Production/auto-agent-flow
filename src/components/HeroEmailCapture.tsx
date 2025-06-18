@@ -4,13 +4,16 @@ import { useState } from 'react';
 import { motion } from 'framer-motion';
 import { ArrowRight, CheckCircle2, Loader2 } from 'lucide-react';
 import { useEmailSubscription } from '@/hooks/useEmailSubscription';
+import { useEmailSubmission } from '@/contexts/EmailSubmissionContext';
 import { TesseractLiquidGlass } from './TesseractLiquidGlass';
+import confetti from 'canvas-confetti';
 
 export function HeroEmailCapture() {
   const [email, setEmail] = useState('');
   const [firstName, setFirstName] = useState('');
   const [isSubmitted, setIsSubmitted] = useState(false);
   const { subscribe, isLoading, error, success } = useEmailSubscription();
+  const { setHasSubmittedEmail, setUserEmail } = useEmailSubmission();
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -24,8 +27,25 @@ export function HeroEmailCapture() {
       page: 'landing-hero',
     });
 
-    if (result.alreadySubscribed || success) {
+    // Check if the API call was successful 
+    const isSuccessful = result.alreadySubscribed || (result.message && !result.error) || success;
+    
+    if (isSuccessful) {
       setIsSubmitted(true);
+      setHasSubmittedEmail(true);
+      setUserEmail(email);
+      
+      // Trigger confetti for successful submissions
+      if (result.showConfetti) {
+        confetti({
+          particleCount: 100,
+          spread: 70,
+          origin: { y: 0.6 },
+          colors: ['#da3229', '#e0392f', '#ffffff'],
+        });
+      }
+      
+      // Clear form fields
       setEmail('');
       setFirstName('');
     }
@@ -114,7 +134,7 @@ export function HeroEmailCapture() {
           </motion.p>
         )}
 
-        <p className="text-center text-xs text-gray-500 dark:text-gray-400">
+        <p className="text-center text-xs text-gray-500 dark:text-gray-400 mb-10">
           Get instant access to 5 exclusive automation templates + course preview
         </p>
         </form>

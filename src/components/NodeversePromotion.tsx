@@ -1,16 +1,20 @@
 'use client';
 
-import { Book, Download } from 'lucide-react';
+import { Book, Download, Lock } from 'lucide-react';
 import { TesseractLiquidGlass } from './TesseractLiquidGlass';
 import { motion } from 'framer-motion';
+import { useEmailSubmission } from '@/contexts/EmailSubmissionContext';
 
 export function NodeversePromotion() {
+  const { hasSubmittedEmail } = useEmailSubmission();
+
   const handleDownload = () => {
+    if (!hasSubmittedEmail) return;
     window.open('https://geenuity-mantra-ai-generated.s3.us-west-2.amazonaws.com/n8n-masterclass-website-media/Nodeverse_Adventures_of_Tesseractian_McMartian_COMPRESSED.pdf', '_blank');
   };
 
   return (
-    <section className="bg-gradient-to-b from-transparent via-brand-accent/5 to-transparent px-4 py-20 sm:px-6 lg:px-8">
+    <section className="bg-white dark:bg-[#060606] px-4 py-20 sm:px-6 lg:px-8">
       <div className="mx-auto max-w-7xl">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -27,14 +31,16 @@ export function NodeversePromotion() {
             <span>Immerse Yourself in the Nodeverse</span>
           </TesseractLiquidGlass>
 
-          <h2 className="mb-4 text-4xl font-bold sm:text-5xl">
-            Discover the <span className="gradient-text">Nodeverse</span>
-          </h2>
+          <div className="max-w-4xl mx-auto">
+            <h2 className="mb-4 text-4xl font-bold sm:text-5xl text-gray-900 dark:text-gray-100">
+              Discover the <span className="gradient-text">Nodeverse</span>
+            </h2>
 
-          <p className="mx-auto max-w-3xl text-xl text-gray-600 dark:text-gray-400">
-            Dive into our exclusive graphic novel, "Nodeverse: Adventures of Tesseractian McMartian."
-            Join in the automation quest and explore the wonders of our masterclass walkthrough.
-          </p>
+            <p className="text-xl text-gray-600 dark:text-gray-400">
+              Dive into our exclusive graphic novel, "Nodeverse: Adventures of Tesseractian McMartian."
+              Join in the automation quest and explore the wonders of our masterclass walkthrough.
+            </p>
+          </div>
         </motion.div>
 
         <div className="grid items-center gap-12 lg:grid-cols-2">
@@ -59,7 +65,7 @@ export function NodeversePromotion() {
             viewport={{ once: true }}
             className="order-1 lg:order-2"
           >
-            <h3 className="mb-6 text-3xl font-bold">An Epic Automation Adventure</h3>
+            <h3 className="mb-6 text-3xl font-bold text-gray-900 dark:text-gray-100">An Epic Automation Adventure</h3>
             <p className="mb-8 text-lg text-gray-600 dark:text-gray-400">
               Follow Tesseractian McMartian on an incredible journey through the world of automation. 
               This exclusive graphic novel brings the concepts from our masterclass to life through 
@@ -68,10 +74,24 @@ export function NodeversePromotion() {
 
             <button 
               onClick={handleDownload}
-              className="btn-primary flex items-center gap-2"
+              disabled={!hasSubmittedEmail}
+              className={`flex items-center gap-2 ${
+                hasSubmittedEmail 
+                  ? 'btn-primary' 
+                  : 'bg-gray-400 text-white px-6 py-3 rounded-full font-semibold cursor-not-allowed opacity-50'
+              }`}
             >
-              <Download className="h-4 w-4" />
-              Download Graphic Novel
+              {hasSubmittedEmail ? (
+                <>
+                  <Download className="h-4 w-4" />
+                  Download Graphic Novel
+                </>
+              ) : (
+                <>
+                  <Lock className="h-4 w-4" />
+                  Submit Email to Download
+                </>
+              )}
             </button>
           </motion.div>
         </div>

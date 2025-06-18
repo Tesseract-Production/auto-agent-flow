@@ -6,7 +6,7 @@ import { TesseractLiquidGlass } from './TesseractLiquidGlass';
 
 export function ResourcesBonuses() {
   return (
-    <section className="px-4 py-20 sm:px-6 lg:px-8">
+    <section className="bg-white dark:bg-[#060606] px-4 py-20 sm:px-6 lg:px-8">
       <div className="mx-auto max-w-7xl">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -14,17 +14,22 @@ export function ResourcesBonuses() {
           viewport={{ once: true }}
           className="mb-12 text-center"
         >
-          <div className="glass-effect mb-4 inline-flex items-center gap-2 rounded-full px-4 py-2 text-sm font-medium">
+          <TesseractLiquidGlass
+            variant="interactive"
+            enableShimmer={true}
+            className="mb-4 inline-flex items-center gap-2 rounded-full px-6 py-3 text-sm font-medium"
+          >
             <Settings className="h-4 w-4 text-brand-accent" />
-            <span>Curated Tools & Bonuses</span>
+            <span className="text-gray-900 dark:text-gray-100">Curated Tools & Bonuses</span>
+          </TesseractLiquidGlass>
+          <div className="max-w-4xl mx-auto">
+            <h2 className="mb-4 text-4xl font-bold sm:text-5xl text-gray-900 dark:text-gray-100">
+              Bonus: Flowise <span className="gradient-text">Templates & Custom Tools</span>
+            </h2>
+            <p className="text-xl text-gray-600 dark:text-gray-400">
+              Access our production-ready Flowise agent canvases and 20+ custom tool functions. Everything you see built in the masterclass, ready for your own projects.
+            </p>
           </div>
-          <h2 className="mb-4 text-4xl font-bold sm:text-5xl">
-            Exclusive Flowise <span className="gradient-text">Agents & Tools</span>
-          </h2>
-          <p className="mx-auto max-w-3xl text-xl text-gray-600 dark:text-gray-400">
-            Gain access to our premium agents and tools pack. Perfect for enhancing your workflow
-            and automations.
-          </p>
         </motion.div>
 
         {/* Content */}
@@ -53,10 +58,9 @@ export function ResourcesBonuses() {
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
             >
-              <h3 className="mb-6 text-3xl font-bold">Enhance Your Automation Suite</h3>
+              <h3 className="mb-6 text-3xl font-bold text-gray-900 dark:text-gray-100">Production-Ready Agent Templates</h3>
               <p className="mb-8 text-lg text-gray-600 dark:text-gray-400">
-                Unlock 2 powerful Flowise agents and a comprehensive pack of 20 custom tools to
-                skyrocket your automation capabilities.
+                Get the exact Flowise canvases used in the masterclass: Cross-Functional Generalized Agentic Assistant templates and SEO Keywords Research Agent - plus 20 fully implemented custom tool functions.
               </p>
             </motion.div>
           </div>
@@ -68,28 +72,42 @@ export function ResourcesBonuses() {
             viewport={{ once: true }}
             className="mt-16 grid gap-6 md:grid-cols-2"
           >
-            <div className="glass-effect rounded-brand-xl p-4">
-              <img
-                src="/assets/images/flowise-agent-canvas-beauty-image-2.jpg.webp"
-                alt="Advanced Flowise Agent Canvas"
-                className="w-full rounded-brand-lg"
-              />
-              <h4 className="mt-4 font-semibold">Advanced Agent Design</h4>
-              <p className="text-sm text-gray-600 dark:text-gray-400">
-                Multi-step agent workflows with conditional logic
-              </p>
+            <div className="group">
+              <TesseractLiquidGlass
+                variant="card"
+                enableScrollEffects={true}
+                enableShimmer={true}
+                className="rounded-brand-xl p-4 border border-gray-200/50 shadow-brand-lg transition-all duration-700 group-hover:border-brand-primary group-hover:shadow-brand-xl dark:border-gray-700/50"
+              >
+                <img
+                  src="/assets/images/flowise-agent-canvas-beauty-image-2.jpg.webp"
+                  alt="Advanced Flowise Agent Canvas"
+                  className="w-full rounded-brand-lg"
+                />
+                <h4 className="mt-4 font-semibold">Cross-Functional Agent Canvas</h4>
+                <p className="text-sm text-gray-600 dark:text-gray-400">
+                  Generalized agentic assistant template from the masterclass
+                </p>
+              </TesseractLiquidGlass>
             </div>
 
-            <div className="glass-effect rounded-brand-xl p-4">
-              <img
-                src="/assets/images/flowise-custom-tools-resources-beauty-image-1.jpg.webp"
-                alt="Custom Flowise Tools and Resources"
-                className="w-full rounded-brand-lg"
-              />
-              <h4 className="mt-4 font-semibold">Custom Tool Integration</h4>
-              <p className="text-sm text-gray-600 dark:text-gray-400">
-                Specialized tools for enhanced functionality
-              </p>
+            <div className="group">
+              <TesseractLiquidGlass
+                variant="card"
+                enableScrollEffects={true}
+                enableShimmer={true}
+                className="rounded-brand-xl p-4 border border-gray-200/50 shadow-brand-lg transition-all duration-700 group-hover:border-brand-primary group-hover:shadow-brand-xl dark:border-gray-700/50"
+              >
+                <img
+                  src="/assets/images/flowise-custom-tools-resources-beauty-image-1.jpg.webp"
+                  alt="Custom Flowise Tools and Resources"
+                  className="w-full rounded-brand-lg"
+                />
+                <h4 className="mt-4 font-semibold">20+ Custom Tool Functions</h4>
+                <p className="text-sm text-gray-600 dark:text-gray-400">
+                  Ready-to-use API enrichment, media generation, and utility tools
+                </p>
+              </TesseractLiquidGlass>
             </div>
           </motion.div>
         </TesseractLiquidGlass>

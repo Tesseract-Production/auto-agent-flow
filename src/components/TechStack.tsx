@@ -14,7 +14,7 @@ const technologies = [
 
 export function TechStack() {
   return (
-    <section className="px-4 py-20 sm:px-6 lg:px-8">
+    <section className="bg-white dark:bg-[#060606] px-4 py-20 sm:px-6 lg:px-8">
       <div className="mx-auto max-w-7xl">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -22,12 +22,14 @@ export function TechStack() {
           viewport={{ once: true }}
           className="mb-12 text-center"
         >
-          <h2 className="mb-4 text-4xl font-bold sm:text-5xl">
-            Master the <span className="gradient-text">Future Tech Stack</span>
-          </h2>
-          <p className="text-xl text-gray-600 dark:text-gray-400">
-            Learn the tools that companies desperately need
-          </p>
+          <div className="max-w-4xl mx-auto">
+            <h2 className="mb-4 text-4xl font-bold sm:text-5xl text-gray-900 dark:text-gray-100">
+              Master the <span className="gradient-text">Future Tech Stack</span>
+            </h2>
+            <p className="text-xl text-gray-600 dark:text-gray-400">
+              Learn the tools that companies desperately need
+            </p>
+          </div>
         </motion.div>
 
         <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
@@ -57,12 +59,14 @@ export function TechStack() {
           viewport={{ once: true }}
           className="mt-20 text-center"
         >
-          <h3 className="mb-4 text-3xl font-bold">
-            See the <span className="gradient-text">Workflows in Action</span>
-          </h3>
-          <p className="mb-12 text-xl text-gray-600 dark:text-gray-400">
-            Real workflow canvases from our masterclass
-          </p>
+          <div className="max-w-4xl mx-auto">
+            <h3 className="mb-4 text-3xl font-bold">
+              See the <span className="gradient-text">Workflows in Action</span>
+            </h3>
+            <p className="mb-12 text-xl text-gray-600 dark:text-gray-400">
+              Real workflow canvases from our masterclass
+            </p>
+          </div>
 
           <div className="grid gap-8 md:grid-cols-2">
             <motion.div

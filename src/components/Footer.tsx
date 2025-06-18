@@ -35,7 +35,7 @@ const socialLinks = [
 
 export function Footer() {
   return (
-    <footer className="bg-gradient-to-b from-transparent to-brand-dark/5 px-4 py-20 dark:to-brand-dark/20 sm:px-6 lg:px-8">
+    <footer className="bg-white dark:bg-[#060606] px-4 py-20 sm:px-6 lg:px-8">
       <div className="mx-auto max-w-7xl">
         <div className="mb-12 grid gap-8 md:grid-cols-2 lg:grid-cols-5">
           {/* Brand Section */}

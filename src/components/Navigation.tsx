@@ -5,12 +5,14 @@ import { motion } from 'framer-motion';
 import { Menu, X, Moon, Sun } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { TesseractLiquidGlass } from './TesseractLiquidGlass';
+import { useTheme } from './ThemeProvider';
+import { StarBorder } from './ui/star-border';
 import Image from 'next/image';
 
 export function Navigation() {
   const [isOpen, setIsOpen] = useState(false);
-  const [isDark, setIsDark] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const { theme, setTheme } = useTheme();
 
   useEffect(() => {
     const handleScroll = () => setScrolled(window.scrollY > 20);
@@ -18,13 +20,9 @@ export function Navigation() {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  useEffect(() => {
-    if (isDark) {
-      document.documentElement.classList.add('dark');
-    } else {
-      document.documentElement.classList.remove('dark');
-    }
-  }, [isDark]);
+  const toggleTheme = () => {
+    setTheme(theme === 'dark' ? 'light' : 'dark');
+  };
 
   const navItems = [
     { label: 'Course Outline', href: '#outline' },
@@ -73,12 +71,22 @@ export function Navigation() {
                 </motion.a>
               ))}
               <button
-                onClick={() => setIsDark(!isDark)}
+                onClick={toggleTheme}
                 className="rounded-brand p-2 transition-colors hover:bg-gray-100 dark:hover:bg-gray-800"
               >
-                {isDark ? <Sun className="h-5 w-5" /> : <Moon className="h-5 w-5" />}
+                {theme === 'dark' ? <Sun className="h-5 w-5 text-gray-900 dark:text-gray-100" /> : <Moon className="h-5 w-5 text-gray-900 dark:text-gray-100" />}
               </button>
-              <button className="btn-primary">Enroll Now</button>
+              <StarBorder 
+                as="a"
+                href="https://academy.tesseract.nexus/course/n8n-full-stack-masterclass-2025-building-generative-multimedia-production-system"
+                target="_blank"
+                rel="noopener noreferrer"
+                color="rgb(224, 57, 47)"
+                speed="4s"
+                className="no-underline"
+              >
+                Enroll Now
+              </StarBorder>
             </div>
 
             {/* Mobile Menu Button */}
@@ -101,12 +109,22 @@ export function Navigation() {
                   key={item.label}
                   href={item.href}
                   onClick={() => setIsOpen(false)}
-                  className="block text-lg font-medium"
+                  className="block text-lg font-medium text-gray-900 dark:text-gray-300"
                 >
                   {item.label}
                 </a>
               ))}
-              <button className="btn-primary w-full">Enroll Now</button>
+              <StarBorder 
+                as="a"
+                href="https://academy.tesseract.nexus/course/n8n-full-stack-masterclass-2025-building-generative-multimedia-production-system"
+                target="_blank"
+                rel="noopener noreferrer"
+                color="rgb(224, 57, 47)"
+                speed="4s"
+                className="no-underline w-full"
+              >
+                Enroll Now
+              </StarBorder>
             </div>
           </motion.div>
         )}

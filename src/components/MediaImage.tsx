@@ -51,7 +51,7 @@ export function MediaImage({
           <p className="font-medium text-gray-600 dark:text-gray-400">
             {placeholder || 'Image Placeholder'}
           </p>
-          <p className="text-sm text-gray-500 dark:text-gray-500">(Image URL to be provided)</p>
+          <p className="text-sm text-gray-500 dark:text-gray-400">(Image URL to be provided)</p>
         </div>
       </div>
     );

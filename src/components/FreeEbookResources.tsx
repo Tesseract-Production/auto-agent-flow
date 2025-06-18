@@ -1,8 +1,9 @@
 'use client';
 
 import { motion } from 'framer-motion';
-import { Download, BookOpen, FileText, Zap, Users } from 'lucide-react';
+import { Download, BookOpen, FileText, Zap, Users, Lock } from 'lucide-react';
 import { TesseractLiquidGlass } from './TesseractLiquidGlass';
+import { useEmailSubmission } from '@/contexts/EmailSubmissionContext';
 
 const ebooks = [
   {
@@ -44,18 +45,22 @@ const ebooks = [
 ];
 
 export function FreeEbookResources() {
+  const { hasSubmittedEmail } = useEmailSubmission();
+
   const handleDownloadAll = () => {
+    if (!hasSubmittedEmail) return;
     ebooks.forEach(ebook => {
       window.open(ebook.downloadUrl, '_blank');
     });
   };
 
   const handleDownload = (url: string) => {
+    if (!hasSubmittedEmail) return;
     window.open(url, '_blank');
   };
 
   return (
-    <section className="bg-gradient-to-b from-transparent via-brand-primary/5 to-transparent px-4 py-20 sm:px-6 lg:px-8">
+    <section className="bg-white dark:bg-[#060606] px-4 py-20 sm:px-6 lg:px-8">
       <div className="mx-auto max-w-7xl">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -63,17 +68,22 @@ export function FreeEbookResources() {
           viewport={{ once: true }}
           className="mb-12 text-center"
         >
-          <div className="glass-effect mb-4 inline-flex items-center gap-2 rounded-full px-4 py-2 text-sm font-medium">
+          <TesseractLiquidGlass
+            variant="interactive"
+            enableShimmer={true}
+            className="mb-4 inline-flex items-center gap-2 rounded-full px-6 py-3 text-sm font-medium"
+          >
             <Download className="h-4 w-4 text-brand-accent" />
             <span>Free Implementation Resources</span>
+          </TesseractLiquidGlass>
+          <div className="max-w-4xl mx-auto">
+            <h2 className="mb-4 text-4xl font-bold sm:text-5xl text-gray-900 dark:text-gray-100">
+              Essential <span className="gradient-text">Implementation Resources</span>
+            </h2>
+            <p className="text-xl text-gray-600 dark:text-gray-400">
+              Everything you need to follow along with the masterclass. Download essential setup guides for Supabase, AWS S3, FAL.AI, and Flowise - the core integrations in our 32-node automation.
+            </p>
           </div>
-          <h2 className="mb-4 text-4xl font-bold sm:text-5xl">
-            Get Your Free <span className="gradient-text">Setup & Integration Guides</span>
-          </h2>
-          <p className="mx-auto max-w-3xl text-xl text-gray-600 dark:text-gray-400">
-            Download our comprehensive setup guides for the most essential integrations. 
-            Master AWS S3, Supabase, FAL.AI, and Flowise integration with n8n.
-          </p>
         </motion.div>
 
         <div className="mb-16 grid items-center gap-12 lg:grid-cols-2">
@@ -100,18 +110,31 @@ export function FreeEbookResources() {
             viewport={{ once: true }}
             className="order-1 lg:order-2"
           >
-            <h3 className="mb-6 text-3xl font-bold">Essential Integration Mastery</h3>
+            <h3 className="mb-6 text-3xl font-bold text-gray-900 dark:text-gray-100">Ready-to-Follow Implementation</h3>
             <p className="mb-8 text-lg text-gray-600 dark:text-gray-400">
-              These comprehensive guides cover the most critical integrations for n8n automation.
-              Download all 4 setup guides instantly and start building powerful workflows today.
+              Each guide includes step-by-step setup instructions, API key configuration, and troubleshooting tips. Perfect for both beginners and experienced builders following the masterclass.
             </p>
 
             <button 
               onClick={handleDownloadAll}
-              className="btn-primary flex items-center gap-2"
+              disabled={!hasSubmittedEmail}
+              className={`flex items-center gap-2 ${
+                hasSubmittedEmail 
+                  ? 'btn-primary' 
+                  : 'bg-gray-400 text-white px-6 py-3 rounded-full font-semibold cursor-not-allowed opacity-50'
+              }`}
             >
-              <Download className="h-4 w-4" />
-              Download All Guides
+              {hasSubmittedEmail ? (
+                <>
+                  <Download className="h-4 w-4" />
+                  Download All Guides
+                </>
+              ) : (
+                <>
+                  <Lock className="h-4 w-4" />
+                  Submit Email to Download
+                </>
+              )}
             </button>
           </motion.div>
         </div>
@@ -125,27 +148,43 @@ export function FreeEbookResources() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: index * 0.1 }}
+              className="group"
             >
               <TesseractLiquidGlass
                 variant="card"
                 enableScrollEffects={true}
-                className="p-6 text-center transition-all duration-300 hover:shadow-brand-lg"
+                enableShimmer={true}
+                className="p-6 text-center border border-gray-200/50 shadow-brand-lg transition-all duration-700 group-hover:border-brand-primary group-hover:shadow-brand-xl dark:border-gray-700/50"
               >
                 <div className="mx-auto mb-4 flex h-12 w-12 items-center justify-center rounded-brand bg-brand-accent/10">
                   <ebook.icon className="h-6 w-6 text-brand-accent" />
                 </div>
-                <h4 className="mb-2 font-semibold">{ebook.title}</h4>
+                <h4 className="mb-2 font-semibold text-gray-900 dark:text-gray-100">{ebook.title}</h4>
                 <p className="mb-4 text-sm text-gray-600 dark:text-gray-400">{ebook.description}</p>
-                <div className="mb-4 flex justify-between text-xs text-gray-500 dark:text-gray-500">
+                <div className="mb-4 flex justify-between text-xs text-gray-500 dark:text-gray-400">
                   <span>{ebook.pages}</span>
                   <span>{ebook.downloadCount} downloads</span>
                 </div>
                 <button
                   onClick={() => handleDownload(ebook.downloadUrl)}
-                  className="btn-secondary flex w-full items-center justify-center gap-2 text-sm"
+                  disabled={!hasSubmittedEmail}
+                  className={`flex w-full items-center justify-center gap-2 text-sm ${
+                    hasSubmittedEmail 
+                      ? 'btn-secondary' 
+                      : 'bg-gray-400 text-white px-4 py-2 rounded-full font-semibold cursor-not-allowed opacity-50'
+                  }`}
                 >
-                  <Download className="h-3 w-3" />
-                  Download
+                  {hasSubmittedEmail ? (
+                    <>
+                      <Download className="h-3 w-3" />
+                      Download
+                    </>
+                  ) : (
+                    <>
+                      <Lock className="h-3 w-3" />
+                      Locked
+                    </>
+                  )}
                 </button>
               </TesseractLiquidGlass>
             </motion.div>

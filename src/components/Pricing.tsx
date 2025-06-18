@@ -6,54 +6,53 @@ import { cn } from '@/lib/utils';
 import { TesseractLiquidGlass } from './TesseractLiquidGlass';
 
 const pricing = {
-  basic: {
-    name: 'Self-Paced',
-    price: 449,
-    originalPrice: 597,
-    description: 'Perfect for independent learners',
+  free: {
+    name: 'Free Resources',
+    price: 0,
+    originalPrice: 0,
+    description: 'Core tutorial & essential assets',
     features: [
-      'Full course access (15+ hours)',
-      '50+ production templates',
-      'Community Discord access',
-      'Monthly live Q&A calls',
-      'Lifetime updates',
-      'Certificate of completion',
+      '2.5 Hour core tutorial on YouTube',
+      'All deconstructed project assets',
+      'GitHub Gist with prompts & code',
+      'Basic implementation guide',
+      'Community support',
     ],
-    cta: 'Start Learning Today',
+    cta: 'Access Free Resources',
     popular: false,
   },
-  pro: {
-    name: 'Professional',
-    price: 849,
-    originalPrice: 1197,
-    description: 'Fast-track your automation career',
+  academy: {
+    name: 'Full Academy Access',
+    price: 299,
+    originalPrice: 447,
+    description: 'Complete masterclass experience',
     features: [
-      'Everything in Self-Paced',
-      '1-on-1 onboarding call (30 min)',
-      'Weekly group coaching calls',
-      'Priority Discord support',
-      'Client acquisition blueprint',
-      'Agency setup templates',
-      'Resume & portfolio review',
-      'Job placement assistance',
+      'Everything in Free Resources',
+      '6+ hours extended footage',
+      'All 4 setup guides (Supabase, AWS S3, FAL.AI, Flowise)',
+      'Full implementation guide',
+      '20 custom tool functions',
+      'Flowise agent templates',
+      'Private community access',
+      'Launch bonus: Group implementation calls',
     ],
-    cta: 'Accelerate Your Success',
+    cta: 'Join the Academy',
     popular: true,
   },
   team: {
     name: 'Team License',
-    price: 1497,
-    originalPrice: 2497,
-    description: 'Train your entire team',
+    price: 999,
+    originalPrice: 1497,
+    description: 'Train your entire team (4 seats)',
     features: [
-      'Everything in Professional',
-      '5 user licenses',
-      'Custom onboarding workshop',
-      'Private Slack channel',
-      'Team progress dashboard',
-      'Bulk discount on additional seats',
+      'Everything in Full Academy',
+      '4 user licenses',
+      'Priority support channel',
+      'Team progress tracking',
+      'Custom onboarding session',
+      'Volume discount on additional seats',
     ],
-    cta: 'Transform Your Team',
+    cta: 'Get Team Access',
     popular: false,
   },
 };
@@ -68,7 +67,7 @@ export function Pricing() {
   return (
     <section
       id="pricing"
-      className="bg-gradient-to-b from-transparent via-brand-primary/5 to-transparent px-4 py-20 sm:px-6 lg:px-8"
+      className="bg-white dark:bg-[#060606] px-4 py-20 sm:px-6 lg:px-8"
     >
       <div className="mx-auto max-w-7xl">
         <motion.div
@@ -77,14 +76,20 @@ export function Pricing() {
           viewport={{ once: true }}
           className="mb-12 text-center"
         >
-          <div className="glass-effect mb-4 inline-flex items-center gap-2 rounded-full px-4 py-2 text-sm font-medium">
+          <TesseractLiquidGlass
+            variant="interactive"
+            enableShimmer={true}
+            className="mb-4 inline-flex items-center gap-2 rounded-full px-6 py-3 text-sm font-medium"
+          >
             <Zap className="h-4 w-4 text-brand-accent" />
-            <span>Limited Time Offer - Save up to $1,000</span>
+            <span className="text-gray-900 dark:text-gray-100">Launch Special - Save $148 on Academy Access</span>
+          </TesseractLiquidGlass>
+          <div className="max-w-4xl mx-auto">
+            <h2 className="mb-4 text-4xl font-bold sm:text-5xl text-gray-900 dark:text-gray-100">Choose Your Learning Path</h2>
+            <p className="text-xl text-gray-600 dark:text-gray-400">
+              Start free, upgrade when ready. Build production-ready AI automations at your own pace.
+            </p>
           </div>
-          <h2 className="mb-4 text-4xl font-bold sm:text-5xl">Investment in Your Future</h2>
-          <p className="text-xl text-gray-600 dark:text-gray-400">
-            Choose the plan that fits your goals. Upgrade anytime.
-          </p>
         </motion.div>
 
         {/* Bento Grid Pricing */}
@@ -108,23 +113,33 @@ export function Pricing() {
                 )}
               >
                 {plan.popular && (
-                  <div className="absolute -top-4 left-1/2 -translate-x-1/2">
-                    <TesseractLiquidGlass variant="interactive" enableShimmer={true}>
-                      <span className="rounded-full bg-brand-accent px-4 py-1 text-sm font-medium text-white">
-                        Most Popular
-                      </span>
+                  <div className="absolute -top-4 left-1/2 z-10 -translate-x-1/2">
+                    <TesseractLiquidGlass 
+                      variant="interactive" 
+                      enableShimmer={true}
+                      className="rounded-full bg-brand-accent px-4 py-1 text-sm font-medium text-white shadow-lg"
+                    >
+                      <span className="text-white">Most Popular</span>
                     </TesseractLiquidGlass>
                   </div>
                 )}
 
                 <div className="mb-8">
-                  <h3 className="mb-2 text-2xl font-bold">{plan.name}</h3>
+                  <h3 className="mb-2 text-2xl font-bold text-gray-900 dark:text-gray-100">{plan.name}</h3>
                   <p className="mb-4 text-gray-600 dark:text-gray-400">{plan.description}</p>
                   <div className="flex items-baseline gap-2">
-                    <span className="text-4xl font-bold">${plan.price}</span>
-                    <span className="text-xl text-gray-500 line-through">
-                      ${plan.originalPrice}
-                    </span>
+                    {plan.price === 0 ? (
+                      <span className="text-4xl font-bold text-gray-900 dark:text-gray-100">Free</span>
+                    ) : (
+                      <>
+                        <span className="text-4xl font-bold text-gray-900 dark:text-gray-100">${plan.price}</span>
+                        {plan.originalPrice > plan.price && (
+                          <span className="text-xl text-gray-500 dark:text-gray-400 line-through">
+                            ${plan.originalPrice}
+                          </span>
+                        )}
+                      </>
+                    )}
                   </div>
                 </div>
 
@@ -165,7 +180,8 @@ export function Pricing() {
           ))}
         </motion.div>
 
-        {/* Payment Options */}
+        {/* Payment Options - Temporarily commented out */}
+        {/* 
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -174,7 +190,7 @@ export function Pricing() {
         >
           <h3 className="mb-4 text-2xl font-semibold">Flexible Payment Options</h3>
           <p className="mb-6 text-gray-600 dark:text-gray-400">
-            Split your payment into 3 monthly installments • No credit check required
+            Academy: 3-payment plan available ($159 × 3 months) • No credit check required
           </p>
           <div className="flex flex-wrap justify-center gap-4">
             <img src="/payment-stripe.svg" alt="Stripe" className="h-8" />
@@ -182,6 +198,7 @@ export function Pricing() {
             <img src="/payment-klarna.svg" alt="Klarna" className="h-8" />
           </div>
         </motion.div>
+        */}
       </div>
     </section>
   );
