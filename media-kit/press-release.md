@@ -11,6 +11,7 @@ After 9 months of supporting agent and automation builders through Tesseract Nex
 "Most automation courses teach you to connect two apps. We teach you to orchestrate an entire AI workforce," said Vadim, Full Stack Developer and Augmented AI Engineer with 9 years of experience in AI-native development. "This masterclass represents what I wish existed when I started—production systems explained simply and made accessible for anyone willing to build with passion."
 
 The curriculum includes:
+
 - 2.5-hour core tutorial breaking down every node in a production automation
 - 6 hours of raw development footage showing real-time problem-solving
 - Complete implementation package with 20+ custom tool functions
@@ -22,6 +23,7 @@ Early results demonstrate significant impact: beta users report reducing automat
 "The difference between knowing n8n basics and building production systems is massive," said a senior automation architect at a leading fintech company. "This masterclass bridges that gap with actual implementations we can adapt for our enterprise needs."
 
 The masterclass is available through multiple channels:
+
 - Free tier on YouTube with core tutorial and essential resources
 - Full Academy access at $299 with extended content and community support
 - Enterprise packages with custom training and implementation guidance

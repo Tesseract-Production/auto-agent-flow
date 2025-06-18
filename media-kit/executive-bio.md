@@ -1,6 +1,7 @@
 # Executive Biography
 
 ## Vadim - Founder, Tesseract Nexus
+
 ### Full Stack Developer & Augmented AI Engineer
 
 Vadim is a product creator and AI builder with 9 years of experience cultivating products and experiences in both AI-native and legacy software development. As an alumnus of Antler NYC and Founder Institute, and with previous experience at Plugin Alliance/Native Instruments, he brings a unique blend of technical expertise and business acumen to AI orchestration education.
@@ -12,11 +13,13 @@ At Tesseract Nexus, Vadim transforms his deep implementation experience into acc
 "AI is the ultimate tool for productizing yourself into an extendable and autonomous system," says Vadim. "If you can dream it, I can help you make it."
 
 ### Contact
+
 - Email: team@tesseract.nexus
 - Website: tesseract.nexus
 - Location: San Francisco Bay Area
 
 ### Areas of Expertise
+
 - Multi-agent AI orchestration
 - Production automation systems
 - n8n and Flowise development

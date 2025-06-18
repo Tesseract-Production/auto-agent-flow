@@ -11,6 +11,7 @@ I noticed your recent piece on [specific article about AI automation/no-code too
 After 9 months supporting 10,000+ n8n builders, we discovered that 87% struggle to move beyond basic tutorials to production systems. This gap costs businesses an average of 3 weeks in development time per automation project.
 
 We've just launched what's becoming recognized as the definitive standard for learning n8n - an 8-hour masterclass that teaches actual production implementations, not just toy examples. Early users report:
+
 - 60% reduction in development time
 - Complete 32-node automations built in days vs weeks  
 - Fortune 500 companies adopting our Sequential Orchestration Pipeline Method™
@@ -18,6 +19,7 @@ We've just launched what's becoming recognized as the definitive standard for le
 What makes this newsworthy: This is the first comprehensive curriculum that treats n8n as enterprise-grade infrastructure rather than a simple integration tool. We're essentially establishing the educational standard for an entire ecosystem.
 
 I can provide:
+
 - Exclusive data on automation learning patterns from our 10,000+ community
 - Demo access to see a complex multi-agent system built in real-time
 - Interview with Vadim, our founder (ex-Native Instruments, Antler NYC)
@@ -42,6 +44,7 @@ We're offering you first access to document how major enterprises are using an o
 The story: Vadim, a 9-year AI veteran, has codified the exact methods these companies use into the first production-focused n8n masterclass. It's not another course - it's becoming the de facto standard for learning advanced automation.
 
 Exclusive access includes:
+
 - Behind-the-scenes footage of building a 32-node AI orchestration
 - Data showing 60% cost reduction vs Zapier/Make for enterprise
 - Case studies from Fortune 500 early adopters (under NDA until you publish)
@@ -72,11 +75,13 @@ Tesseract Nexus just launched what many are calling the definitive n8n learning 
 - Traditional courses stop where real development begins
 
 The numbers:
+
 - 10,000+ builders in our community
 - 60% faster implementation than traditional learning
 - Saves companies average of $50,000/year in platform costs
 
 I can connect you with:
+
 - Vadim, our founder who identified this gap
 - Enterprise users sharing their implementation stories
 - Raw data on how people actually learn complex automation
@@ -97,6 +102,7 @@ Hi [Journalist Name],
 Following up on my note about the n8n masterclass becoming the industry standard for automation education.
 
 Since last week, we've had some developments that add to the story:
+
 - [Specific new metric or milestone]
 - [Notable company or person endorsement]
 - [Exclusive data point about industry trend]
@@ -104,6 +110,7 @@ Since last week, we've had some developments that add to the story:
 I also came across your recent piece on [related topic] and realized our Sequential Orchestration Pipeline Method™ directly addresses the challenge you highlighted about [specific challenge].
 
 If the original angle doesn't fit your current coverage, I have data on:
+
 - How SMBs are using AI orchestration to compete with enterprises
 - The rise of "Automation Architects" as a new career path
 - Cost analysis: Open-source automation vs traditional platforms

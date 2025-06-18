@@ -3,6 +3,7 @@
 ## n8n AI Orchestration Masterclass - Media Resources
 
 ### Quick Facts
+
 - **Launch Date:** June 2025
 - **Format:** 8+ hour video masterclass + resources
 - **Price:** Free tier on YouTube, $299 full access
@@ -13,12 +14,14 @@
 ### Press Materials
 
 #### 📄 Core Documents
+
 - [Press Release](./press-release.md) - Official announcement (450 words)
 - [One Pager](./one-pager.md) - Quick reference overview
 - [Executive Bio](./executive-bio.md) - Vadim's background
 - [Email Templates](./email-pitch-templates.md) - Media outreach templates
 
 #### 📊 Key Statistics
+
 - **87%** of n8n users struggle with production implementations
 - **60%** reduction in development time using our method
 - **32** nodes in the complete automation system taught
@@ -26,6 +29,7 @@
 - **10,000+** builders in the Tesseract community
 
 #### 🎯 Story Angles
+
 1. **The Production Gap** - Why automation education is failing builders
 2. **Open Source Revolution** - How n8n is replacing expensive enterprise tools
 3. **AI Orchestration** - The next evolution beyond simple automation
@@ -35,6 +39,7 @@
 ### Visual Assets
 
 #### 📸 Required Images
+
 - Vadim headshot (300 DPI for print)
 - Tesseract Nexus logo (PNG, SVG formats)
 - n8n workflow screenshots (4K resolution)
@@ -42,6 +47,7 @@
 - Student success metrics infographics
 
 #### 🎥 Video Assets
+
 - 2-minute masterclass preview
 - 30-second social media teaser
 - Student testimonial compilation
@@ -53,6 +59,7 @@
 "The definitive standard for learning n8n - transforming complex AI orchestration into accessible, production-ready workflows"
 
 #### Supporting
+
 - First comprehensive curriculum for production n8n
 - Bridges the gap between tutorials and real systems
 - Proven method used by Fortune 500 companies
@@ -61,18 +68,21 @@
 ### Target Media
 
 #### Tier 1 - Tech Education
+
 - TechCrunch (AI/Education beats)
 - VentureBeat (Enterprise AI)
 - The Information (Subscription education)
 - EdSurge (Technical education)
 
 #### Tier 2 - AI/Automation Focused
+
 - The New Stack
 - InfoWorld
 - AI News
 - Automation.com
 
 #### Tier 3 - Business/Startup
+
 - Entrepreneur
 - Fast Company
 - Inc. Magazine
@@ -81,6 +91,7 @@
 ### Interview Topics
 
 Vadim is available to discuss:
+
 - The production gap in automation education
 - Building AI agent teams with open source tools
 - Future of automation careers
@@ -96,6 +107,7 @@ Email: team@tesseract.nexus
 **Response Time:** Within 24 hours
 
 **Available For:**
+
 - Video interviews (Zoom/Google Meet)
 - Podcast appearances
 - Written Q&As
@@ -105,11 +117,13 @@ Email: team@tesseract.nexus
 ### Additional Resources
 
 #### 🔗 Links
+
 - Website: [tesseract.nexus](https://tesseract.nexus)
 - YouTube: [Free Tutorial](https://youtube.com/@tesseractnexus)
 - GitHub: [Resource Repository](https://github.com/tesseractnexus)
 
 #### 📚 Background Materials
+
 - Complete curriculum outline
 - Student success stories
 - Technical architecture diagrams
