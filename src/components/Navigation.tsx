@@ -38,9 +38,9 @@ export function Navigation() {
         enableScrollEffects={true}
         className={cn(
           'mx-auto max-w-7xl rounded-brand-lg transition-all duration-300',
-          'bg-white/95 dark:bg-gray-900/95 backdrop-blur-md',
+          'bg-white/85 dark:bg-gray-900/85 backdrop-blur-md',
           'border border-gray-200/50 dark:border-gray-700/50',
-          scrolled ? 'shadow-brand bg-white/98 dark:bg-gray-900/98' : ''
+          scrolled ? 'shadow-brand bg-white/90 dark:bg-gray-900/90' : ''
         )}
       >
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
@@ -106,7 +106,7 @@ export function Navigation() {
           <motion.div
             initial={{ opacity: 0, y: -20 }}
             animate={{ opacity: 1, y: 0 }}
-            className="bg-white/98 dark:bg-gray-900/98 backdrop-blur-md border-t border-gray-200 dark:border-gray-700 md:hidden"
+            className="bg-white/90 dark:bg-gray-900/90 backdrop-blur-md border-t border-gray-200 dark:border-gray-700 md:hidden"
           >
             <div className="space-y-4 px-4 py-6">
               {navItems.map((item) => (

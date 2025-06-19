@@ -458,17 +458,17 @@ const NodeNetworkBackground = React.memo(() => {
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       transition={{ duration: 1.5 }}
-      className="absolute inset-0 -z-10 overflow-hidden"
+      className="absolute inset-0 z-0 overflow-hidden"
     >
       <canvas
         ref={canvasRef}
         className="absolute inset-0 h-full w-full"
         style={{
           filter: 'blur(0.5px)',
-          opacity: 0.6,
+          opacity: 0.8,
         }}
       />
-      <div className="absolute inset-0 bg-white/80 dark:bg-[#060606]/80" />
+      <div className="absolute inset-0 bg-white/50 dark:bg-[#060606]/55" />
     </motion.div>
   );
 });
