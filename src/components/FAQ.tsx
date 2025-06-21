@@ -16,11 +16,11 @@ const faqs = [
       },
       {
         q: 'How long does it take to complete the course?',
-        a: 'The core content is 15+ hours, but most students complete it in 4-6 weeks working part-time. You have lifetime access, so you can learn at your own pace. Many students start earning within 3 months.',
+        a: 'The core content is 8+ hours, but most students complete it in 4-6 weeks working part-time. You have lifetime access, so you can learn at your own pace. Many students start earning within 3 months.',
       },
       {
         q: 'What equipment do I need?',
-        a: "Just a computer with internet access. n8n runs in the cloud, so you don't need a powerful machine. We'll show you how to set everything up for free during the course.",
+        a: "Just a computer with internet access. n8n runs in the cloud or locally and all modern computers can handle it.",
       },
     ],
   },
@@ -29,15 +29,15 @@ const faqs = [
     questions: [
       {
         q: 'Can I really make money with n8n automation?',
-        a: 'Absolutely! Our students regularly earn $3,000-$15,000/month as automation consultants. The demand is huge - businesses desperately need people who can connect their tools and automate workflows.',
+        a: 'Absolutely! There are many career paths that you can pursue once you master n8n. Automation agencies and consultants are growing fast. The demand is huge - businesses desperately need people who can connect new AI tools to their legacy stacks and automate workflows.',
       },
       {
         q: 'What kind of jobs can I get after this course?',
-        a: 'Automation Consultant, Workflow Developer, AI Integration Specialist, No-Code Developer, Process Automation Engineer, or start your own automation agency. We provide career guidance and job search support.',
+        a: 'Automation Consultant, Workflow Developer, AI Integration Specialist, No-Code Developer, Process Automation Engineer, or start your own automation agency. We provide basic career guidance and tips.',
       },
       {
         q: 'How quickly can I start earning?',
-        a: 'Many students land their first client within 30-60 days. We teach you how to find clients, price your services, and deliver value from day one. Some students earn back their investment within weeks.',
+        a: 'Students can land their first client within 60-120 days. While we focus on teaching you how to do the technical part, our Slack/Discord/WhatsApp based communities can help you ideate how to get clients, price your services, and deliver value from day one. It is possible to earn your investment within weeks.',
       },
     ],
   },
@@ -46,15 +46,15 @@ const faqs = [
     questions: [
       {
         q: 'Is this course updated regularly?',
-        a: 'Yes! We update the course monthly as n8n releases new features. You get lifetime access to all updates. The AI landscape changes fast, and we keep you ahead of the curve.',
+        a: 'Yes! We update the course monthly as n8n releases new features and core updates. You get lifetime access to all updates. The AI landscape changes super fast in 2025, and we do our best to keep you ahead of the curve.',
       },
       {
         q: 'Do I get support if I get stuck?',
-        a: "You get access to our private Discord with 2,800+ members, weekly live Q&A calls, and direct instructor support. We're committed to your success - you're never alone in this journey.",
+        a: "You get access to our private Discord with 100+ members, periodic live Q&A calls, and direct instructor support. We're committed to your success - you're never alone in this journey.",
       },
       {
         q: 'What makes this different from free YouTube tutorials?',
-        a: 'Structure, depth, and support. We provide a complete learning path, production-ready templates, real client projects, and a community. YouTube is great for basics, but we take you to professional level.',
+        a: 'Structure, depth, and support. Most YouTube material shows you how to get things up and running. We provide the full production automation and the A-Z of how it all works. Expect a complete learning roadmap, an n8n based API endpoint, path to real client projects, and a community. YouTube is great for basics, but we take you to full scale pro faster than most.',
       },
     ],
   },
@@ -70,7 +70,7 @@ export function FAQ() {
   };
 
   return (
-    <section id="faq" className="bg-white dark:bg-[#060606] px-4 py-20 sm:px-6 lg:px-8">
+    <section id="faq" className="bg-white dark:bg-[#060606] px-4 sm:px-6 lg:px-8 py-24 sm:py-16">
       <div className="mx-auto max-w-4xl">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -81,14 +81,14 @@ export function FAQ() {
           <TesseractLiquidGlass
             variant="interactive"
             enableShimmer={true}
-            className="mb-4 inline-flex items-center gap-2 rounded-full px-6 py-3 text-sm font-medium"
+            className="inline-flex items-center gap-2 mb-4 px-6 py-3 rounded-full font-medium text-sm"
           >
-            <HelpCircle className="h-4 w-4 text-brand-accent" />
+            <HelpCircle className="w-4 h-4 text-brand-accent" />
             <span>Frequently Asked Questions</span>
           </TesseractLiquidGlass>
-          <div className="max-w-4xl mx-auto">
-            <h2 className="mb-4 text-4xl font-bold sm:text-5xl text-gray-900 dark:text-gray-100">Everything You Need to Know</h2>
-            <p className="text-xl text-gray-600 dark:text-gray-400">
+          <div className="mx-auto max-w-4xl">
+            <h2 className="mb-4 font-bold text-gray-900 dark:text-gray-100 text-4xl sm:text-5xl tracking-tight">Everything You Need to Know</h2>
+            <p className="text-gray-600 dark:text-gray-400 text-xl">
               Get answers to common questions about the masterclass
             </p>
           </div>
@@ -103,19 +103,19 @@ export function FAQ() {
               viewport={{ once: true }}
               transition={{ delay: categoryIndex * 0.1 }}
             >
-              <h3 className="mb-4 text-2xl font-semibold text-brand-accent">{category.category}</h3>
+              <h3 className="mb-4 font-semibold text-brand-accent text-2xl tracking-tight">{category.category}</h3>
               <div className="space-y-3">
                 {category.questions.map((item, index) => {
                   const id = `${categoryIndex}-${index}`;
                   const isOpen = openItems.includes(id);
 
                   return (
-                    <div key={id} className="glass-effect overflow-hidden rounded-brand">
+                    <div key={id} className="rounded-brand overflow-hidden glass-effect">
                       <button
                         onClick={() => toggleItem(id)}
-                        className="flex w-full items-center justify-between px-6 py-4 transition-colors hover:bg-gray-50 dark:hover:bg-gray-800/50"
+                        className="flex justify-between items-center hover:bg-gray-50 dark:hover:bg-gray-800/50 px-6 py-4 w-full transition-colors"
                       >
-                        <span className="text-left font-medium">{item.q}</span>
+                        <span className="font-medium text-left">{item.q}</span>
                         <ChevronDown
                           className={cn(
                             'ml-4 h-5 w-5 flex-shrink-0 transition-transform',
@@ -149,9 +149,9 @@ export function FAQ() {
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="glass-effect mt-12 rounded-brand-lg p-8 text-center"
+          className="mt-12 p-8 rounded-brand-lg text-center glass-effect"
         >
-          <h3 className="mb-4 text-2xl font-semibold">Still Have Questions?</h3>
+          <h3 className="mb-4 font-semibold text-2xl tracking-tight">Still Have Questions?</h3>
           <p className="mb-6 text-gray-600 dark:text-gray-400">
             Our team is here to help you make the right decision
           </p>

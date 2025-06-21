@@ -15,6 +15,7 @@ import { FreeEbookResources } from '@/components/FreeEbookResources';
 import { ResourcesBonuses } from '@/components/ResourcesBonuses';
 import { NodeversePromotion } from '@/components/NodeversePromotion';
 import { LaunchDiscountPopup } from '@/components/LaunchDiscountPopup';
+import { AnalyticsTest } from '@/components/AnalyticsTest';
 
 export default function Home() {
   return (
@@ -38,6 +39,7 @@ export default function Home() {
       <Footer />
       <LaunchDiscountPopup />
       <SocialProofPopup />
+      <AnalyticsTest />
     </>
   );
 }

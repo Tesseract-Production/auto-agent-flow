@@ -6,7 +6,7 @@ import { TesseractLiquidGlass } from './TesseractLiquidGlass';
 
 export function ResourcesBonuses() {
   return (
-    <section className="bg-white dark:bg-[#060606] px-4 py-20 sm:px-6 lg:px-8">
+    <section className="bg-white dark:bg-[#060606] px-4 py-24 sm:py-16 sm:px-6 lg:px-8">
       <div className="mx-auto max-w-7xl">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -23,7 +23,7 @@ export function ResourcesBonuses() {
             <span className="text-gray-900 dark:text-gray-100">Curated Tools & Bonuses</span>
           </TesseractLiquidGlass>
           <div className="max-w-4xl mx-auto">
-            <h2 className="mb-4 text-4xl font-bold sm:text-5xl text-gray-900 dark:text-gray-100">
+            <h2 className="mb-4 text-4xl font-bold tracking-tight sm:text-5xl text-gray-900 dark:text-gray-100">
               Bonus: Flowise <span className="gradient-text">Templates & Custom Tools</span>
             </h2>
             <p className="text-xl text-gray-600 dark:text-gray-400">
@@ -58,7 +58,7 @@ export function ResourcesBonuses() {
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
             >
-              <h3 className="mb-6 text-3xl font-bold text-gray-900 dark:text-gray-100">Production-Ready Agent Templates</h3>
+              <h3 className="mb-6 text-3xl font-bold tracking-tight text-gray-900 dark:text-gray-100">Production-Ready Agent Templates</h3>
               <p className="mb-8 text-lg text-gray-600 dark:text-gray-400">
                 Get the exact Flowise canvases used in the masterclass: Cross-Functional Generalized Agentic Assistant templates and SEO Keywords Research Agent - plus 20 fully implemented custom tool functions.
               </p>

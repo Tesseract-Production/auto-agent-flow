@@ -32,7 +32,7 @@ export function FinalCTA() {
   };
 
   return (
-    <section className="bg-white dark:bg-[#060606] px-4 py-20 sm:px-6 lg:px-8">
+    <section className="bg-white dark:bg-[#060606] px-4 py-20 sm:py-12 sm:px-6 lg:px-8">
       <div className="mx-auto max-w-4xl">
         <motion.div
           initial={{ opacity: 0, scale: 0.95 }}
@@ -53,7 +53,7 @@ export function FinalCTA() {
           </div>
 
           <div className="max-w-4xl mx-auto">
-            <h2 className="mb-6 text-4xl font-bold sm:text-5xl">
+            <h2 className="mb-6 text-4xl font-bold tracking-tight sm:text-5xl">
               Your Future in Automation <span className="gradient-text">Starts Today</span>
             </h2>
 

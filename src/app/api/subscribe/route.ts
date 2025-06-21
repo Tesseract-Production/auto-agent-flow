@@ -6,13 +6,13 @@ import { z } from 'zod';
 const subscribeSchema = z.object({
   email: z.string().email('Invalid email address'),
   source: z.string().min(1, 'Source is required'),
-  metadata: z.record(z.any()).optional(),
+  metadata: z.record(z.unknown()).optional(),
 });
 
 // Integration result types
 type IntegrationResult = {
   success: boolean;
-  data?: any;
+  data?: unknown;
   error?: string;
 };
 
@@ -159,7 +159,7 @@ export async function POST(request: NextRequest) {
     }
 
     // Extract first name from metadata
-    const firstName = validatedData.metadata?.firstName || null;
+    const firstName = (typeof validatedData.metadata?.firstName === 'string' ? validatedData.metadata.firstName : undefined);
     
     // Remove firstName from metadata since it's now a separate column
     const cleanMetadata = validatedData.metadata ? 

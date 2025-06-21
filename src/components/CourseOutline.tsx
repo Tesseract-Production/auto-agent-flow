@@ -17,7 +17,7 @@ const learningObjectives = [
   {
     id: 2,
     title: 'Master Fundamental n8n Nodes & Integrations',
-    description: 'Gain working knowledge of Webhook, HTTP, Edit Fields, Code, OpenAI Assistants, Bannerbear, Supabase and Sendgrid',
+    description: 'Gain working knowledge of Webhook, HTTP, Edit Fields (Set), Code, OpenAI Assistants, Bannerbear, Supabase and Sendgrid nodes',
     icon: 'code',
     highlights: ['API integrations', 'Data transformation', 'Email automation']
   },
@@ -64,26 +64,26 @@ export function CourseOutline() {
   const getIcon = (iconType: string) => {
     switch (iconType) {
       case 'workflow':
-        return <Workflow className="h-6 w-6" />;
+        return <Workflow className="w-6 h-6" />;
       case 'code':
-        return <Code2 className="h-6 w-6" />;
+        return <Code2 className="w-6 h-6" />;
       case 'chain':
-        return <Link className="h-6 w-6" />;
+        return <Link className="w-6 h-6" />;
       case 'image':
-        return <Image className="h-6 w-6" />;
+        return <Image className="w-6 h-6" aria-label="Image generation icon" />;
       case 'database':
-        return <Database className="h-6 w-6" />;
+        return <Database className="w-6 h-6" />;
       case 'schema':
-        return <FileCode className="h-6 w-6" />;
+        return <FileCode className="w-6 h-6" />;
       case 'content':
-        return <Layers className="h-6 w-6" />;
+        return <Layers className="w-6 h-6" />;
       default:
-        return <Workflow className="h-6 w-6" />;
+        return <Workflow className="w-6 h-6" />;
     }
   };
 
   return (
-    <section id="outline" className="bg-white dark:bg-[#060606] px-4 py-20 sm:px-6 lg:px-8">
+    <section id="outline" className="bg-white dark:bg-[#060606] px-4 sm:px-6 lg:px-8 py-[120px] sm:py-20">
       <div className="mx-auto max-w-4xl">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -91,9 +91,9 @@ export function CourseOutline() {
           viewport={{ once: true }}
           className="mb-12 text-center"
         >
-          <div className="max-w-4xl mx-auto">
-            <h2 className="mb-4 text-4xl font-bold sm:text-5xl text-gray-900 dark:text-gray-100">What You'll Master</h2>
-            <p className="text-xl text-gray-600 dark:text-gray-400">
+          <div className="mx-auto max-w-4xl">
+            <h2 className="mb-4 font-bold text-gray-900 dark:text-gray-100 text-4xl sm:text-5xl tracking-tight">What You'll Master</h2>
+            <p className="text-gray-600 dark:text-gray-400 text-xl">
               7 core learning objectives for building production-ready AI automations
             </p>
           </div>
@@ -113,19 +113,19 @@ export function CourseOutline() {
                 variant="card"
                 enableScrollEffects={true}
                 enableShimmer={openObjective === objective.id}
-                className="overflow-hidden rounded-brand-lg border border-gray-200/50 shadow-brand-lg transition-all duration-700 group-hover:border-brand-primary group-hover:shadow-brand-xl dark:border-gray-700/50"
+                className="shadow-brand-lg group-hover:shadow-brand-xl border border-gray-200/50 dark:border-gray-700/50 group-hover:border-brand-primary rounded-brand-lg overflow-hidden transition-all duration-700"
               >
               <button
                 onClick={() => setOpenObjective(openObjective === objective.id ? null : objective.id)}
-                className="flex w-full items-center justify-between px-6 py-4 transition-colors hover:bg-gray-50 dark:hover:bg-gray-800/50"
+                className="flex justify-between items-center hover:bg-gray-50 dark:hover:bg-gray-800/50 px-6 py-4 w-full transition-colors"
               >
                 <div className="flex items-center gap-4">
-                  <div className="flex h-12 w-12 items-center justify-center rounded-brand bg-brand-accent/10 text-brand-accent">
+                  <div className="flex justify-center items-center bg-brand-accent/10 rounded-brand w-12 h-12 text-brand-accent">
                     {getIcon(objective.icon)}
                   </div>
                   <div className="text-left">
-                    <h3 className="text-lg font-semibold text-gray-900 dark:text-gray-100">{objective.title}</h3>
-                    <p className="mt-1 text-sm text-gray-600 dark:text-gray-400">
+                    <h3 className="font-semibold text-gray-900 dark:text-gray-100 text-lg">{objective.title}</h3>
+                    <p className="mt-1 text-gray-600 dark:text-gray-400 text-sm">
                       {objective.description}
                     </p>
                   </div>
@@ -145,17 +145,17 @@ export function CourseOutline() {
                     animate={{ height: 'auto', opacity: 1 }}
                     exit={{ height: 0, opacity: 0 }}
                     transition={{ duration: 0.3 }}
-                    className="border-t border-gray-200 dark:border-gray-700"
+                    className="border-gray-200 dark:border-gray-700 border-t"
                   >
                     <div className="p-6">
                       <h4 className="mb-3 font-semibold text-gray-900 dark:text-gray-100">Key Skills You'll Develop:</h4>
-                      <div className="grid gap-2 md:grid-cols-3">
+                      <div className="gap-2 grid md:grid-cols-3">
                         {objective.highlights.map((highlight, highlightIndex) => (
                           <div
                             key={highlightIndex}
                             className="flex items-center gap-2 text-gray-700 dark:text-gray-300"
                           >
-                            <div className="h-2 w-2 rounded-full bg-brand-accent"></div>
+                            <div className="bg-brand-accent rounded-full w-2 h-2"></div>
                             <span className="text-sm">{highlight}</span>
                           </div>
                         ))}

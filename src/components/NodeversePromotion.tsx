@@ -14,7 +14,7 @@ export function NodeversePromotion() {
   };
 
   return (
-    <section className="bg-white dark:bg-[#060606] px-4 py-20 sm:px-6 lg:px-8">
+    <section className="bg-white dark:bg-[#060606] px-4 py-20 sm:py-12 sm:px-6 lg:px-8">
       <div className="mx-auto max-w-7xl">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -32,7 +32,7 @@ export function NodeversePromotion() {
           </TesseractLiquidGlass>
 
           <div className="max-w-4xl mx-auto">
-            <h2 className="mb-4 text-4xl font-bold sm:text-5xl text-gray-900 dark:text-gray-100">
+            <h2 className="mb-4 text-4xl font-bold tracking-tight sm:text-5xl text-gray-900 dark:text-gray-100">
               Discover the <span className="gradient-text">Nodeverse</span>
             </h2>
 
@@ -65,7 +65,7 @@ export function NodeversePromotion() {
             viewport={{ once: true }}
             className="order-1 lg:order-2"
           >
-            <h3 className="mb-6 text-3xl font-bold text-gray-900 dark:text-gray-100">An Epic Automation Adventure</h3>
+            <h3 className="mb-6 text-3xl font-bold tracking-tight text-gray-900 dark:text-gray-100">An Epic Automation Adventure</h3>
             <p className="mb-8 text-lg text-gray-600 dark:text-gray-400">
               Follow Tesseractian McMartian on an incredible journey through the world of automation. 
               This exclusive graphic novel brings the concepts from our masterclass to life through 

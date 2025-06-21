@@ -15,7 +15,7 @@ declare module '@mux/mux-player-react' {
     onPlay?: () => void;
     onPause?: () => void;
     onEnded?: () => void;
-    onError?: (error: any) => void;
+    onError?: (error: Event | Error) => void;
     onLoadStart?: () => void;
     onLoadedData?: () => void;
     onCanPlay?: () => void;

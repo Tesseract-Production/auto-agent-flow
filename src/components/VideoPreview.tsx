@@ -27,7 +27,7 @@ export function VideoPreview() {
 
   const titleComponent = (
     <div className="mx-auto max-w-4xl text-center">
-      <h2 className="mb-4 text-4xl font-bold sm:text-5xl text-gray-900 dark:text-gray-100">
+      <h2 className="mb-4 text-4xl font-bold tracking-tight sm:text-5xl text-gray-900 dark:text-gray-100">
         See the <span className="gradient-text">32-Node Automation</span> in Action
       </h2>
       <p className="text-xl text-gray-600 dark:text-gray-400">
@@ -45,19 +45,17 @@ export function VideoPreview() {
               {/* Video Thumbnail */}
               <div className="absolute inset-0 rounded-lg bg-gradient-to-br from-brand-primary to-brand-accent opacity-90" />
               <div className="absolute inset-0 flex items-center justify-center">
-                <motion.button
-                  whileHover={{ scale: 1.1 }}
-                  whileTap={{ scale: 0.95 }}
+                <button
                   onClick={() => setIsPlaying(true)}
-                  className="group flex h-24 w-24 items-center justify-center rounded-full bg-white/20 dark:bg-gray-800/20 backdrop-blur-md"
+                  className="group flex h-24 w-24 items-center justify-center rounded-full bg-white/20 dark:bg-gray-800/20 backdrop-blur-md transition-transform hover:scale-110 active:scale-95"
                 >
                   <Play className="ml-1 h-10 w-10 text-white transition-transform group-hover:scale-110" />
-                </motion.button>
+                </button>
               </div>
 
               {/* Video Info Overlay */}
               <div className="absolute bottom-0 left-0 right-0 rounded-b-lg bg-gradient-to-t from-black/60 to-transparent p-6">
-                <h3 className="mb-2 text-2xl font-bold text-white">
+                <h3 className="mb-2 text-2xl font-bold tracking-tight text-white">
                   Live Build: Sequential Orchestration Pipeline™
                 </h3>
                 <div className="flex flex-wrap gap-6 text-white/80">
@@ -83,6 +81,7 @@ export function VideoPreview() {
               accentColor="#ffffff"
               secondaryColor="#00000e"
               autoPlay={true}
+              muted={true}
               controls={true}
               style={{ width: '100%', height: '100%' }}
             />
@@ -90,19 +89,19 @@ export function VideoPreview() {
         </div>
       </ContainerScroll>
 
-      <div className="mx-auto max-w-6xl px-4 pb-20 sm:px-6 lg:px-8">
+      <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
         {/* Workflow Images Carousel */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="mt-24 px-4"
+          className="mt-12 px-4"
         >
-          <h2 className="mb-12 text-center text-4xl font-bold sm:text-5xl text-gray-900 dark:text-gray-100">
+          <h2 className="mb-12 text-center text-4xl font-bold tracking-tight sm:text-5xl text-gray-900 dark:text-gray-100">
             See the <span className="gradient-text">Workflows in Action</span>
           </h2>
           
-          <div className="relative mx-auto max-w-4xl px-12 py-8 pb-24">
+          <div className="relative mx-auto max-w-4xl px-12 py-8">
             <div className="overflow-hidden" ref={emblaRef}>
               <div className="flex">
                 {[
@@ -133,20 +132,19 @@ export function VideoPreview() {
                   },
                 ].map((workflow, index) => (
                   <div key={index} className="flex-[0_0_100%] min-w-0 px-8 py-4">
-                    <motion.div
-                      whileHover={{ scale: 1.02 }}
-                      className="group cursor-pointer"
-                    >
+                    <div className="group cursor-pointer transition-transform hover:scale-[1.02]">
                       <TesseractLiquidGlass
                         variant="card"
-                        enableScrollEffects={true}
-                        enableShimmer={true}
+                        enableScrollEffects={false}
+                        enableShimmer={false}
                         className="overflow-hidden border border-gray-200/50 shadow-brand transition-all duration-700 group-hover:border-brand-primary group-hover:shadow-brand-lg dark:border-gray-700/50"
                       >
                         <div className="aspect-video relative overflow-hidden rounded-t-brand">
                           <img
                             src={workflow.image}
                             alt={workflow.title}
+                            loading="lazy"
+                            decoding="async"
                             className="h-full w-full object-cover transition-transform duration-300 group-hover:scale-105"
                           />
                         </div>
@@ -159,7 +157,7 @@ export function VideoPreview() {
                           </p>
                         </div>
                       </TesseractLiquidGlass>
-                    </motion.div>
+                    </div>
                   </div>
                 ))}
               </div>

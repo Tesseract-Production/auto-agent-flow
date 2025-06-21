@@ -60,7 +60,7 @@ const NodeNetworkBackground = React.memo(() => {
     window.addEventListener('resize', handleResize);
 
     // Create vertical lines
-    const lineCount = Math.floor(window.innerWidth / 80); // One line every 80px
+    const lineCount = Math.floor(window.innerWidth / 120); // One line every 120px
     const lines: VerticalLine[] = [];
 
     for (let i = 0; i < lineCount; i++) {
@@ -73,7 +73,7 @@ const NodeNetworkBackground = React.memo(() => {
     verticalLinesRef.current = lines;
 
     // Create moving dots on lines
-    const dotCount = Math.floor(lineCount * 2.5); // 2-3 dots per line on average
+    const dotCount = Math.floor(lineCount * 1.5); // 1-2 dots per line on average
     const dots: MovingDot[] = [];
 
     for (let i = 0; i < dotCount; i++) {
@@ -160,7 +160,7 @@ const NodeNetworkBackground = React.memo(() => {
     ];
 
     // Additional scattered nodes for complexity
-    const additionalNodeCount = 6;
+    const additionalNodeCount = 3;
     for (let i = 6; i < 6 + additionalNodeCount; i++) {
       networkNodes.push({
         id: i,
@@ -237,11 +237,11 @@ const NodeNetworkBackground = React.memo(() => {
 
     let time = 0;
     let lastFrameTime = 0;
-    const targetFPS = 60;
+    const targetFPS = 30;
     const frameInterval = 1000 / targetFPS;
 
     const animate = (currentTime: number) => {
-      // Throttle to 60fps
+      // Throttle to 30fps
       if (currentTime - lastFrameTime < frameInterval) {
         animationFrameRef.current = requestAnimationFrame(animate);
         return;

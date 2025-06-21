@@ -8,8 +8,8 @@ import { HeroEmailCapture } from './HeroEmailCapture';
 import { TesseractLiquidGlassOptimized } from './TesseractLiquidGlassOptimized';
 import { ContainerScroll } from './ui/container-scroll-animation-optimized';
 
-// Lazy load the background animation to improve initial render
-const NodeNetworkBackground = dynamic(() => import('./NodeNetworkBackground'), {
+// Lightweight background for better performance
+const SimpleBackground = dynamic(() => import('./SimpleBackground'), {
   ssr: false,
   loading: () => <div className="absolute inset-0 -z-10 bg-white/80 dark:bg-[#060606]/80" />
 });
@@ -69,7 +69,7 @@ export function HeroOptimized() {
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.5, delay: 0.1 }}
-        className="mb-6 text-4xl font-bold text-gray-900 dark:text-white sm:text-5xl lg:text-6xl text-center"
+        className="mb-6 text-4xl font-black text-gray-900 dark:text-white sm:text-5xl lg:text-6xl text-center tracking-tight"
       >
         <div className="mb-2">Master</div>
         <div className="relative flex justify-center overflow-hidden py-2" style={{ height: '5rem' }}>
@@ -77,7 +77,7 @@ export function HeroOptimized() {
           {rotatingTexts.map((text, index) => (
             <motion.span
               key={index}
-              className="absolute font-bold gradient-text text-3xl sm:text-4xl lg:text-5xl"
+              className="absolute font-black gradient-text text-3xl sm:text-4xl lg:text-5xl tracking-tight"
               style={{ top: '0.8rem' }}
               initial={{ opacity: 0, y: "-100" }}
               transition={{ type: "spring", stiffness: 50 }}
@@ -132,7 +132,7 @@ export function HeroOptimized() {
 
   return (
     <section className="relative overflow-hidden pb-20">
-      <NodeNetworkBackground />
+      <SimpleBackground />
 
       <ContainerScroll titleComponent={titleComponent}>
         <div className="h-full w-full rounded-lg overflow-hidden">

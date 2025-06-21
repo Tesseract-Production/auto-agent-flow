@@ -25,3 +25,6 @@ Sentry.init({
     }),
   ],
 });
+
+// Export router transition hook for Sentry navigation instrumentation
+export const onRouterTransitionStart = Sentry.captureRouterTransitionStart;

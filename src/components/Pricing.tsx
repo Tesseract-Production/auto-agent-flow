@@ -67,7 +67,7 @@ export function Pricing() {
   return (
     <section
       id="pricing"
-      className="bg-white dark:bg-[#060606] px-4 py-20 sm:px-6 lg:px-8"
+      className="bg-white dark:bg-[#060606] px-4 py-[120px] sm:py-20 sm:px-6 lg:px-8"
     >
       <div className="mx-auto max-w-7xl">
         <motion.div
@@ -78,14 +78,14 @@ export function Pricing() {
         >
           <TesseractLiquidGlass
             variant="interactive"
-            enableShimmer={true}
+            enableShimmer={false}
             className="mb-4 inline-flex items-center gap-2 rounded-full px-6 py-3 text-sm font-medium"
           >
             <Zap className="h-4 w-4 text-brand-accent" />
             <span className="text-gray-900 dark:text-gray-100">Launch Special - Save $148 on Academy Access</span>
           </TesseractLiquidGlass>
           <div className="max-w-4xl mx-auto">
-            <h2 className="mb-4 text-4xl font-bold sm:text-5xl text-gray-900 dark:text-gray-100">Choose Your Learning Path</h2>
+            <h2 className="mb-4 text-4xl font-bold tracking-tight sm:text-5xl text-gray-900 dark:text-gray-100">Choose Your Learning Path</h2>
             <p className="text-xl text-gray-600 dark:text-gray-400">
               Start free, upgrade when ready. Build production-ready AI automations at your own pace.
             </p>
@@ -94,19 +94,18 @@ export function Pricing() {
 
         {/* Bento Grid Pricing */}
         <div className="mb-12 grid gap-8 lg:grid-cols-3">
-          {Object.entries(pricing).map(([key, plan], index) => (
+          {Object.entries(pricing).map(([key, plan]) => (
             <motion.div
               key={key}
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ delay: index * 0.1 }}
               className="relative"
             >
               <TesseractLiquidGlass
                 variant={plan.popular ? 'interactive' : 'card'}
-                enableShimmer={plan.popular}
-                enableScrollEffects={true}
+                enableShimmer={false}
+                enableScrollEffects={false}
                 className={cn(
                   'relative p-8 transition-all duration-300',
                   plan.popular && 'shadow-brand-glow ring-2 ring-brand-accent'
@@ -114,18 +113,14 @@ export function Pricing() {
               >
                 {plan.popular && (
                   <div className="absolute -top-4 left-1/2 z-10 -translate-x-1/2">
-                    <TesseractLiquidGlass 
-                      variant="interactive" 
-                      enableShimmer={true}
-                      className="rounded-full bg-brand-accent px-4 py-1 text-sm font-medium text-white shadow-lg"
-                    >
+                    <div className="rounded-full bg-brand-accent px-4 py-1 text-sm font-medium text-white shadow-lg">
                       <span className="text-white">Most Popular</span>
-                    </TesseractLiquidGlass>
+                    </div>
                   </div>
                 )}
 
                 <div className="mb-8">
-                  <h3 className="mb-2 text-2xl font-bold text-gray-900 dark:text-gray-100">{plan.name}</h3>
+                  <h3 className="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-gray-100">{plan.name}</h3>
                   <p className="mb-4 text-gray-600 dark:text-gray-400">{plan.description}</p>
                   <div className="flex items-baseline gap-2">
                     {plan.price === 0 ? (
@@ -166,19 +161,14 @@ export function Pricing() {
         </div>
 
         {/* Trust Guarantees */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          className="mb-12 flex flex-wrap justify-center gap-8"
-        >
+        <div className="mb-12 flex flex-wrap justify-center gap-8">
           {guarantees.map((guarantee, index) => (
             <div key={index} className="flex items-center gap-3">
               <guarantee.icon className="h-6 w-6 text-brand-accent" />
               <span className="text-gray-700 dark:text-gray-300">{guarantee.text}</span>
             </div>
           ))}
-        </motion.div>
+        </div>
 
         {/* Payment Options - Temporarily commented out */}
         {/* 

@@ -12,7 +12,6 @@ const ebooks = [
     description: 'Complete guide to integrating Amazon S3 with your workflows',
     icon: Zap,
     pages: 'PDF Guide',
-    downloadCount: '2,847+',
     downloadUrl: 'https://geenuity-mantra-ai-generated.s3.us-west-2.amazonaws.com/n8n-masterclass-website-media/Getting_Started_with_AWS_S3_and_n8n_FINAL_FOR_DISTRIBUTION.pdf'
   },
   {
@@ -21,7 +20,6 @@ const ebooks = [
     description: 'Master database automation with Supabase integration',
     icon: FileText,
     pages: 'PDF Guide',
-    downloadCount: '1,923+',
     downloadUrl: 'https://geenuity-mantra-ai-generated.s3.us-west-2.amazonaws.com/n8n-masterclass-website-media/n8n_Summer_2025_Masterclass_-_Supabase_Setup_Guide_FINAL_STANDARD_ISSUE.pdf'
   },
   {
@@ -30,7 +28,6 @@ const ebooks = [
     description: 'AI-powered automation with cutting-edge machine learning',
     icon: BookOpen,
     pages: 'PDF Guide',
-    downloadCount: '1,456+',
     downloadUrl: 'https://geenuity-mantra-ai-generated.s3.us-west-2.amazonaws.com/n8n-masterclass-website-media/Getting_Started_with_FAL.AI_n8n_FINAL_PUBLIC.pdf'
   },
   {
@@ -39,7 +36,6 @@ const ebooks = [
     description: 'Build intelligent conversational AI workflows',
     icon: Users,
     pages: 'PDF Guide',
-    downloadCount: '892+',
     downloadUrl: 'https://geenuity-mantra-ai-generated.s3.us-west-2.amazonaws.com/n8n-masterclass-website-media/Getting_Started_With_n8n_and_Flowise.pdf'
   },
 ];
@@ -60,7 +56,7 @@ export function FreeEbookResources() {
   };
 
   return (
-    <section className="bg-white dark:bg-[#060606] px-4 py-20 sm:px-6 lg:px-8">
+    <section className="bg-white dark:bg-[#060606] px-4 py-24 sm:py-16 sm:px-6 lg:px-8">
       <div className="mx-auto max-w-7xl">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -77,7 +73,7 @@ export function FreeEbookResources() {
             <span>Free Implementation Resources</span>
           </TesseractLiquidGlass>
           <div className="max-w-4xl mx-auto">
-            <h2 className="mb-4 text-4xl font-bold sm:text-5xl text-gray-900 dark:text-gray-100">
+            <h2 className="mb-4 text-4xl font-bold tracking-tight sm:text-5xl text-gray-900 dark:text-gray-100">
               Essential <span className="gradient-text">Implementation Resources</span>
             </h2>
             <p className="text-xl text-gray-600 dark:text-gray-400">
@@ -110,7 +106,7 @@ export function FreeEbookResources() {
             viewport={{ once: true }}
             className="order-1 lg:order-2"
           >
-            <h3 className="mb-6 text-3xl font-bold text-gray-900 dark:text-gray-100">Ready-to-Follow Implementation</h3>
+            <h3 className="mb-6 text-3xl font-bold tracking-tight text-gray-900 dark:text-gray-100">Ready-to-Follow Implementation</h3>
             <p className="mb-8 text-lg text-gray-600 dark:text-gray-400">
               Each guide includes step-by-step setup instructions, API key configuration, and troubleshooting tips. Perfect for both beginners and experienced builders following the masterclass.
             </p>
@@ -163,7 +159,7 @@ export function FreeEbookResources() {
                 <p className="mb-4 text-sm text-gray-600 dark:text-gray-400">{ebook.description}</p>
                 <div className="mb-4 flex justify-between text-xs text-gray-500 dark:text-gray-400">
                   <span>{ebook.pages}</span>
-                  <span>{ebook.downloadCount} downloads</span>
+                  <span>PDF Guide</span>
                 </div>
                 <button
                   onClick={() => handleDownload(ebook.downloadUrl)}

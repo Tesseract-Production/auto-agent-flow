@@ -14,7 +14,7 @@ const technologies = [
 
 export function TechStack() {
   return (
-    <section className="bg-white dark:bg-[#060606] px-4 py-20 sm:px-6 lg:px-8">
+    <section className="bg-white dark:bg-[#060606] px-4 py-24 sm:py-16 sm:px-6 lg:px-8">
       <div className="mx-auto max-w-7xl">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -23,7 +23,7 @@ export function TechStack() {
           className="mb-12 text-center"
         >
           <div className="max-w-4xl mx-auto">
-            <h2 className="mb-4 text-4xl font-bold sm:text-5xl text-gray-900 dark:text-gray-100">
+            <h2 className="mb-4 text-4xl font-bold tracking-tight sm:text-5xl text-gray-900 dark:text-gray-100">
               Master the <span className="gradient-text">Future Tech Stack</span>
             </h2>
             <p className="text-xl text-gray-600 dark:text-gray-400">
@@ -60,7 +60,7 @@ export function TechStack() {
           className="mt-20 text-center"
         >
           <div className="max-w-4xl mx-auto">
-            <h3 className="mb-4 text-3xl font-bold">
+            <h3 className="mb-4 text-3xl font-bold tracking-tight">
               See the <span className="gradient-text">Workflows in Action</span>
             </h3>
             <p className="mb-12 text-xl text-gray-600 dark:text-gray-400">

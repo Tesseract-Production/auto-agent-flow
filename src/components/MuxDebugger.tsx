@@ -51,7 +51,7 @@ export function MuxDebugger() {
           title="Debug Test"
           subtitle={testUrls[currentTest].name}
           thumbnailUrl={testUrls[currentTest].url}
-          onPlayClick={() => console.log('Debug play clicked')}
+          onPlayClick={() => console.warn('Debug play clicked')}
         />
       </div>
       

@@ -63,6 +63,17 @@ export default function RootLayout({
     <html lang="en" suppressHydrationWarning>
       <head>
         <ThemeScript />
+        <script async src="https://www.googletagmanager.com/gtag/js?id=G-8QHK6F230J"></script>
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `
+              window.dataLayer = window.dataLayer || [];
+              function gtag(){dataLayer.push(arguments);}
+              gtag('js', new Date());
+              gtag('config', 'G-8QHK6F230J');
+            `,
+          }}
+        />
       </head>
       <body
         className={cn(

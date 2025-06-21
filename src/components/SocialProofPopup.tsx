@@ -62,15 +62,15 @@ export function SocialProofPopup() {
     <AnimatePresence>
       {isVisible && (
         <motion.div
-          initial={{ opacity: 0, x: -100, scale: 0.8 }}
-          animate={{ opacity: 1, x: 0, scale: 1 }}
-          exit={{ opacity: 0, x: -100, scale: 0.8 }}
-          transition={{ duration: 0.5, ease: "easeOut" }}
+          initial={{ opacity: 0, x: -50 }}
+          animate={{ opacity: 1, x: 0 }}
+          exit={{ opacity: 0, x: -50 }}
+          transition={{ duration: 0.3 }}
           className="fixed bottom-6 left-6 z-50 max-w-sm"
         >
           <TesseractLiquidGlass
             variant="card"
-            enableShimmer={true}
+            enableShimmer={false}
             className="relative overflow-hidden rounded-brand-lg border border-green-200 bg-white/95 p-4 shadow-xl backdrop-blur-sm dark:border-green-800 dark:bg-gray-900/95"
           >
             <button
@@ -109,13 +109,8 @@ export function SocialProofPopup() {
               </div>
             </div>
 
-            {/* Animated progress bar */}
-            <motion.div
-              initial={{ width: 0 }}
-              animate={{ width: "100%" }}
-              transition={{ duration: 4, ease: "linear" }}
-              className="absolute bottom-0 left-0 h-1 bg-gradient-to-r from-green-500 to-green-600"
-            />
+            {/* Progress bar */}
+            <div className="absolute bottom-0 left-0 h-1 bg-gradient-to-r from-green-500 to-green-600 animate-pulse" />
           </TesseractLiquidGlass>
         </motion.div>
       )}

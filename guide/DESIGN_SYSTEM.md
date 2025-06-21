@@ -52,6 +52,57 @@ The design system is built around a bold, modern aesthetic that represents autom
 - **Font Family**: Inter (Primary), System fallbacks
 - **Font Smoothing**: Antialiased for crisp text rendering
 
+## Vertical Spacing System
+
+### Section Spacing
+Based on 2025 best practices and your preference for 80-148px spacing:
+
+- **Hero Section**: `120px` bottom padding (mobile: `80px`)
+- **Section Large**: `120px` top/bottom padding (mobile: `80px`)
+  - Used for major content sections
+- **Section Medium**: `96px` top/bottom padding (mobile: `64px`)
+  - Used for supporting sections
+- **Section Small**: `80px` top/bottom padding (mobile: `48px`)
+  - Used for compact sections like CTAs
+
+### Component Spacing
+
+- **Component Gap Large**: `48px` (mobile: `32px`)
+  - Space between major components within a section
+- **Component Gap Medium**: `32px` (mobile: `24px`)
+  - Space between related components
+- **Component Gap Small**: `24px` (mobile: `16px`)
+  - Space between tightly related elements
+
+### Content Spacing
+
+- **Content Gap**: `16px` (mobile: `12px`)
+  - Space between paragraphs, list items
+- **Element Gap**: `8px`
+  - Space between inline elements, small gaps
+
+### Spacing Utilities (Tailwind)
+
+```css
+/* Section spacing classes */
+.section-spacing-lg { @apply py-[120px] md:py-[120px] sm:py-20; }
+.section-spacing-md { @apply py-24 md:py-24 sm:py-16; }
+.section-spacing-sm { @apply py-20 md:py-20 sm:py-12; }
+
+/* Component spacing classes */
+.component-gap-lg { @apply space-y-12 md:space-y-12 sm:space-y-8; }
+.component-gap-md { @apply space-y-8 md:space-y-8 sm:space-y-6; }
+.component-gap-sm { @apply space-y-6 md:space-y-6 sm:space-y-4; }
+```
+
+### Spacing Principles
+
+1. **Consistency**: Use the same spacing scale throughout
+2. **Hierarchy**: Larger spacing between sections, smaller within
+3. **Responsive**: Reduce spacing on mobile by ~33%
+4. **Breathing Room**: Double spacing when in doubt
+5. **Visual Rhythm**: Maintain 2:3:4 ratio (small:medium:large)
+
 ## Border Radius System
 
 - **Small**: `8px` - Subtle rounding for compact elements
