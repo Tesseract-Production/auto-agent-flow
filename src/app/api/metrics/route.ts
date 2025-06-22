@@ -42,7 +42,7 @@ export async function POST(request: Request) {
     }
 
     return NextResponse.json({ success: true, metrics });
-  } catch (error) {
+  } catch {
     return NextResponse.json(
       { error: 'Invalid JSON body' },
       { status: 400 }

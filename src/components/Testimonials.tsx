@@ -1,5 +1,6 @@
 'use client';
 
+import React from 'react';
 import { motion } from 'framer-motion';
 import { Star, Quote } from 'lucide-react';
 // import Image from 'next/image'
@@ -42,11 +43,11 @@ const testimonials = [
   },
 ];
 
-export function Testimonials() {
+export const Testimonials = React.memo(function Testimonials() {
   const [activeIndex, setActiveIndex] = useState(0);
 
   return (
-    <section className="bg-white dark:bg-[#060606] px-4 py-[120px] sm:py-20 sm:px-6 lg:px-8">
+    <section className="bg-white dark:bg-[#060606] px-4 py-16 sm:py-12 sm:px-6 lg:px-8">
       <div className="mx-auto max-w-7xl">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -137,4 +138,4 @@ export function Testimonials() {
       </div>
     </section>
   );
-}
+});

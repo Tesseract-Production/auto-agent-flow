@@ -35,7 +35,7 @@ export function EmailCapture() {
   };
 
   return (
-    <section className="bg-white dark:bg-[#060606] px-4 sm:px-6 lg:px-8 py-20 sm:py-12">
+    <section className="bg-white dark:bg-[#060606] px-4 sm:px-6 lg:px-8 py-16 sm:py-12">
         <div className="mx-auto max-w-4xl">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -48,6 +48,8 @@ export function EmailCapture() {
               enableShimmer={true}
               className="shadow-brand-xl p-8 sm:p-12 rounded-brand-xl"
             >
+              {/* Commented out for now - Join automation pioneers section */}
+              {/*
               <div className="mb-8 text-center">
                 <div className="mx-auto max-w-4xl">
                   <h2 className="mb-4 font-bold text-3xl sm:text-4xl tracking-tight">
@@ -58,6 +60,7 @@ export function EmailCapture() {
                   </p>
                 </div>
               </div>
+              */}
 
               {/* Countdown Timer */}
               <div className="flex justify-center mb-8">

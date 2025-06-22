@@ -8,6 +8,7 @@ import { TesseractLiquidGlass } from './TesseractLiquidGlass';
 import { useTheme } from './ThemeProvider';
 import { StarBorder } from './ui/star-border';
 import Image from 'next/image';
+import Link from 'next/link';
 
 export function Navigation() {
   const [isOpen, setIsOpen] = useState(false);
@@ -32,7 +33,7 @@ export function Navigation() {
   ];
 
   return (
-    <nav className="fixed left-0 right-0 top-3 z-50 px-4">
+    <nav className="fixed left-0 right-0 top-3 z-50 px-4" role="navigation" aria-label="Main navigation">
       <TesseractLiquidGlass
         variant="nav"
         enableScrollEffects={true}
@@ -51,15 +52,31 @@ export function Navigation() {
               animate={{ opacity: 1, x: 0 }}
               className="flex items-center"
             >
-              {/* Replace /assets/logos/tesseract-logo.webp with your actual logo file */}
-              <Image
-                src="/assets/logos/tesseract-logo.webp"
-                alt="Tesseract n8n Masterclass"
-                width={140}
-                height={36}
-                priority
-                className="h-8 w-auto sm:h-9"
-              />
+              <Link href="/" aria-label="Auto Agent Flow homepage">
+              {/* Desktop: Show full typeface logo */}
+              <div className="hidden xl:block">
+                <Image
+                  src={theme === 'dark' ? '/assets/logos/auto-agent-flow-logo-typeface-light.png' : '/assets/logos/auto-agent-flow-logo-typeface-dark.png'}
+                  alt="Auto Agent Flow"
+                  width={180}
+                  height={45}
+                  priority
+                  className="h-9 w-auto"
+                />
+              </div>
+              
+              {/* Mobile & Tablet: Show icon only */}
+              <div className="xl:hidden">
+                <Image
+                  src={theme === 'dark' ? '/assets/logos/auto-agent-flow-icon-light.png' : '/assets/logos/auto-agent-flow-icon-dark.png'}
+                  alt="Auto Agent Flow"
+                  width={36}
+                  height={36}
+                  priority
+                  className="h-9 w-9"
+                />
+              </div>
+              </Link>
             </motion.div>
 
             {/* Desktop Nav */}
@@ -76,10 +93,12 @@ export function Navigation() {
                 </motion.a>
               ))}
               <button
+                type="button"
                 onClick={toggleTheme}
                 className="rounded-brand p-2 transition-colors hover:bg-gray-100 dark:hover:bg-gray-700"
+                aria-label={`Switch to ${theme === 'dark' ? 'light' : 'dark'} mode`}
               >
-                {theme === 'dark' ? <Sun className="h-5 w-5 text-gray-900 dark:text-gray-100" /> : <Moon className="h-5 w-5 text-gray-900 dark:text-gray-100" />}
+                {theme === 'dark' ? <Sun className="h-5 w-5 text-gray-900 dark:text-gray-100" aria-hidden="true" /> : <Moon className="h-5 w-5 text-gray-900 dark:text-gray-100" aria-hidden="true" />}
               </button>
               <StarBorder 
                 as="a"
@@ -95,8 +114,15 @@ export function Navigation() {
             </div>
 
             {/* Mobile Menu Button */}
-            <button onClick={() => setIsOpen(!isOpen)} className="p-2 md:hidden text-gray-900 dark:text-gray-100">
-              {isOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
+            <button 
+              type="button"
+              onClick={() => setIsOpen(!isOpen)} 
+              className="p-2 md:hidden text-gray-900 dark:text-gray-100"
+              aria-label={isOpen ? 'Close navigation menu' : 'Open navigation menu'}
+              aria-expanded={isOpen}
+              aria-controls="mobile-menu"
+            >
+              {isOpen ? <X className="h-6 w-6" aria-hidden="true" /> : <Menu className="h-6 w-6" aria-hidden="true" />}
             </button>
           </div>
         </div>
@@ -104,9 +130,12 @@ export function Navigation() {
         {/* Mobile Menu */}
         {isOpen && (
           <motion.div
+            id="mobile-menu"
             initial={{ opacity: 0, y: -20 }}
             animate={{ opacity: 1, y: 0 }}
             className="bg-white/90 dark:bg-gray-900/90 backdrop-blur-md border-t border-gray-200 dark:border-gray-700 md:hidden"
+            role="menu"
+            aria-label="Mobile navigation menu"
           >
             <div className="space-y-4 px-4 py-6">
               {navItems.map((item) => (
@@ -120,10 +149,12 @@ export function Navigation() {
                 </a>
               ))}
               <button
+                type="button"
                 onClick={toggleTheme}
                 className="flex items-center gap-2 rounded-brand p-2 text-lg font-medium text-gray-900 transition-colors hover:bg-gray-100 dark:text-gray-100 dark:hover:bg-gray-700"
+                aria-label={`Switch to ${theme === 'dark' ? 'light' : 'dark'} mode`}
               >
-                {theme === 'dark' ? <Sun className="h-5 w-5" /> : <Moon className="h-5 w-5" />}
+                {theme === 'dark' ? <Sun className="h-5 w-5" aria-hidden="true" /> : <Moon className="h-5 w-5" aria-hidden="true" />}
                 {theme === 'dark' ? 'Light Mode' : 'Dark Mode'}
               </button>
               <StarBorder 

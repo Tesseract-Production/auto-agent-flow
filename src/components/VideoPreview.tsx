@@ -1,5 +1,6 @@
 'use client';
 
+import React from 'react';
 import { motion } from 'framer-motion';
 import { Play, Users, Star, Clock, ChevronLeft, ChevronRight } from 'lucide-react';
 import { useState, useCallback } from 'react';
@@ -13,7 +14,7 @@ const MuxPlayer = dynamic(() => import('@mux/mux-player-react'), {
   ssr: false,
 });
 
-export function VideoPreview() {
+export const VideoPreview = React.memo(function VideoPreview() {
   const [isPlaying, setIsPlaying] = useState(false);
   const [emblaRef, emblaApi] = useEmblaCarousel({ loop: true, align: 'start' });
 
@@ -181,4 +182,4 @@ export function VideoPreview() {
       </div>
     </section>
   );
-}
+});

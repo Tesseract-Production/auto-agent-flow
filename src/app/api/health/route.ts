@@ -1,7 +1,16 @@
 import { NextResponse } from 'next/server';
 
 export async function GET() {
-  const healthCheck = {
+  const healthCheck: {
+    status: string;
+    timestamp: string;
+    uptime: number;
+    version: string;
+    node_version: string;
+    memory: { used: number; total: number };
+    environment: string | undefined;
+    database?: string;
+  } = {
     status: 'healthy',
     timestamp: new Date().toISOString(),
     uptime: process.uptime(),

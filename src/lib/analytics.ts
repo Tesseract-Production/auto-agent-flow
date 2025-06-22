@@ -1,21 +1,21 @@
 // Google Analytics utility functions
 declare global {
   interface Window {
-    gtag: (...args: any[]) => void;
-    dataLayer: any[];
+    gtag: (...args: unknown[]) => void;
+    dataLayer: unknown[];
   }
 }
 
 export const GA_TRACKING_ID = 'G-8QHK6F230J';
 
-export const trackEvent = (action: string, parameters?: Record<string, any>) => {
-  if (typeof window !== 'undefined' && window.gtag) {
+export const trackEvent = (action: string, parameters?: Record<string, unknown>) => {
+  if (typeof window !== 'undefined' && typeof window.gtag === 'function') {
     window.gtag('event', action, parameters);
   }
 };
 
 export const trackPageView = (url: string) => {
-  if (typeof window !== 'undefined' && window.gtag) {
+  if (typeof window !== 'undefined' && typeof window.gtag === 'function') {
     window.gtag('config', GA_TRACKING_ID, {
       page_location: url,
     });
@@ -39,7 +39,7 @@ export const trackInternalMetric = async (type: string, value = 1) => {
 
 // Test events to trigger Google Analytics registration
 export const triggerTestEvents = () => {
-  if (typeof window !== 'undefined' && window.gtag) {
+  if (typeof window !== 'undefined' && typeof window.gtag === 'function') {
     // Page view event
     trackEvent('page_view', {
       page_title: 'n8n Masterclass - Master AI Orchestration & Automation',
@@ -67,6 +67,6 @@ export const triggerTestEvents = () => {
     // Track internal metrics
     trackInternalMetric('pageView');
 
-    console.log('🎯 Test events sent to Google Analytics (G-8QHK6F230J)');
+    console.warn('🎯 Test events sent to Google Analytics (G-8QHK6F230J)');
   }
 };

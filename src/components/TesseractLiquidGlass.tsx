@@ -13,7 +13,7 @@ interface TesseractLiquidGlassProps {
   enableShimmer?: boolean;
 }
 
-export function TesseractLiquidGlass({
+export const TesseractLiquidGlass = React.memo(function TesseractLiquidGlass({
   children,
   className = '',
   variant = 'card',
@@ -85,4 +85,4 @@ export function TesseractLiquidGlass({
       {children}
     </div>
   );
-}
+});

@@ -1,5 +1,6 @@
 import type { Metadata, Viewport } from 'next';
 import { Inter } from 'next/font/google';
+import Script from 'next/script';
 import './globals.css';
 import { cn } from '@/lib/utils';
 import { Analytics } from '@vercel/analytics/react';
@@ -63,17 +64,6 @@ export default function RootLayout({
     <html lang="en" suppressHydrationWarning>
       <head>
         <ThemeScript />
-        <script async src="https://www.googletagmanager.com/gtag/js?id=G-8QHK6F230J"></script>
-        <script
-          dangerouslySetInnerHTML={{
-            __html: `
-              window.dataLayer = window.dataLayer || [];
-              function gtag(){dataLayer.push(arguments);}
-              gtag('js', new Date());
-              gtag('config', 'G-8QHK6F230J');
-            `,
-          }}
-        />
       </head>
       <body
         className={cn(
@@ -91,15 +81,25 @@ export default function RootLayout({
         </ThemeProvider>
         <Analytics />
         <SpeedInsights />
+        
+        {/* Google Analytics */}
+        <Script
+          src="https://www.googletagmanager.com/gtag/js?id=G-8QHK6F230J"
+          strategy="afterInteractive"
+        />
+        <Script id="google-analytics" strategy="afterInteractive">
+          {`
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+            gtag('config', 'G-8QHK6F230J');
+          `}
+        </Script>
+        
         {process.env.NODE_ENV === 'development' && (
-          <script
-            dangerouslySetInnerHTML={{
-              __html: `
-                // Performance monitoring script
-                console.log('🚀 Performance monitoring enabled for development');
-              `,
-            }}
-          />
+          <Script id="dev-monitoring" strategy="afterInteractive">
+            {`console.warn('🚀 Performance monitoring enabled for development');`}
+          </Script>
         )}
       </body>
     </html>

@@ -1,5 +1,6 @@
 import type { NextConfig } from 'next';
 import { withSentryConfig } from '@sentry/nextjs';
+import withBundleAnalyzer from '@next/bundle-analyzer';
 
 const nextConfig: NextConfig = {
   // Suppress Sentry OpenTelemetry warnings in development
@@ -78,9 +79,16 @@ const nextConfig: NextConfig = {
   },
 };
 
-// Export config with conditional Sentry integration
+// Bundle analyzer configuration
+const bundleAnalyzer = withBundleAnalyzer({
+  enabled: process.env.ANALYZE === 'true',
+});
+
+// Export config with conditional Sentry and Bundle Analyzer integration
+const configWithPlugins = bundleAnalyzer(nextConfig);
+
 export default process.env.SENTRY_DSN 
-  ? withSentryConfig(nextConfig, {
+  ? withSentryConfig(configWithPlugins, {
       // Sentry webpack plugin options
       org: process.env.SENTRY_ORG,
       project: process.env.SENTRY_PROJECT,
@@ -96,4 +104,4 @@ export default process.env.SENTRY_DSN
       // Disable Sentry in development
       disableLogger: true,
     })
-  : nextConfig;
+  : configWithPlugins;
