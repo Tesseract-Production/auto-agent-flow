@@ -1,11 +1,17 @@
 'use client';
 
 import { motion } from 'framer-motion';
-import { MessageCircle, Youtube, Twitter, Linkedin, Github } from 'lucide-react';
+import { MessageCircle, Youtube, Twitter, Linkedin } from 'lucide-react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { useTheme } from './ThemeProvider';
 import { useEffect, useState } from 'react';
+
+interface FooterLink {
+  label: string;
+  href: string;
+  external?: boolean;
+}
 
 // Responsive logo component
 function LogoSection() {
@@ -51,7 +57,7 @@ function LogoSection() {
   );
 }
 
-const footerLinks = {
+const footerLinks: Record<string, FooterLink[]> = {
   course: [
     { label: 'Course Outline', href: '#outline' },
     { label: 'Pricing', href: '#pricing' },
@@ -59,31 +65,30 @@ const footerLinks = {
     { label: 'FAQ', href: '#faq' },
   ],
   resources: [
-    { label: 'Free Preview', href: '#' },
-    { label: 'Discord Community', href: '#' },
-    { label: 'Blog', href: '#' },
-    { label: 'Documentation', href: '#' },
+    { label: 'Courses', href: 'https://academy.tesseract.nexus/courses', external: true },
+    { label: 'Discord Community', href: 'https://discord.gg/mekhFT535C', external: true },
+    { label: 'Blog', href: 'https://academy.tesseract.nexus/blog', external: true },
+    { label: 'Help Center', href: 'https://tesseract.nexus/contact', external: true },
   ],
   company: [
-    { label: 'About Us', href: '#' },
-    { label: 'Contact', href: '#' },
-    { label: 'Careers', href: '#' },
-    { label: 'Enterprise', href: '#' },
+    { label: 'About Us', href: 'https://academy.tesseract.nexus/about', external: true },
+    { label: 'Contact', href: 'https://tesseract.nexus/contact', external: true },
+    // { label: 'Careers', href: '#' }, // Commented out - not available
+    // { label: 'Enterprise', href: '#' }, // Commented out - not ready
   ],
   legal: [
-    { label: 'Privacy Policy', href: '#' },
-    { label: 'Terms of Service', href: '#' },
-    { label: 'Cookie Policy', href: '#' },
-    { label: 'Refund Policy', href: '#' },
+    { label: 'Privacy Policy', href: '/legal/privacy' },
+    { label: 'Terms of Service', href: '/legal/tos' },
+    { label: 'Cookie Policy', href: '/legal/cookies' },
+    // { label: 'Refund Policy', href: '#' }, // Commented out - not ready
   ],
 };
 
 const socialLinks = [
-  { icon: Youtube, href: '#', label: 'YouTube' },
-  { icon: Twitter, href: '#', label: 'Twitter' },
-  { icon: Linkedin, href: '#', label: 'LinkedIn' },
-  { icon: Github, href: '#', label: 'GitHub' },
-  { icon: MessageCircle, href: '#', label: 'Discord' },
+  { icon: Youtube, href: 'https://www.youtube.com/@create-with-tesseract', label: 'YouTube' },
+  { icon: Twitter, href: 'https://x.com/tesseract_1111', label: 'Twitter' },
+  { icon: Linkedin, href: 'https://www.linkedin.com/company/tesseract-creator/', label: 'LinkedIn' },
+  { icon: MessageCircle, href: 'https://discord.gg/mekhFT535C', label: 'Discord' },
 ];
 
 export function Footer() {
@@ -138,12 +143,23 @@ export function Footer() {
             <ul className="space-y-2">
               {footerLinks.resources.map((link) => (
                 <li key={link.label}>
-                  <Link
-                    href={link.href}
-                    className="text-gray-600 transition-colors hover:text-brand-accent dark:text-gray-400"
-                  >
-                    {link.label}
-                  </Link>
+                  {link.external ? (
+                    <a
+                      href={link.href}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-gray-600 transition-colors hover:text-brand-accent dark:text-gray-400"
+                    >
+                      {link.label}
+                    </a>
+                  ) : (
+                    <Link
+                      href={link.href}
+                      className="text-gray-600 transition-colors hover:text-brand-accent dark:text-gray-400"
+                    >
+                      {link.label}
+                    </Link>
+                  )}
                 </li>
               ))}
             </ul>
@@ -154,12 +170,23 @@ export function Footer() {
             <ul className="space-y-2">
               {footerLinks.company.map((link) => (
                 <li key={link.label}>
-                  <Link
-                    href={link.href}
-                    className="text-gray-600 transition-colors hover:text-brand-accent dark:text-gray-400"
-                  >
-                    {link.label}
-                  </Link>
+                  {link.external ? (
+                    <a
+                      href={link.href}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-gray-600 transition-colors hover:text-brand-accent dark:text-gray-400"
+                    >
+                      {link.label}
+                    </a>
+                  ) : (
+                    <Link
+                      href={link.href}
+                      className="text-gray-600 transition-colors hover:text-brand-accent dark:text-gray-400"
+                    >
+                      {link.label}
+                    </Link>
+                  )}
                 </li>
               ))}
             </ul>

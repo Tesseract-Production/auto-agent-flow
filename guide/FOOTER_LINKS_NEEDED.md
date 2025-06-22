@@ -11,36 +11,36 @@ This document lists all the footer links that currently need proper URLs to be a
 
 ## Product Section
 
-- [ ] **Courses** - Course catalog page
-- [ ] **Pricing** - Pricing information page
-- [ ] **Enterprise** - Enterprise solutions page
-- [ ] **API Documentation** - Developer documentation
+- [ URL = https://academy.tesseract.nexus/courses ] **Courses** - Course catalog page
+- [ URL = SCROLL TO PRICING CONTAINER ON PAGE ] **Pricing** - Pricing information page
+- [ URL = NONE ] **Enterprise** - Enterprise solutions page (NOT READY - PLEASE HIDE)
+- [ URL = NONE ] **API Documentation** - Developer documentation (NOT READY - HIDE)
 
 ## Support Section
 
 - [ ] **Help Center** - Support documentation/FAQ
-- [ ] **Community** - Community forum/Discord link
-- [ ] **Documentation** - Product documentation
-- [ ] **Contact Support** - Support ticket system
+- [ URL = https://discord.gg/mekhFT535C ] **Community** - Community forum/Discord link
+- [ URL = NONE - HIDE ] **Documentation** - Product documentation
+- [ URL = https://tesseract.nexus/contact ] **Contact Support** - Support ticket system
 
 ## Legal Section
 
-- [ ] **Privacy Policy** - Privacy policy page
-- [ ] **Terms of Service** - Terms and conditions page
-- [ ] **Cookie Policy** - Cookie usage policy
-- [ ] **Refund Policy** - Refund terms and conditions
+- [ URL = https://tesseract.nexus/legal/privacy ] **Privacy Policy** - Privacy policy page
+- [ URL = https://tesseract.nexus/legal/tos ] **Terms of Service** - Terms and conditions page
+- [ URL = https://tesseract.nexus/legal/cookies ] **Cookie Policy** - Cookie usage policy
+- [ URL = NONE ] **Refund Policy** - Refund terms and conditions (DISABLE = NOT READY)
 
 ## Social Media Section
 
-- [ ] **YouTube** - YouTube channel link
-- [ ] **Twitter/X** - Twitter profile link
-- [ ] **LinkedIn** - LinkedIn company page
-- [ ] **Discord** - Discord community server
+- [ URL = https://www.youtube.com/@create-with-tesseract ] **YouTube** - YouTube channel link
+- [ URL = https://x.com/tesseract_1111 ] **Twitter/X** - Twitter profile link
+- [ https://www.linkedin.com/company/tesseract-creator/ ] **LinkedIn** - LinkedIn company page
+- [ URL = https://discord.gg/mekhFT535C ] **Discord** - Discord community server
 
 ## Special Links
 
-- [ ] **Academy Course** - Direct link to academy course (already have: https://academy.tesseract.nexus/course/n8n-full-stack-masterclass-2025-building-generative-multimedia-production-system)
-- [ ] **Udemy Course** - Direct link to Udemy course (already have: https://www.udemy.com/course/n8n-masterclass-build-multi-agent-ai-api-orchestrations/?referralCode=46746C047330EF867E46)
+- [ URL = DONE ] **Academy Course** - Direct link to academy course (already have: https://academy.tesseract.nexus/course/n8n-full-stack-masterclass-2025-building-generative-multimedia-production-system)
+- [ URL = DONE ] **Udemy Course** - Direct link to Udemy course (already have: https://www.udemy.com/course/n8n-masterclass-build-multi-agent-ai-api-orchestrations/?referralCode=46746C047330EF867E46)
 
 ## Notes
 
