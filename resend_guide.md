@@ -17,13 +17,16 @@ SUPABASE_SERVICE_ROLE_KEY=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...
 ## Resend Dashboard Setup
 
 ### 1. Create Resend Account
-- Sign up at https://resend.com
+
+- Sign up at <https://resend.com>
 - Verify your account via email
 
 ### 2. Domain Configuration
+
 You need to configure your sending domain in Resend:
 
 **Option A: Use tesseract.nexus domain**
+
 - Add `tesseract.nexus` as a verified domain
 - Add these DNS records to your domain:
   - SPF record: `v=spf1 include:_spf.resend.com ~all`
@@ -31,23 +34,28 @@ You need to configure your sending domain in Resend:
   - DMARC record: `v=DMARC1; p=quarantine;`
 
 **Option B: Use subdomain**
+
 - Add `mail.tesseract.nexus` or `academy.tesseract.nexus`
 - Follow Resend's domain verification process
 
 ### 3. API Key Generation
+
 - Go to API Keys section in Resend dashboard
 - Create a new API key with "Send emails" permission
 - Copy the key and add to your environment variables
 
 ### 4. Email Templates (Optional)
+
 The current implementation uses inline HTML, but you can optionally create templates:
 
 #### Welcome Email Template
+
 - **Subject**: `Welcome to the n8n AI Orchestration Masterclass, {{firstName}}!`
 - **From**: `Auto Agent Flow Academy <academy@tesseract.nexus>`
 - **Variables**: `firstName`, `email`
 
 #### Support Ticket Notification Template
+
 - **Subject**: `New Support Request from {{fullName}}`
 - **From**: `Tesseract Support <support@tesseract.nexus>`
 - **Variables**: `fullName`, `question`, `ticketId`, `submittedAt`
@@ -55,22 +63,25 @@ The current implementation uses inline HTML, but you can optionally create templ
 ## Current Email Integrations
 
 ### 1. Welcome Email (Hero Email Capture)
+
 **File**: `/src/app/api/subscribe/route.ts`
 **Function**: `sendResendWelcomeEmail()`
 **Triggered**: When user submits email in hero section
-**From**: `Auto Agent Flow Academy <academy@tesseract.nexus>`
+**From**: `Auto Agent Flow Academy <academy@mail.autoagentflow.com>`
 **Template**: Inline HTML with brand styling
 
 ### 2. Support Ticket Notification
+
 **File**: `/src/app/api/support/route.ts`
 **Function**: Internal support team notification
 **Triggered**: When user submits support form
-**From**: `Tesseract Support <support@tesseract.nexus>`
-**To**: `team@tesseract.nexus`
+**From**: `Auto Agent Flow Support <support@mail.autoagentflow.com>`
+**To**: `team@autoagentflow.com`
 
 ## Email Content Details
 
 ### Welcome Email Features
+
 - ✅ Personalized greeting with first name
 - ✅ Brand-consistent styling (Auto Agent Flow colors)
 - ✅ Clear call-to-action to course
@@ -80,6 +91,7 @@ The current implementation uses inline HTML, but you can optionally create templ
 - ✅ Emoji support for engagement
 
 ### Support Notification Features
+
 - ✅ Support ticket details
 - ✅ Technical metadata (IP, user agent, referrer)
 - ✅ Formatted question content
@@ -88,7 +100,8 @@ The current implementation uses inline HTML, but you can optionally create templ
 
 ## Testing Checklist
 
-### Before Going Live:
+### Before Going Live
+
 1. ✅ Verify domain DNS records are properly configured
 2. ✅ Test API key permissions in Resend dashboard  
 3. ✅ Send test welcome email to yourself
@@ -97,7 +110,8 @@ The current implementation uses inline HTML, but you can optionally create templ
 6. ✅ Test on mobile email clients
 7. ✅ Verify unsubscribe links work (if added)
 
-### Email Client Testing:
+### Email Client Testing
+
 - Gmail (desktop & mobile)
 - Outlook (desktop & mobile)
 - Apple Mail (desktop & mobile)
@@ -106,7 +120,8 @@ The current implementation uses inline HTML, but you can optionally create templ
 
 ## Integration Flow Summary
 
-### Hero Email Submission Flow:
+### Hero Email Submission Flow
+
 1. User submits email in hero section
 2. Email saved to Supabase `email_subscribers` table
 3. Kit integration (existing)
@@ -115,7 +130,8 @@ The current implementation uses inline HTML, but you can optionally create templ
 6. External webhook trigger (existing)
 7. Success response with confetti
 
-### Support Request Flow:
+### Support Request Flow
+
 1. User clicks "Contact Support" in FAQ
 2. Popup opens with form fields
 3. User submits name + question
@@ -125,14 +141,16 @@ The current implementation uses inline HTML, but you can optionally create templ
 
 ## Monitoring & Analytics
 
-### Resend Dashboard Metrics:
+### Resend Dashboard Metrics
+
 - Email delivery rates
 - Open rates (if tracking enabled)
 - Bounce rates
 - Spam complaints
 - API usage
 
-### Supabase Analytics:
+### Supabase Analytics
+
 - Email subscriber growth
 - Support ticket volume
 - Geographic distribution
@@ -140,14 +158,16 @@ The current implementation uses inline HTML, but you can optionally create templ
 
 ## Troubleshooting
 
-### Common Issues:
+### Common Issues
+
 1. **API Key Invalid**: Verify key has correct permissions
 2. **Domain Not Verified**: Complete DNS verification process
 3. **Rate Limits**: Check Resend plan limits
 4. **Delivery Issues**: Monitor domain reputation
 5. **Template Errors**: Validate HTML structure
 
-### Debug Steps:
+### Debug Steps
+
 1. Check application logs for Resend API errors
 2. Verify environment variables are loaded
 3. Test API key with Resend's test endpoint
@@ -174,7 +194,8 @@ The current implementation uses inline HTML, but you can optionally create templ
 ## Support
 
 If you encounter issues:
-1. Check Resend documentation: https://resend.com/docs
+
+1. Check Resend documentation: <https://resend.com/docs>
 2. Review implementation in `/src/app/api/subscribe/route.ts`
 3. Verify Supabase table setup with `/src/supabase/support_tickets.sql`
 4. Contact Resend support for domain/delivery issues

@@ -77,8 +77,8 @@ export async function POST(request: NextRequest) {
       if (process.env.RESEND_API_KEY) {
         const resend = new Resend(process.env.RESEND_API_KEY);
         await resend.emails.send({
-          from: 'Tesseract Support <support@tesseract.nexus>',
-          to: ['team@tesseract.nexus'], // Support team notification
+          from: 'Auto Agent Flow Support <support@mail.autoagentflow.com>',
+          to: ['team@autoagentflow.com'], // Support team notification
           subject: `New Support Request from ${fullName}`,
           html: `
             <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">

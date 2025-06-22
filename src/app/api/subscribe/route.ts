@@ -110,7 +110,7 @@ async function sendResendWelcomeEmail(email: string, firstName?: string): Promis
     const resend = new Resend(resendApiKey);
 
     const { data, error } = await resend.emails.send({
-      from: 'Auto Agent Flow Academy <academy@tesseract.nexus>',
+      from: 'Auto Agent Flow Academy <academy@mail.autoagentflow.com>',
       to: [email],
       subject: `Welcome to the n8n AI Orchestration Masterclass, ${firstName || 'Future Automation Expert'}!`,
       html: `
@@ -162,7 +162,7 @@ async function sendResendWelcomeEmail(email: string, firstName?: string): Promis
           
           <div style="background: #f5f5f5; padding: 20px; text-align: center; color: #888; font-size: 12px;">
             <p style="margin: 0;">
-              Auto Agent Flow Academy | Tesseract Nexus<br>
+              Auto Agent Flow Academy<br>
               You received this because you signed up for our n8n masterclass updates.
             </p>
           </div>
