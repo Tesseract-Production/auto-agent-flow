@@ -99,40 +99,25 @@ export const VideoPreview = React.memo(function VideoPreview() {
           className="mt-12 px-4"
         >
           <h2 className="mb-12 text-center text-4xl font-bold tracking-tight sm:text-5xl text-gray-900 dark:text-gray-100">
-            See the <span className="gradient-text">Workflows in Action</span>
+            Beautiful <span className="gradient-text">Finished Results</span>
           </h2>
           
-          <div className="relative mx-auto max-w-4xl px-12 py-8">
+          <div className="relative mx-auto max-w-4xl px-4 sm:px-8 lg:px-12 py-8">
             <div className="overflow-hidden" ref={emblaRef}>
               <div className="flex">
                 {[
                   { 
-                    image: '/assets/images/auto-agent-flow-site-image-main-n8n-workflow-beauty-image-1-prod.webp',
-                    title: 'Sequential Orchestration Method Overview',
-                    description: 'Complete workflow architecture with 32+ nodes'
+                    image: '/assets/images/finished-result-preview-1.png',
+                    title: 'Professional Content Generation',
+                    description: 'High-quality blog posts and articles automatically generated with perfect formatting'
                   },
                   { 
-                    image: '/assets/images/auto-agent-flow-site-image-main-n8n-wokflow-beauty-image-2-prod.webp',
-                    title: 'Multi-Agent Workflow Design',
-                    description: 'Advanced AI agent coordination patterns'
-                  },
-                  { 
-                    image: '/assets/images/auto-agent-flow-site-image-main-n8n-wokflow-beauty-image-3-prod.webp',
-                    title: 'Advanced Data Processing Pipeline',
-                    description: 'Complex data transformation workflows'
-                  },
-                  { 
-                    image: '/assets/images/auto-agent-flow-site-image-main-n8n-wokflow-beauty-image-4-prod.webp',
-                    title: 'AI Integration Patterns',
-                    description: 'Seamless AI model integration strategies'
-                  },
-                  { 
-                    image: '/assets/images/auto-agent-flow-site-image-main-n8n-wokflow-beauty-image-5-prod.webp',
-                    title: 'Production-Ready Automation',
-                    description: 'Scalable enterprise workflow solutions'
+                    image: '/assets/images/finished-result-preview-2.png',
+                    title: 'Visual Media Creation',
+                    description: 'Stunning graphics and media assets created through AI automation workflows'
                   },
                 ].map((workflow, index) => (
-                  <div key={index} className="flex-[0_0_100%] min-w-0 px-8 py-4">
+                  <div key={index} className="flex-[0_0_100%] min-w-0 px-4 sm:px-6 lg:px-8 py-4">
                     <div className="group cursor-pointer transition-transform hover:scale-[1.02]">
                       <TesseractLiquidGlass
                         variant="card"
@@ -167,15 +152,15 @@ export const VideoPreview = React.memo(function VideoPreview() {
             {/* Navigation Buttons */}
             <button
               onClick={scrollPrev}
-              className="absolute left-2 top-1/2 -translate-y-1/2 flex h-12 w-12 items-center justify-center rounded-full bg-white/90 backdrop-blur-md shadow-lg transition-all hover:bg-white hover:scale-110 dark:bg-gray-800/90 dark:hover:bg-gray-800 z-10"
+              className="absolute left-1 sm:left-2 top-1/2 -translate-y-1/2 flex h-10 w-10 sm:h-12 sm:w-12 items-center justify-center rounded-full bg-white/90 backdrop-blur-md shadow-lg transition-all hover:bg-white hover:scale-110 dark:bg-gray-800/90 dark:hover:bg-gray-800 z-10"
             >
-              <ChevronLeft className="h-6 w-6 text-gray-700 dark:text-gray-300" />
+              <ChevronLeft className="h-5 w-5 sm:h-6 sm:w-6 text-gray-700 dark:text-gray-300" />
             </button>
             <button
               onClick={scrollNext}
-              className="absolute right-2 top-1/2 -translate-y-1/2 flex h-12 w-12 items-center justify-center rounded-full bg-white/90 backdrop-blur-md shadow-lg transition-all hover:bg-white hover:scale-110 dark:bg-gray-800/90 dark:hover:bg-gray-800 z-10"
+              className="absolute right-1 sm:right-2 top-1/2 -translate-y-1/2 flex h-10 w-10 sm:h-12 sm:w-12 items-center justify-center rounded-full bg-white/90 backdrop-blur-md shadow-lg transition-all hover:bg-white hover:scale-110 dark:bg-gray-800/90 dark:hover:bg-gray-800 z-10"
             >
-              <ChevronRight className="h-6 w-6 text-gray-700 dark:text-gray-300" />
+              <ChevronRight className="h-5 w-5 sm:h-6 sm:w-6 text-gray-700 dark:text-gray-300" />
             </button>
           </div>
         </motion.div>

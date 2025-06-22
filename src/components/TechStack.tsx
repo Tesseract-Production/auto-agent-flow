@@ -41,7 +41,7 @@ export function TechStack() {
               viewport={{ once: true }}
               transition={{ delay: index * 0.1 }}
               whileHover={{ y: -5 }}
-              className="glass-effect group cursor-pointer rounded-brand-lg p-6 text-center"
+              className="glass-effect group cursor-pointer rounded-brand-lg p-6 text-center border border-gray-200/50 shadow-sm hover:shadow-md dark:border-gray-700/50 transition-all duration-300"
             >
               <div className="mx-auto mb-4 flex h-16 w-16 items-center justify-center rounded-brand bg-brand-accent/10 transition-colors group-hover:bg-brand-accent/20">
                 <tech.icon className="h-8 w-8 text-brand-accent" />

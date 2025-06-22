@@ -58,7 +58,7 @@ BEGIN
     NEW.updated_at = NOW();
     RETURN NEW;
 END;
-$$ language 'plpgsql';
+$$ language plpgsql;
 
 -- Create trigger to automatically update updated_at column
 CREATE TRIGGER update_support_tickets_updated_at 
