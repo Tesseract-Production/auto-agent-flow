@@ -61,10 +61,10 @@ export function TechStack() {
         >
           <div className="max-w-4xl mx-auto">
             <h3 className="mb-4 text-3xl font-bold tracking-tight">
-              See the <span className="gradient-text">Workflows in Action</span>
+              Beautiful <span className="gradient-text">Finished Results</span>
             </h3>
             <p className="mb-12 text-xl text-gray-600 dark:text-gray-400">
-              Real workflow canvases from our masterclass
+              Professional outputs created by your automated workflows
             </p>
           </div>
 
@@ -76,13 +76,13 @@ export function TechStack() {
               className="glass-effect rounded-brand-xl p-4"
             >
               <img
-                src="/assets/images/flowise-agent-canvas-beauty-image-1.webp"
-                alt="Flowise Agent Canvas - AI Workflow Design"
+                src="/assets/images/finished-result-preview-1.png"
+                alt="Professional Content Generation Result"
                 className="w-full rounded-brand-lg"
               />
-              <h4 className="mt-4 font-semibold">AI Agent Canvas</h4>
+              <h4 className="mt-4 font-semibold">Professional Content Generation</h4>
               <p className="text-sm text-gray-600 dark:text-gray-400">
-                Advanced agent workflow with custom tools
+                High-quality blog posts and articles automatically generated with perfect formatting
               </p>
             </motion.div>
 
@@ -93,13 +93,13 @@ export function TechStack() {
               className="glass-effect rounded-brand-xl p-4"
             >
               <img
-                src="/assets/images/flowise-business-logic-flows-as-agents-canvas-shot-1.webp"
-                alt="Flowise Business Logic Flow Canvas"
+                src="/assets/images/finished-result-preview-2.png"
+                alt="Visual Media Creation Result"
                 className="w-full rounded-brand-lg"
               />
-              <h4 className="mt-4 font-semibold">Business Logic Flows</h4>
+              <h4 className="mt-4 font-semibold">Visual Media Creation</h4>
               <p className="text-sm text-gray-600 dark:text-gray-400">
-                Complex business automation workflows
+                Stunning graphics and media assets created through AI automation workflows
               </p>
             </motion.div>
           </div>

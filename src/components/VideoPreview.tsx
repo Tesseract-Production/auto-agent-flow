@@ -99,7 +99,7 @@ export const VideoPreview = React.memo(function VideoPreview() {
           className="mt-12 px-4"
         >
           <h2 className="mb-12 text-center text-4xl font-bold tracking-tight sm:text-5xl text-gray-900 dark:text-gray-100">
-            Beautiful <span className="gradient-text">Finished Results</span>
+            See the <span className="gradient-text">Workflows in Action</span>
           </h2>
           
           <div className="relative mx-auto max-w-4xl px-4 sm:px-8 lg:px-12 py-8">
@@ -107,14 +107,29 @@ export const VideoPreview = React.memo(function VideoPreview() {
               <div className="flex">
                 {[
                   { 
-                    image: '/assets/images/finished-result-preview-1.png',
-                    title: 'Professional Content Generation',
-                    description: 'High-quality blog posts and articles automatically generated with perfect formatting'
+                    image: '/assets/images/auto-agent-flow-site-image-main-n8n-workflow-beauty-image-1-prod.webp',
+                    title: 'Sequential Orchestration Method Overview',
+                    description: 'Complete workflow architecture with 32+ nodes'
                   },
                   { 
-                    image: '/assets/images/finished-result-preview-2.png',
-                    title: 'Visual Media Creation',
-                    description: 'Stunning graphics and media assets created through AI automation workflows'
+                    image: '/assets/images/auto-agent-flow-site-image-main-n8n-wokflow-beauty-image-2-prod.webp',
+                    title: 'Multi-Agent Workflow Design',
+                    description: 'Advanced AI agent coordination patterns'
+                  },
+                  { 
+                    image: '/assets/images/auto-agent-flow-site-image-main-n8n-wokflow-beauty-image-3-prod.webp',
+                    title: 'Advanced Data Processing Pipeline',
+                    description: 'Complex data transformation workflows'
+                  },
+                  { 
+                    image: '/assets/images/auto-agent-flow-site-image-main-n8n-wokflow-beauty-image-4-prod.webp',
+                    title: 'AI Integration Patterns',
+                    description: 'Seamless AI model integration strategies'
+                  },
+                  { 
+                    image: '/assets/images/auto-agent-flow-site-image-main-n8n-wokflow-beauty-image-5-prod.webp',
+                    title: 'Production-Ready Automation',
+                    description: 'Scalable enterprise workflow solutions'
                   },
                 ].map((workflow, index) => (
                   <div key={index} className="flex-[0_0_100%] min-w-0 px-4 sm:px-6 lg:px-8 py-4">
