@@ -5,6 +5,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { ChevronDown, HelpCircle } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { TesseractLiquidGlass } from './TesseractLiquidGlass';
+import { SupportPopup } from './SupportPopup';
 
 const faqs = [
   {
@@ -62,6 +63,7 @@ const faqs = [
 
 export function FAQ() {
   const [openItems, setOpenItems] = useState<string[]>([]);
+  const [isSupportPopupOpen, setIsSupportPopupOpen] = useState(false);
 
   const toggleItem = (id: string) => {
     setOpenItems((prev) =>
@@ -155,9 +157,19 @@ export function FAQ() {
           <p className="mb-6 text-gray-600 dark:text-gray-400">
             Our team is here to help you make the right decision
           </p>
-          <button className="btn-secondary">Contact Support</button>
+          <button 
+            onClick={() => setIsSupportPopupOpen(true)}
+            className="btn-secondary"
+          >
+            Contact Support
+          </button>
         </motion.div>
       </div>
+
+      <SupportPopup 
+        isOpen={isSupportPopupOpen}
+        onClose={() => setIsSupportPopupOpen(false)}
+      />
     </section>
   );
 }

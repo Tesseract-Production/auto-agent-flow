@@ -7,7 +7,7 @@ import { Testimonials } from '@/components/Testimonials';
 import { Instructor } from '@/components/Instructor';
 import { Pricing } from '@/components/Pricing';
 import { FAQ } from '@/components/FAQ';
-import { EmailCapture } from '@/components/EmailCapture';
+// import { EmailCapture } from '@/components/EmailCapture';
 import { FinalCTA } from '@/components/FinalCTA';
 import { Footer } from '@/components/Footer';
 import { SocialProofPopup } from '@/components/SocialProofPopup';
@@ -33,7 +33,7 @@ export default function Home() {
         <Instructor />
         <Pricing />
         <FAQ />
-        <EmailCapture />
+        {/* <EmailCapture /> */}
         <FinalCTA />
       </main>
       <Footer />

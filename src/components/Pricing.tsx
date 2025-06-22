@@ -119,7 +119,7 @@ export function Pricing() {
         </motion.div>
 
         {/* Bento Grid Pricing */}
-        <div className="mb-12 grid gap-8 lg:grid-cols-2" role="group" aria-labelledby="pricing-options-label">
+        <div className="mb-12 mt-8 grid gap-8 lg:grid-cols-2" role="group" aria-labelledby="pricing-options-label">
           <h3 id="pricing-options-label" className="sr-only">Pricing Options</h3>
           {Object.entries(pricing)
             .filter(([key]) => key !== 'team') // Hide team card
@@ -144,8 +144,8 @@ export function Pricing() {
                 )}
               >
                 {plan.popular && (
-                  <div className="absolute -top-4 left-1/2 z-10 -translate-x-1/2">
-                    <div className="rounded-full bg-brand-accent px-4 py-1 text-sm font-medium text-white shadow-lg" role="banner" aria-label="Most popular pricing plan">
+                  <div className="absolute -top-6 left-1/2 z-10 -translate-x-1/2">
+                    <div className="rounded-full bg-brand-accent px-4 py-2 text-sm font-medium text-white shadow-lg" role="banner" aria-label="Most popular pricing plan">
                       <span className="text-white">Most Popular</span>
                     </div>
                   </div>

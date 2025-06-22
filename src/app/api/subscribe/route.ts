@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { supabaseServer } from '@/lib/supabase-server';
 import { z } from 'zod';
+import { Resend } from 'resend';
 
 // Validation schema
 const subscribeSchema = z.object({
@@ -97,6 +98,90 @@ async function sendWelcomeEmail(email: string, firstName?: string): Promise<Inte
   }
 }
 
+// Resend email integration
+async function sendResendWelcomeEmail(email: string, firstName?: string): Promise<IntegrationResult> {
+  try {
+    const resendApiKey = process.env.RESEND_API_KEY;
+    if (!resendApiKey) {
+      console.warn('RESEND_API_KEY not configured');
+      return { success: false, error: 'Resend API key not configured' };
+    }
+
+    const resend = new Resend(resendApiKey);
+
+    const { data, error } = await resend.emails.send({
+      from: 'Auto Agent Flow Academy <academy@tesseract.nexus>',
+      to: [email],
+      subject: `Welcome to the n8n AI Orchestration Masterclass, ${firstName || 'Future Automation Expert'}!`,
+      html: `
+        <div style="font-family: 'Arial', sans-serif; max-width: 600px; margin: 0 auto; background: #ffffff;">
+          <div style="background: linear-gradient(135deg, #da3229 0%, #e03f2f 100%); padding: 40px 20px; text-align: center;">
+            <h1 style="color: #ffffff; margin: 0; font-size: 28px; font-weight: bold;">
+              Welcome to Auto Agent Flow! 🚀
+            </h1>
+          </div>
+          
+          <div style="padding: 40px 20px;">
+            <h2 style="color: #333; margin-bottom: 20px;">
+              Hey ${firstName || 'there'}! 👋
+            </h2>
+            
+            <p style="color: #666; line-height: 1.6; margin-bottom: 20px;">
+              You've just taken the first step toward mastering n8n AI automation - and I'm thrilled to have you join our community of automation pioneers!
+            </p>
+            
+            <p style="color: #666; line-height: 1.6; margin-bottom: 20px;">
+              Here's what happens next:
+            </p>
+            
+            <div style="background: #f9f9f9; padding: 20px; border-radius: 8px; margin: 20px 0;">
+              <ul style="color: #555; line-height: 1.8; margin: 0; padding-left: 20px;">
+                <li>📚 <strong>Free Resources</strong> - Access exclusive guides and workflows</li>
+                <li>🎥 <strong>Preview Content</strong> - Watch sample lessons from the masterclass</li>
+                <li>💬 <strong>Community Access</strong> - Join our Discord with 100+ automation experts</li>
+                <li>🔥 <strong>Special Offers</strong> - Get notified about limited-time course discounts</li>
+              </ul>
+            </div>
+            
+            <div style="text-align: center; margin: 30px 0;">
+              <a href="https://academy.tesseract.nexus/course/n8n-full-stack-masterclass-2025-building-generative-multimedia-production-system" 
+                 style="background: #da3229; color: #ffffff; padding: 15px 30px; text-decoration: none; border-radius: 6px; font-weight: bold; display: inline-block;">
+                Explore the Full Course →
+              </a>
+            </div>
+            
+            <p style="color: #666; line-height: 1.6; margin-bottom: 20px;">
+              Questions? Hit reply to this email - I personally read and respond to every message.
+            </p>
+            
+            <p style="color: #666; line-height: 1.6;">
+              Let's build the future together! 🤖<br>
+              <strong>The Auto Agent Flow Team</strong>
+            </p>
+          </div>
+          
+          <div style="background: #f5f5f5; padding: 20px; text-align: center; color: #888; font-size: 12px;">
+            <p style="margin: 0;">
+              Auto Agent Flow Academy | Tesseract Nexus<br>
+              You received this because you signed up for our n8n masterclass updates.
+            </p>
+          </div>
+        </div>
+      `,
+    });
+
+    if (error) {
+      console.error('Resend API error:', error);
+      return { success: false, error: `Resend API error: ${error.message}` };
+    }
+
+    return { success: true, data: { emailId: data?.id, message: 'Welcome email sent via Resend' } };
+  } catch (error) {
+    console.error('Resend integration error:', error);
+    return { success: false, error: 'Failed to send welcome email via Resend' };
+  }
+}
+
 // External webhook integration
 async function triggerExternalWebhook(email: string, firstName?: string): Promise<IntegrationResult> {
   try {
@@ -188,11 +273,13 @@ export async function POST(request: NextRequest) {
       supabase: IntegrationResult;
       kit: IntegrationResult;
       sendgrid: IntegrationResult;
+      resend: IntegrationResult;
       webhook: IntegrationResult;
     } = {
       supabase: { success: true, data },
       kit: { success: false, error: 'Not attempted' },
       sendgrid: { success: false, error: 'Not attempted' },
+      resend: { success: false, error: 'Not attempted' },
       webhook: { success: false, error: 'Not attempted' }
     };
 
@@ -220,7 +307,19 @@ export async function POST(request: NextRequest) {
       integrationResults.sendgrid = { success: false, error: 'Sendgrid integration failed' };
     }
 
-    // 3. Trigger external webhook
+    // 3. Send welcome email via Resend
+    try {
+      const resendResult = await sendResendWelcomeEmail(validatedData.email, firstName);
+      integrationResults.resend = resendResult;
+      if (!resendResult.success) {
+        console.warn('Resend integration failed:', resendResult.error);
+      }
+    } catch (error) {
+      console.error('Resend integration error:', error);
+      integrationResults.resend = { success: false, error: 'Resend integration failed' };
+    }
+
+    // 4. Trigger external webhook
     try {
       const webhookResult = await triggerExternalWebhook(validatedData.email, firstName);
       integrationResults.webhook = webhookResult;
