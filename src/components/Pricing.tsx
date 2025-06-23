@@ -18,7 +18,7 @@ const pricing = {
       'Basic implementation guide',
       'Community support',
     ],
-    cta: 'Access Free Resources',
+    cta: 'Resources',
     popular: false,
   },
   academy: {
@@ -186,7 +186,9 @@ export function Pricing() {
                     plan.popular ? 'btn-primary' : 'btn-secondary'
                   )}
                   onClick={() => {
-                    if (key === 'academy') {
+                    if (key === 'free') {
+                      window.open('https://build.tesseract.nexus/', '_blank');
+                    } else if (key === 'academy') {
                       window.open('https://academy.tesseract.nexus/course/n8n-full-stack-masterclass-2025-building-generative-multimedia-production-system', '_blank');
                     }
                   }}

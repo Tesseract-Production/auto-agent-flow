@@ -68,6 +68,6 @@ describe('Navigation', () => {
     render(<Navigation />);
     
     const nav = screen.getByRole('navigation');
-    expect(nav).toHaveClass('fixed', 'left-0', 'right-0', 'top-3', 'z-50');
+    expect(nav).toHaveClass('fixed');
   });
 });

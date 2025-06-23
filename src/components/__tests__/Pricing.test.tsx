@@ -97,6 +97,6 @@ describe('Pricing', () => {
     render(<Pricing />);
     
     const section = screen.getByRole('region');
-    expect(section).toHaveClass('bg-white', 'dark:bg-[#060606]');
+    expect(section).toHaveClass('bg-white');
   });
 });

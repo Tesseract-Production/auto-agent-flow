@@ -158,7 +158,9 @@ export function FAQ() {
             Our team is here to help you make the right decision
           </p>
           <button 
-            onClick={() => setIsSupportPopupOpen(true)}
+            onClick={() => {
+              window.open('https://tesseract.nexus/contact/', '_blank');
+            }}
             className="btn-secondary"
           >
             Contact Support

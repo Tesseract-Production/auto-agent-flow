@@ -39,7 +39,7 @@ export function FinalCTA() {
             </p>
           </div>
 
-          <div className="mb-8 flex flex-col justify-center gap-4 sm:flex-row">
+          <div className="mb-8 flex justify-center">
             <motion.button
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
@@ -51,7 +51,9 @@ export function FinalCTA() {
               Start Learning Today
               <ArrowRight className="ml-2 inline-block h-5 w-5 transition-transform group-hover:translate-x-1" />
             </motion.button>
+            {/* Temporarily commented out - Download Course Syllabus button
             <button className="btn-secondary px-10 py-5 text-lg">Download Course Syllabus</button>
+            */}
           </div>
 
           <div className="flex flex-wrap justify-center gap-6 text-gray-600 dark:text-gray-400">

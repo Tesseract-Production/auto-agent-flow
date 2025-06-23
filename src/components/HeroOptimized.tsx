@@ -1,7 +1,7 @@
 'use client';
 
 import { motion } from 'framer-motion';
-import { Sparkles } from 'lucide-react';
+import { Sparkles, ArrowRight } from 'lucide-react';
 import { useState, useEffect, useMemo } from 'react';
 import dynamic from 'next/dynamic';
 import { HeroEmailCapture } from './HeroEmailCapture';
@@ -109,24 +109,24 @@ export function HeroOptimized() {
         Build a production-ready 32-node automation using custom AI agents, visual models, and n8n's powerful orchestration platform. From zero to advanced workflows in one comprehensive masterclass.
       </motion.p>
 
-      {/* Temporarily comment out buttons
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.5, delay: 0.3 }}
-        className="mb-12 flex flex-col justify-center gap-4 sm:flex-row"
+        className="mb-12 flex justify-center"
       >
         <TesseractLiquidGlassOptimized variant="interactive" enableShimmer={true}>
-          <button className="btn-primary group w-full">
+          <button 
+            className="btn-primary group"
+            onClick={() => {
+              window.open('https://academy.tesseract.nexus/course/n8n-full-stack-masterclass-2025-building-generative-multimedia-production-system', '_blank');
+            }}
+          >
             Start Learning Today
             <ArrowRight className="ml-2 inline-block h-5 w-5 transition-transform group-hover:translate-x-1" />
           </button>
         </TesseractLiquidGlassOptimized>
-        <TesseractLiquidGlassOptimized variant="card">
-          <button className="btn-secondary w-full">Watch Free Preview</button>
-        </TesseractLiquidGlassOptimized>
       </motion.div>
-      */}
     </div>
   );
 

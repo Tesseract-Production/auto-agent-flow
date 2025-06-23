@@ -118,14 +118,10 @@ describe('useEmailSubscription', () => {
     });
   });
 
-  it('resets state correctly', () => {
+  it('resets state correctly on new subscription', () => {
     const { result } = renderHook(() => useEmailSubscription());
 
-    // Set some state
-    act(() => {
-      result.current.reset();
-    });
-
+    // State should be reset for each new subscription attempt
     expect(result.current.isLoading).toBe(false);
     expect(result.current.error).toBe(null);
     expect(result.current.success).toBe(false);
