@@ -22,6 +22,11 @@ export const metadata: Metadata = {
   keywords:
     'n8n, automation, ai orchestration, workflow automation, no-code, low-code, ai agents, tesseract nexus',
   authors: [{ name: 'Tesseract Nexus' }],
+  icons: {
+    icon: '/favicon.ico',
+    shortcut: '/favicon.ico',
+    apple: '/favicon.ico',
+  },
   openGraph: {
     title: 'n8n Masterclass - Master AI Orchestration & Automation',
     description: 'Transform your career with the most comprehensive n8n automation course.',
