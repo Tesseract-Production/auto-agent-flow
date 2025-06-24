@@ -16,27 +16,28 @@ const inter = Inter({ subsets: ['latin'] });
 
 export const metadata: Metadata = {
   metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL || 'http://localhost:3000'),
-  title: 'n8n Masterclass - Master AI Orchestration & Automation',
+  title: 'Auto Agent Flow Academy - n8n AI Orchestration Masterclass',
   description:
-    'Transform your career with the most comprehensive n8n automation course. Learn to build AI-powered workflows that scale. Join 2,847+ students.',
+    'Master AI automation with Auto Agent Flow Academy. Premier development agency & learning platform for AI developers. Build production-ready workflows with n8n, AI agents, and advanced orchestration systems.',
   keywords:
-    'n8n, automation, ai orchestration, workflow automation, no-code, low-code, ai agents, tesseract nexus',
-  authors: [{ name: 'Tesseract Nexus' }],
+    'auto agent flow, ai development agency, ai academy, n8n masterclass, automation, ai orchestration, workflow automation, no-code, low-code, ai agents, ai developers, tesseract nexus',
+  authors: [{ name: 'Auto Agent Flow' }],
   icons: {
     icon: '/favicon.ico',
     shortcut: '/favicon.ico',
     apple: '/favicon.ico',
   },
   openGraph: {
-    title: 'n8n Masterclass - Master AI Orchestration & Automation',
-    description: 'Transform your career with the most comprehensive n8n automation course.',
+    title: 'Auto Agent Flow Academy - AI Development Agency & Learning Platform',
+    description: 'Leading development agency and academy for AI developers. Master n8n automation, AI orchestration, and build production-ready workflows that scale.',
     url: 'https://tesseract-nexus.com',
-    siteName: 'Tesseract n8n Masterclass',
+    siteName: 'Auto Agent Flow Academy',
     images: [
       {
-        url: '/og-image.png',
-        width: 1200,
-        height: 630,
+        url: '/assets/images/og-banner-1280-720.jpeg',
+        width: 1280,
+        height: 720,
+        alt: 'Auto Agent Flow Academy - AI Development Agency & Learning Platform',
       },
     ],
     locale: 'en_US',
@@ -44,9 +45,9 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'n8n Masterclass - Master AI Orchestration',
-    description: 'Transform your career with the most comprehensive n8n automation course.',
-    images: ['/og-image.png'],
+    title: 'Auto Agent Flow Academy - AI Development & Learning Platform',
+    description: 'Leading development agency and academy for AI developers. Master AI automation and orchestration systems.',
+    images: ['/assets/images/og-banner-1280-720.jpeg'],
   },
   robots: {
     index: true,
