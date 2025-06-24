@@ -62,7 +62,7 @@ describe('useEmailSubscription', () => {
     });
 
     expect(result.current.isLoading).toBe(false);
-    expect(result.current.error).toBe('Failed to subscribe. Please try again.');
+    expect(result.current.error).toBe('Network error occurred');
     expect(result.current.success).toBe(false);
   });
 

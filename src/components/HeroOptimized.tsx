@@ -8,8 +8,8 @@ import { HeroEmailCapture } from './HeroEmailCapture';
 import { TesseractLiquidGlassOptimized } from './TesseractLiquidGlassOptimized';
 import { ContainerScroll } from './ui/container-scroll-animation-optimized';
 
-// Lightweight background for better performance
-const SimpleBackground = dynamic(() => import('./SimpleBackground'), {
+// Node network background for visual appeal
+const NodeNetworkBackground = dynamic(() => import('./NodeNetworkBackground'), {
   ssr: false,
   loading: () => <div className="absolute inset-0 -z-10 bg-white/80 dark:bg-[#060606]/80" />
 });
@@ -132,7 +132,7 @@ export function HeroOptimized() {
 
   return (
     <section className="relative overflow-hidden pb-20">
-      <SimpleBackground />
+      <NodeNetworkBackground />
 
       <ContainerScroll titleComponent={titleComponent}>
         <div className="h-full w-full rounded-lg overflow-hidden">

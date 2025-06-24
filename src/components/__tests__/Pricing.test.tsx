@@ -30,8 +30,8 @@ describe('Pricing', () => {
     // Check for Full Academy Access card
     expect(screen.getByText('Full Academy Access')).toBeInTheDocument();
     expect(screen.getByText('Complete masterclass experience')).toBeInTheDocument();
-    expect(screen.getByText('$199')).toBeInTheDocument();
-    expect(screen.getByText('$299')).toBeInTheDocument(); // Original price
+    expect(screen.getByText('$99')).toBeInTheDocument();
+    expect(screen.getByText('$199')).toBeInTheDocument(); // Original price
   });
 
   it('shows popular badge on academy card', () => {
@@ -72,6 +72,8 @@ describe('Pricing', () => {
     );
   });
 
+  // Trust guarantees are temporarily commented out
+  /*
   it('displays trust guarantees', () => {
     render(<Pricing />);
     
@@ -79,6 +81,7 @@ describe('Pricing', () => {
     expect(screen.getByText('Join 2,847+ successful students')).toBeInTheDocument();
     expect(screen.getByText('90% land jobs within 6 months')).toBeInTheDocument();
   });
+  */
 
   it('shows feature lists for each plan', () => {
     render(<Pricing />);

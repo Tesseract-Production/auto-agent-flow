@@ -70,8 +70,51 @@ global.ResizeObserver = class ResizeObserver {
   disconnect() {}
 };
 
+// Mock Next.js Request and Response for API routes
+Object.defineProperty(globalThis, 'Request', {
+  writable: true,
+  value: class Request {
+    constructor(input, init) {
+      this.url = typeof input === 'string' ? input : input.url;
+      this.method = init?.method || 'GET';
+      this.headers = new Map(Object.entries(init?.headers || {}));
+      this.body = init?.body;
+    }
+    json() {
+      return Promise.resolve(JSON.parse(this.body || '{}'));
+    }
+  },
+});
+
+Object.defineProperty(globalThis, 'Response', {
+  writable: true,
+  value: class Response {
+    constructor(body, init) {
+      this.body = body;
+      this.status = init?.status || 200;
+      this.statusText = init?.statusText || 'OK';
+      this.headers = new Map(Object.entries(init?.headers || {}));
+      this.ok = this.status >= 200 && this.status < 300;
+    }
+    json() {
+      return Promise.resolve(JSON.parse(this.body || '{}'));
+    }
+    static json(object, init) {
+      return new Response(JSON.stringify(object), {
+        ...init,
+        headers: {
+          'Content-Type': 'application/json',
+          ...init?.headers,
+        },
+      });
+    }
+  },
+});
+
 // Suppress console warnings during tests
 const originalConsoleWarn = console.warn;
+const originalConsoleError = console.error;
+
 console.warn = (...args) => {
   if (
     typeof args[0] === 'string' &&
@@ -81,4 +124,17 @@ console.warn = (...args) => {
     return;
   }
   originalConsoleWarn(...args);
+};
+
+console.error = (...args) => {
+  if (
+    typeof args[0] === 'string' &&
+    (args[0].includes('React does not recognize') ||
+     args[0].includes('whileInView') ||
+     args[0].includes('priority') ||
+     args[0].includes('Received `true` for a non-boolean attribute'))
+  ) {
+    return;
+  }
+  originalConsoleError(...args);
 };

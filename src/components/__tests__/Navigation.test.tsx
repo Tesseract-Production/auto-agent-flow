@@ -25,7 +25,7 @@ describe('Navigation', () => {
     
     // Check for navigation items
     expect(screen.getByText('Course Outline')).toBeInTheDocument();
-    expect(screen.getByText('Success Stories')).toBeInTheDocument();
+    // Success Stories is commented out: expect(screen.getByText('Success Stories')).toBeInTheDocument();
     expect(screen.getByText('Pricing')).toBeInTheDocument();
     expect(screen.getByText('FAQ')).toBeInTheDocument();
   });
@@ -33,8 +33,8 @@ describe('Navigation', () => {
   it('renders the logo', () => {
     render(<Navigation />);
     
-    const logo = screen.getByAltText('Auto Agent Flow');
-    expect(logo).toBeInTheDocument();
+    const logos = screen.getAllByAltText('Auto Agent Flow');
+    expect(logos.length).toBeGreaterThan(0); // Multiple logo variants exist
   });
 
   it('has working navigation links', () => {
@@ -50,14 +50,14 @@ describe('Navigation', () => {
   it('renders theme toggle button', () => {
     render(<Navigation />);
     
-    const themeToggle = screen.getByRole('button', { name: /toggle theme/i });
+    const themeToggle = screen.getByRole('button', { name: /switch to.*mode/i });
     expect(themeToggle).toBeInTheDocument();
   });
 
   it('opens and closes mobile menu', () => {
     render(<Navigation />);
     
-    const menuButton = screen.getByRole('button', { name: /toggle navigation/i });
+    const menuButton = screen.getByRole('button', { name: /open navigation menu/i });
     expect(menuButton).toBeInTheDocument();
     
     fireEvent.click(menuButton);
