@@ -27,7 +27,7 @@ export function Navigation() {
 
   const navItems = [
     { label: 'Course Outline', href: '#outline' },
-    { label: 'Success Stories', href: '#testimonials' },
+    // { label: 'Success Stories', href: '#testimonials' },
     { label: 'Pricing', href: '#pricing' },
     { label: 'FAQ', href: '#faq' },
   ];

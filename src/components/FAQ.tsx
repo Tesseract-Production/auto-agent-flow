@@ -112,34 +112,49 @@ export function FAQ() {
                   const isOpen = openItems.includes(id);
 
                   return (
-                    <div key={id} className="rounded-brand overflow-hidden glass-effect">
-                      <button
-                        onClick={() => toggleItem(id)}
-                        className="flex justify-between items-center hover:bg-gray-50 dark:hover:bg-gray-800/50 px-6 py-4 w-full transition-colors"
+                    <motion.div
+                      key={id}
+                      initial={{ opacity: 0, y: 10 }}
+                      whileInView={{ opacity: 1, y: 0 }}
+                      viewport={{ once: true }}
+                      transition={{ delay: index * 0.05 }}
+                      className="group"
+                    >
+                      <TesseractLiquidGlass
+                        variant="card"
+                        enableScrollEffects={true}
+                        enableShimmer={isOpen}
+                        className="shadow-brand group-hover:shadow-brand-lg border border-gray-200/50 dark:border-gray-700/50 group-hover:border-brand-primary rounded-brand-lg overflow-hidden transition-all duration-700"
                       >
-                        <span className="font-medium text-left">{item.q}</span>
-                        <ChevronDown
-                          className={cn(
-                            'ml-4 h-5 w-5 flex-shrink-0 transition-transform',
-                            isOpen && 'rotate-180'
+                        <button
+                          onClick={() => toggleItem(id)}
+                          className="flex justify-between items-center hover:bg-gray-50 dark:hover:bg-gray-800/50 px-6 py-4 w-full transition-colors"
+                        >
+                          <span className="font-medium text-left text-gray-900 dark:text-gray-100">{item.q}</span>
+                          <ChevronDown
+                            className={cn(
+                              'ml-4 h-5 w-5 flex-shrink-0 transition-transform text-brand-accent',
+                              isOpen && 'rotate-180'
+                            )}
+                          />
+                        </button>
+                        <AnimatePresence>
+                          {isOpen && (
+                            <motion.div
+                              initial={{ height: 0, opacity: 0 }}
+                              animate={{ height: 'auto', opacity: 1 }}
+                              exit={{ height: 0, opacity: 0 }}
+                              transition={{ duration: 0.3 }}
+                              className="border-gray-200 dark:border-gray-700 border-t"
+                            >
+                              <div className="px-6 py-4 text-gray-600 dark:text-gray-400">
+                                {item.a}
+                              </div>
+                            </motion.div>
                           )}
-                        />
-                      </button>
-                      <AnimatePresence>
-                        {isOpen && (
-                          <motion.div
-                            initial={{ height: 0, opacity: 0 }}
-                            animate={{ height: 'auto', opacity: 1 }}
-                            exit={{ height: 0, opacity: 0 }}
-                            transition={{ duration: 0.3 }}
-                          >
-                            <div className="px-6 pb-4 text-gray-600 dark:text-gray-400">
-                              {item.a}
-                            </div>
-                          </motion.div>
-                        )}
-                      </AnimatePresence>
-                    </div>
+                        </AnimatePresence>
+                      </TesseractLiquidGlass>
+                    </motion.div>
                   );
                 })}
               </div>

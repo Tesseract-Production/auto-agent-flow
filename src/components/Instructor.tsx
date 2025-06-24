@@ -27,12 +27,16 @@ export function Instructor() {
               <div className="relative flex justify-center items-center p-8 rounded-brand-xl h-full glass-effect">
                 <div className="text-center">
                   <div className="bg-gradient-to-br from-brand-primary to-brand-accent mx-auto mb-6 p-1 rounded-full w-48 h-48">
-                    <div className="flex justify-center items-center bg-white dark:bg-brand-dark rounded-full w-full h-full">
-                      <span className="font-bold text-6xl gradient-text">V</span>
+                    <div className="flex justify-center items-center bg-white dark:bg-brand-dark rounded-full w-full h-full overflow-hidden">
+                      <img 
+                        src="/assets/images/vadim-vozmitsel-tesseract-creator.png" 
+                        alt="Vadim Vozmitsel - Tesseract Creator"
+                        className="w-full h-full object-cover rounded-full"
+                      />
                     </div>
                   </div>
                   <h3 className="mb-2 font-bold text-2xl tracking-tight">Vadim</h3>
-                  <p className="text-gray-600 dark:text-gray-400">Full Stack Developer & Augmented AI Engineer</p>
+                  <p className="text-gray-600 dark:text-gray-400">Full Stack Developer | AI Integration Engineer | Product Designer</p>
                 </div>
               </div>
             </div>

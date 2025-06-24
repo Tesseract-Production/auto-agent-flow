@@ -3,7 +3,7 @@ import { HeroOptimized as Hero } from '@/components/HeroOptimized';
 import { VideoPreview } from '@/components/VideoPreview';
 import { CourseOutline } from '@/components/CourseOutline';
 import { TechStack } from '@/components/TechStack';
-import { Testimonials } from '@/components/Testimonials';
+// import { Testimonials } from '@/components/Testimonials';
 import { Instructor } from '@/components/Instructor';
 import { Pricing } from '@/components/Pricing';
 import { FAQ } from '@/components/FAQ';
@@ -28,7 +28,7 @@ export default function Home() {
         <CourseOutline />
         <TechStack />
         <ResourcesBonuses />
-        <Testimonials />
+        {/* <Testimonials /> */}
         <NodeversePromotion />
         <Instructor />
         <Pricing />

@@ -1,7 +1,8 @@
 'use client';
 
 import { motion } from 'framer-motion';
-import { Check, Zap, Shield, Users, Trophy } from 'lucide-react';
+import { Check, Zap } from 'lucide-react';
+// import { Shield, Users, Trophy } from 'lucide-react'; // Temporarily unused
 import { cn } from '@/lib/utils';
 import { TesseractLiquidGlass } from './TesseractLiquidGlass';
 
@@ -23,8 +24,8 @@ const pricing = {
   },
   academy: {
     name: 'Full Academy Access',
-    price: 199,
-    originalPrice: 299,
+    price: 99,
+    originalPrice: 199,
     description: 'Complete masterclass experience',
     features: [
       'Everything in Free Resources',
@@ -79,11 +80,14 @@ const teamPricing = {
 };
 */
 
+// Temporarily commented out guarantees
+/*
 const guarantees = [
   { icon: Shield, text: '30-day money-back guarantee' },
   { icon: Users, text: 'Join 2,847+ successful students' },
   { icon: Trophy, text: '90% land jobs within 6 months' },
 ];
+*/
 
 export function Pricing() {
   return (
@@ -119,7 +123,7 @@ export function Pricing() {
         </motion.div>
 
         {/* Bento Grid Pricing */}
-        <div className="mb-12 mt-8 grid gap-8 lg:grid-cols-2" role="group" aria-labelledby="pricing-options-label">
+        <div className="mb-12 mt-8 grid gap-8 lg:grid-cols-2 lg:items-stretch" role="group" aria-labelledby="pricing-options-label">
           <h3 id="pricing-options-label" className="sr-only">Pricing Options</h3>
           {Object.entries(pricing)
             .filter(([key]) => key !== 'team') // Hide team card
@@ -129,7 +133,7 @@ export function Pricing() {
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              className="relative"
+              className="relative flex"
               role="article"
               aria-labelledby={`plan-title-${key}`}
               aria-describedby={`plan-description-${key} plan-price-${key} plan-features-${key}`}
@@ -139,12 +143,12 @@ export function Pricing() {
                 enableShimmer={false}
                 enableScrollEffects={false}
                 className={cn(
-                  'relative p-8 transition-all duration-300',
+                  'relative p-8 transition-all duration-300 flex flex-col w-full',
                   plan.popular && 'shadow-brand-glow ring-2 ring-brand-accent'
                 )}
               >
                 {plan.popular && (
-                  <div className="absolute -top-6 left-1/2 z-10 -translate-x-1/2">
+                  <div className="absolute -top-4 left-1/2 z-10 -translate-x-1/2 -translate-y-1/2">
                     <div className="rounded-full bg-brand-accent px-4 py-2 text-sm font-medium text-white shadow-lg" role="banner" aria-label="Most popular pricing plan">
                       <span className="text-white">Most Popular</span>
                     </div>
@@ -170,7 +174,7 @@ export function Pricing() {
                   </div>
                 </div>
 
-                <ul id={`plan-features-${key}`} className="mb-8 space-y-4" role="list" aria-label={`Features included in ${plan.name} plan`}>
+                <ul id={`plan-features-${key}`} className="mb-8 space-y-4 flex-grow" role="list" aria-label={`Features included in ${plan.name} plan`}>
                   {plan.features.map((feature, i) => (
                     <li key={i} className="flex items-start gap-3" role="listitem">
                       <Check className="mt-0.5 h-5 w-5 flex-shrink-0 text-brand-accent" aria-hidden="true" />
@@ -217,11 +221,15 @@ export function Pricing() {
               className="max-w-md p-6 transition-all duration-300 hover:shadow-lg"
             >
               <div className="text-center">
+                <div className="mb-4">
+                  <img
+                    src="/assets/images/udemy-thumbnail.png"
+                    alt="Udemy Course Thumbnail"
+                    className="w-full h-32 object-cover rounded-brand mb-3"
+                  />
+                </div>
                 <h3 id="udemy-plan-title" className="mb-2 text-lg font-semibold text-gray-900 dark:text-gray-100">Udemy Alternative</h3>
                 <p id="udemy-plan-description" className="mb-4 text-sm text-gray-600 dark:text-gray-400">Prefer Udemy's platform? Get the course there too.</p>
-                <div id="udemy-plan-price" className="mb-4" role="group" aria-label="Price information for Udemy course">
-                  <span className="text-2xl font-bold text-gray-900 dark:text-gray-100" aria-label="Price $199">$199</span>
-                </div>
                 <button
                   type="button"
                   className="w-full rounded-brand py-3 text-sm font-semibold btn-secondary transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-brand-accent focus:ring-offset-2 focus:ring-offset-white dark:focus:ring-offset-gray-900"
@@ -229,7 +237,7 @@ export function Pricing() {
                     window.open('https://www.udemy.com/course/n8n-masterclass-build-multi-agent-ai-api-orchestrations/?referralCode=46746C047330EF867E46', '_blank');
                   }}
                   aria-label="View course on Udemy platform - opens in new tab"
-                  aria-describedby="udemy-plan-description udemy-plan-price"
+                  aria-describedby="udemy-plan-description"
                 >
                   View on Udemy
                 </button>
@@ -238,7 +246,8 @@ export function Pricing() {
           </motion.div>
         </div>
 
-        {/* Trust Guarantees */}
+        {/* Trust Guarantees - Temporarily commented out */}
+        {/*
         <div className="mb-12 flex flex-wrap justify-center gap-8" role="group" aria-labelledby="trust-guarantees-label">
           <h3 id="trust-guarantees-label" className="sr-only">Trust and Guarantees</h3>
           {guarantees.map((guarantee, index) => (
@@ -248,6 +257,7 @@ export function Pricing() {
             </div>
           ))}
         </div>
+        */}
 
         {/* Payment Options - Temporarily commented out */}
         {/* 
