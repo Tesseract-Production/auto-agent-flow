@@ -23,6 +23,14 @@ npm start
 npm run lint
 ```
 
+### Git Configuration
+
+**IMPORTANT**: Always use the following git configuration for commits:
+- Email: `team@tesseract.nexus`
+- Name: `Tesseract Team`
+
+This ensures proper author recognition for Vercel deployments and organizational consistency.
+
 ## Architecture Overview
 
 This is a Next.js 15 landing page for the Tesseract n8n AI Orchestration Masterclass. The project uses:

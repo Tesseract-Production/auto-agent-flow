@@ -2,10 +2,17 @@ import { NextRequest, NextResponse } from 'next/server';
 import { createClient } from '@supabase/supabase-js';
 import { Resend } from 'resend';
 
-const supabase = createClient(
-  process.env.NEXT_PUBLIC_SUPABASE_URL!,
-  process.env.SUPABASE_SERVICE_ROLE_KEY!
-);
+// Only create Supabase client if environment variables are available
+const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL;
+const supabaseServiceKey = process.env.SUPABASE_SERVICE_ROLE_KEY;
+
+let supabase: ReturnType<typeof createClient> | null = null;
+
+if (supabaseUrl && supabaseServiceKey) {
+  supabase = createClient(supabaseUrl, supabaseServiceKey);
+} else {
+  console.warn('Supabase environment variables not found for support API - support submissions will be email-only');
+}
 
 interface SupportRequest {
   fullName: string;
@@ -49,26 +56,31 @@ export async function POST(request: NextRequest) {
     const referer = request.headers.get('referer');
     const clientIP = getClientIP(request);
 
-    // Insert into Supabase
-    const { data: ticket, error: supabaseError } = await supabase
-      .from('support_tickets')
-      .insert({
-        full_name: fullName.trim(),
-        question: question.trim(),
-        user_agent: userAgent,
-        ip_address: clientIP,
-        referrer: referer,
-        source: 'contact_popup'
-      })
-      .select()
-      .single();
+    // Insert into Supabase if available
+    let ticket = null;
+    if (supabase) {
+      const { data: ticketData, error: supabaseError } = await supabase
+        .from('support_tickets')
+        .insert({
+          full_name: fullName.trim(),
+          question: question.trim(),
+          user_agent: userAgent,
+          ip_address: clientIP,
+          referrer: referer,
+          source: 'contact_popup'
+        })
+        .select()
+        .single();
 
-    if (supabaseError) {
-      console.error('Supabase error:', supabaseError);
-      return NextResponse.json(
-        { error: 'Failed to submit support request' },
-        { status: 500 }
-      );
+      if (supabaseError) {
+        console.error('Supabase error:', supabaseError);
+        // Don't fail the request - continue with email-only mode
+        console.warn('Continuing with email-only support submission');
+      } else {
+        ticket = ticketData;
+      }
+    } else {
+      console.warn('Supabase not available - using email-only support mode');
     }
 
     // Send confirmation email via Resend
@@ -88,7 +100,7 @@ export async function POST(request: NextRequest) {
                 <h3>Contact Information</h3>
                 <p><strong>Name:</strong> ${fullName}</p>
                 <p><strong>Submitted:</strong> ${new Date().toLocaleString()}</p>
-                <p><strong>Ticket ID:</strong> ${ticket.id}</p>
+                <p><strong>Ticket ID:</strong> ${ticket?.id || 'Email-only submission'}</p>
               </div>
 
               <div style="background: #fff; padding: 20px; border: 1px solid #ddd; border-radius: 8px;">
@@ -119,9 +131,10 @@ export async function POST(request: NextRequest) {
 
     return NextResponse.json({
       success: true,
-      ticketId: ticket.id,
+      ticketId: ticket?.id || null,
       message: 'Support request submitted successfully',
-      emailSent
+      emailSent,
+      mode: ticket ? 'database' : 'email-only'
     });
 
   } catch (error) {
