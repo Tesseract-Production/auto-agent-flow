@@ -6,7 +6,7 @@ import { TesseractLiquidGlass } from './TesseractLiquidGlass';
 
 export function ResourcesBonuses() {
   return (
-    <section className="bg-white dark:bg-[#060606] px-4 py-16 sm:py-12 sm:px-6 lg:px-8">
+    <section id="resources-bonuses" className="bg-white dark:bg-[#060606] px-4 py-16 sm:py-12 sm:px-6 lg:px-8">
       <div className="mx-auto max-w-7xl">
         <motion.div
           initial={{ opacity: 0, y: 20 }}

@@ -8,7 +8,7 @@ import { Instructor } from '@/components/Instructor';
 import { Pricing } from '@/components/Pricing';
 import { FAQ } from '@/components/FAQ';
 // import { EmailCapture } from '@/components/EmailCapture';
-import { FinalCTA } from '@/components/FinalCTA';
+// import { FinalCTA } from '@/components/FinalCTA';
 import { Footer } from '@/components/Footer';
 import { SocialProofPopup } from '@/components/SocialProofPopup';
 import { FreeEbookResources } from '@/components/FreeEbookResources';
@@ -16,6 +16,8 @@ import { ResourcesBonuses } from '@/components/ResourcesBonuses';
 import { NodeversePromotion } from '@/components/NodeversePromotion';
 import { LaunchDiscountPopup } from '@/components/LaunchDiscountPopup';
 import { AnalyticsTest } from '@/components/AnalyticsTest';
+import { FloatingScrollButton } from '@/components/FloatingScrollButton';
+// import { LastSectionPopup } from '@/components/LastSectionPopup';
 
 export default function Home() {
   return (
@@ -34,12 +36,14 @@ export default function Home() {
         <Pricing />
         <FAQ />
         {/* <EmailCapture /> */}
-        <FinalCTA />
+        {/* <FinalCTA /> */}
       </main>
       <Footer />
       <LaunchDiscountPopup />
       <SocialProofPopup />
       <AnalyticsTest />
+      <FloatingScrollButton />
+      {/* <LastSectionPopup /> */}
     </>
   );
 }

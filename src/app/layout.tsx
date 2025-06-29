@@ -89,18 +89,26 @@ export default function RootLayout({
         <SpeedInsights />
         
         {/* Google Analytics */}
-        <Script
-          src="https://www.googletagmanager.com/gtag/js?id=G-8QHK6F230J"
-          strategy="afterInteractive"
-        />
-        <Script id="google-analytics" strategy="afterInteractive">
-          {`
-            window.dataLayer = window.dataLayer || [];
-            function gtag(){dataLayer.push(arguments);}
-            gtag('js', new Date());
-            gtag('config', 'G-8QHK6F230J');
-          `}
-        </Script>
+        {process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS_ID && (
+          <>
+            <Script
+              src={`https://www.googletagmanager.com/gtag/js?id=${process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS_ID}`}
+              strategy="afterInteractive"
+            />
+            <Script id="google-analytics" strategy="afterInteractive">
+              {`
+                window.dataLayer = window.dataLayer || [];
+                function gtag(){dataLayer.push(arguments);}
+                gtag('js', new Date());
+                gtag('config', '${process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS_ID}', {
+                  page_title: 'Auto Agent Flow Academy - n8n AI Orchestration Masterclass',
+                  custom_map: {'custom_parameter': 'custom_value'},
+                  send_page_view: true
+                });
+              `}
+            </Script>
+          </>
+        )}
         
         {process.env.NODE_ENV === 'development' && (
           <Script id="dev-monitoring" strategy="afterInteractive">

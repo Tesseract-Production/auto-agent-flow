@@ -1,0 +1,92 @@
+📧 Hero Email Submission - Complete Action Flow
+
+  When a user submits their email in the top hero
+  component under the video frame, here's the complete 
+  sequence of actions that occur:
+
+  🎯 Frontend Actions
+
+  1. Form Validation: Checks that both first name and
+  email are provided
+  2. Loading State: Shows "Subscribing..." with spinner
+  animation
+  3. API Call: Sends POST request to /api/subscribe with:
+    - Email address
+    - First name
+    - Source: "hero"
+    - Metadata: user agent, timestamp, page location
+
+  🔄 Backend Integration Pipeline
+
+  The API endpoint executes 5 parallel integrations:
+
+  1. Supabase Database ✅ Primary Storage
+
+  - Stores subscriber in email_subscribers table
+  - Includes: email, first_name, source, metadata,
+  timestamp
+  - Checks for duplicates (returns success if already
+  exists)
+
+  2. Kit Email Platform 📧 Email Marketing
+
+  - Adds subscriber to Kit v4 API
+  - Tags: ['n8n-masterclass', 'hero-signup']
+  - Sets subscriber state to active
+  - Uses X-Kit-Api-Key header authentication
+
+  3. SendGrid Email 📩 Welcome Email (Primary)
+
+  - Sends welcome email using dynamic template
+  - Template ID: d-02a247bc1edd47ec9563fdf1d7c20a47
+  - From: academy@tesseract.nexus
+  - Personalizes with first name
+
+  4. Resend Email 📨 Welcome Email (Backup)
+
+  - Sends rich HTML welcome email as backup
+  - From: academy@mail.autoagentflow.com
+  - Includes course preview, community access, resources
+  - Personalized subject line with first name
+
+  5. External Webhook 🔗 n8n Automation
+
+  - Triggers external automation workflow
+  - Endpoint: https://api.tesseract.nexus/v1/auto-agent-f
+  low-new-lead-processor
+  - Auth token: 36429048-8653-444a-90d3-49ce15500f4a
+  - Sends email, firstName, source, timestamp
+
+  🎉 Success Actions
+
+  1. Confetti Animation: Triggers celebration with brand
+  colors
+  2. UI Update: Shows green success message with
+  checkmark
+  3. Context Update: Sets global email submission state
+  4. Form Reset: Clears input fields
+  5. Download Enablement: Unlocks resource download
+  buttons across the site
+
+  🛡️ Error Handling
+
+  - Graceful Degradation: Success if Supabase works, even
+   if other integrations fail
+  - Duplicate Handling: Shows success + confetti if email
+   already exists
+  - Validation: Zod schema validation for email format
+  and required fields
+  - Logging: Comprehensive error logging for debugging
+
+  📊 Integration Success Priority
+
+  1. Supabase (Required) - Must succeed for overall
+  success
+  2. Kit + Emails (Important) - Logged warnings if they
+  fail
+  3. Webhook (Nice-to-have) - Graceful failure handling
+
+  The system is designed for maximum reliability - as
+  long as the email gets stored in Supabase, the user
+  sees success, while backend integrations run
+  independently.

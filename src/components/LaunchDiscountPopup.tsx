@@ -111,10 +111,10 @@ export function LaunchDiscountPopup() {
               {/* Main content */}
               <div>
                 <h3 className="font-bold text-base text-gray-900 dark:text-gray-100 mb-1">
-                  Save 40% Today!
+                  Save $100 Today!
                 </h3>
                 <p className="text-xs text-gray-600 dark:text-gray-400">
-                  Limited-time launch discount on the complete n8n masterclass.
+                  Get Academy Access for $99 instead of $199 MSRP.
                 </p>
               </div>
 
@@ -132,7 +132,7 @@ export function LaunchDiscountPopup() {
                 onClick={handleCTAClick}
                 className="w-full btn-primary text-xs py-1.5 px-3"
               >
-                Claim 40% Off Now
+                Claim $100 Off Now
               </button>
             </div>
           </TesseractLiquidGlass>

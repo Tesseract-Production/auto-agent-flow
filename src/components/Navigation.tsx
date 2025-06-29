@@ -7,6 +7,7 @@ import { cn } from '@/lib/utils';
 import { TesseractLiquidGlass } from './TesseractLiquidGlass';
 import { useTheme } from './ThemeProvider';
 import { StarBorder } from './ui/star-border';
+import { ScrollProgressTracker } from './ScrollProgressTracker';
 import Image from 'next/image';
 import Link from 'next/link';
 
@@ -26,7 +27,7 @@ export function Navigation() {
   };
 
   const navItems = [
-    { label: 'Course Outline', href: '#outline' },
+    { label: 'Course Outline', href: '#course-outline' },
     // { label: 'Success Stories', href: '#testimonials' },
     { label: 'Pricing', href: '#pricing' },
     { label: 'FAQ', href: '#faq' },
@@ -171,6 +172,7 @@ export function Navigation() {
             </div>
           </motion.div>
         )}
+        <ScrollProgressTracker />
       </TesseractLiquidGlass>
     </nav>
   );

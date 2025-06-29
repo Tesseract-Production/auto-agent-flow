@@ -6,7 +6,7 @@ declare global {
   }
 }
 
-export const GA_TRACKING_ID = 'G-8QHK6F230J';
+export const GA_TRACKING_ID = process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS_ID || 'G-8QHK6F230J';
 
 export const trackEvent = (action: string, parameters?: Record<string, unknown>) => {
   if (typeof window !== 'undefined' && typeof window.gtag === 'function') {

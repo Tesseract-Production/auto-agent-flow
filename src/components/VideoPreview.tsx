@@ -28,48 +28,48 @@ export const VideoPreview = React.memo(function VideoPreview() {
 
   const titleComponent = (
     <div className="mx-auto max-w-4xl text-center">
-      <h2 className="mb-4 text-4xl font-bold tracking-tight sm:text-5xl text-gray-900 dark:text-gray-100">
+      <h2 className="mb-4 font-bold text-gray-900 dark:text-gray-100 text-4xl sm:text-5xl tracking-tight">
         See the <span className="gradient-text">32-Node Automation</span> in Action
       </h2>
-      <p className="text-xl text-gray-600 dark:text-gray-400">
+      <p className="text-gray-600 dark:text-gray-400 text-xl">
         Watch how we build a complete multi-agent workflow with visual models, Supabase, and publication-ready output
       </p>
     </div>
   );
 
   return (
-    <section className="-mt-40 pt-12 pb-20 bg-white dark:bg-[#060606]">
+    <section id="video-preview" className="bg-white dark:bg-[#060606] -mt-40 pt-12 pb-20">
       <ContainerScroll titleComponent={titleComponent}>
-        <div className="h-full w-full rounded-lg overflow-hidden">
+        <div className="rounded-lg w-full h-full overflow-hidden">
           {!isPlaying ? (
             <div className="relative h-full">
               {/* Video Thumbnail */}
-              <div className="absolute inset-0 rounded-lg bg-gradient-to-br from-brand-primary to-brand-accent opacity-90" />
-              <div className="absolute inset-0 flex items-center justify-center">
+              <div className="absolute inset-0 bg-gradient-to-br from-brand-primary to-brand-accent opacity-90 rounded-lg" />
+              <div className="absolute inset-0 flex justify-center items-center">
                 <button
                   onClick={() => setIsPlaying(true)}
-                  className="group flex h-24 w-24 items-center justify-center rounded-full bg-white/20 dark:bg-gray-800/20 backdrop-blur-md transition-transform hover:scale-110 active:scale-95"
+                  className="group flex justify-center items-center bg-white/20 dark:bg-gray-800/20 backdrop-blur-md rounded-full w-24 h-24 hover:scale-110 active:scale-95 transition-transform"
                 >
-                  <Play className="ml-1 h-10 w-10 text-white transition-transform group-hover:scale-110" />
+                  <Play className="ml-1 w-10 h-10 text-white group-hover:scale-110 transition-transform" />
                 </button>
               </div>
 
               {/* Video Info Overlay */}
-              <div className="absolute bottom-0 left-0 right-0 rounded-b-lg bg-gradient-to-t from-black/60 to-transparent p-6">
-                <h3 className="mb-2 text-2xl font-bold tracking-tight text-white">
+              <div className="right-0 bottom-0 left-0 absolute bg-gradient-to-t from-black/60 to-transparent p-6 rounded-b-lg">
+                <h3 className="mb-2 font-bold text-white text-2xl tracking-tight">
                   Live Build: Sequential Orchestration Pipeline™
                 </h3>
                 <div className="flex flex-wrap gap-6 text-white/80">
                   <span className="flex items-center gap-2">
-                    <Clock className="h-4 w-4" />
+                    <Clock className="w-4 h-4" />
                     12 min preview
                   </span>
                   <span className="flex items-center gap-2">
-                    <Users className="h-4 w-4" />
+                    <Users className="w-4 h-4" />
                     2.8K students
                   </span>
                   <span className="flex items-center gap-2">
-                    <Star className="h-4 w-4" />
+                    <Star className="w-4 h-4" />
                     4.9/5 rating
                   </span>
                 </div>
@@ -90,7 +90,7 @@ export const VideoPreview = React.memo(function VideoPreview() {
         </div>
       </ContainerScroll>
 
-      <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
+      <div className="mx-auto px-4 sm:px-6 lg:px-8 max-w-6xl">
         {/* Workflow Images Carousel */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -98,11 +98,11 @@ export const VideoPreview = React.memo(function VideoPreview() {
           viewport={{ once: true }}
           className="mt-12 px-4"
         >
-          <h2 className="mb-12 text-center text-4xl font-bold tracking-tight sm:text-5xl text-gray-900 dark:text-gray-100">
+          <h2 className="mb-2 font-bold text-gray-900 dark:text-gray-100 text-4xl sm:text-5xl text-center tracking-tight">
             See the <span className="gradient-text">Workflows in Action</span>
           </h2>
           
-          <div className="relative mx-auto max-w-4xl px-4 sm:px-8 lg:px-12 py-8">
+          <div className="relative mx-auto px-4 sm:px-8 lg:px-12 py-8 max-w-4xl">
             <div className="overflow-hidden" ref={emblaRef}>
               <div className="flex">
                 {[
@@ -132,28 +132,28 @@ export const VideoPreview = React.memo(function VideoPreview() {
                     description: 'Scalable enterprise workflow solutions'
                   },
                 ].map((workflow, index) => (
-                  <div key={index} className="flex-[0_0_100%] min-w-0 px-4 sm:px-6 lg:px-8 py-4">
-                    <div className="group cursor-pointer transition-transform hover:scale-[1.02]">
+                  <div key={index} className="flex-[0_0_100%] px-4 sm:px-6 lg:px-8 py-4 min-w-0">
+                    <div className="group hover:scale-[1.02] transition-transform cursor-pointer">
                       <TesseractLiquidGlass
                         variant="card"
                         enableScrollEffects={false}
                         enableShimmer={false}
-                        className="overflow-hidden border border-gray-200/50 shadow-brand transition-all duration-700 group-hover:border-brand-primary group-hover:shadow-brand-lg dark:border-gray-700/50"
+                        className="shadow-brand group-hover:shadow-brand-lg border border-gray-200/50 dark:border-gray-700/50 group-hover:border-brand-primary overflow-hidden transition-all duration-700"
                       >
-                        <div className="aspect-video relative overflow-hidden rounded-t-brand">
+                        <div className="relative rounded-t-brand aspect-video overflow-hidden">
                           <img
                             src={workflow.image}
                             alt={workflow.title}
                             loading="lazy"
                             decoding="async"
-                            className="h-full w-full object-cover transition-transform duration-300 group-hover:scale-105"
+                            className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
                           />
                         </div>
                         <div className="p-6">
-                          <h4 className="mb-2 text-lg font-semibold text-gray-900 dark:text-gray-100">
+                          <h4 className="mb-2 font-semibold text-gray-900 dark:text-gray-100 text-lg">
                             {workflow.title}
                           </h4>
-                          <p className="text-sm text-gray-600 dark:text-gray-400">
+                          <p className="text-gray-600 dark:text-gray-400 text-sm">
                             {workflow.description}
                           </p>
                         </div>
@@ -167,15 +167,15 @@ export const VideoPreview = React.memo(function VideoPreview() {
             {/* Navigation Buttons */}
             <button
               onClick={scrollPrev}
-              className="absolute left-1 sm:left-2 top-1/2 -translate-y-1/2 flex h-10 w-10 sm:h-12 sm:w-12 items-center justify-center rounded-full bg-white/90 backdrop-blur-md shadow-lg transition-all hover:bg-white hover:scale-110 dark:bg-gray-800/90 dark:hover:bg-gray-800 z-10"
+              className="top-1/2 left-1 sm:left-2 z-10 absolute flex justify-center items-center bg-white/90 hover:bg-white dark:bg-gray-800/90 dark:hover:bg-gray-800 shadow-lg backdrop-blur-md rounded-full w-10 sm:w-12 h-10 sm:h-12 hover:scale-110 transition-all -translate-y-1/2"
             >
-              <ChevronLeft className="h-5 w-5 sm:h-6 sm:w-6 text-gray-700 dark:text-gray-300" />
+              <ChevronLeft className="w-5 sm:w-6 h-5 sm:h-6 text-gray-700 dark:text-gray-300" />
             </button>
             <button
               onClick={scrollNext}
-              className="absolute right-1 sm:right-2 top-1/2 -translate-y-1/2 flex h-10 w-10 sm:h-12 sm:w-12 items-center justify-center rounded-full bg-white/90 backdrop-blur-md shadow-lg transition-all hover:bg-white hover:scale-110 dark:bg-gray-800/90 dark:hover:bg-gray-800 z-10"
+              className="top-1/2 right-1 sm:right-2 z-10 absolute flex justify-center items-center bg-white/90 hover:bg-white dark:bg-gray-800/90 dark:hover:bg-gray-800 shadow-lg backdrop-blur-md rounded-full w-10 sm:w-12 h-10 sm:h-12 hover:scale-110 transition-all -translate-y-1/2"
             >
-              <ChevronRight className="h-5 w-5 sm:h-6 sm:w-6 text-gray-700 dark:text-gray-300" />
+              <ChevronRight className="w-5 sm:w-6 h-5 sm:h-6 text-gray-700 dark:text-gray-300" />
             </button>
           </div>
         </motion.div>

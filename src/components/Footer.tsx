@@ -217,19 +217,19 @@ export function Footer() {
             </p>
             <div className="flex items-center gap-6 text-sm">
               <Link
-                href="#"
+                href="/legal/privacy"
                 className="text-gray-600 transition-colors hover:text-brand-accent dark:text-gray-400"
               >
                 Privacy
               </Link>
               <Link
-                href="#"
+                href="/legal/tos"
                 className="text-gray-600 transition-colors hover:text-brand-accent dark:text-gray-400"
               >
                 Terms
               </Link>
               <Link
-                href="#"
+                href="mailto:support@autoagentflow.com"
                 className="text-gray-600 transition-colors hover:text-brand-accent dark:text-gray-400"
               >
                 Contact

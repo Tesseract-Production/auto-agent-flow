@@ -12,7 +12,7 @@ const achievements = [
 
 export function Instructor() {
   return (
-    <section className="bg-white dark:bg-[#060606] px-4 sm:px-6 lg:px-8 py-16 sm:py-12">
+    <section id="instructor" className="bg-white dark:bg-[#060606] px-4 sm:px-6 lg:px-8 py-16 sm:py-12">
       <div className="mx-auto max-w-6xl">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -29,7 +29,7 @@ export function Instructor() {
                   <div className="bg-gradient-to-br from-brand-primary to-brand-accent mx-auto mb-6 p-1 rounded-full w-48 h-48">
                     <div className="flex justify-center items-center bg-white dark:bg-brand-dark rounded-full w-full h-full overflow-hidden">
                       <img 
-                        src="/assets/images/vadim-vozmitsel-tesseract-creator.png" 
+                        src="/assets/images/vadim-vozmitsel-tesseract-creator-profile-avatar-image.webp" 
                         alt="Vadim Vozmitsel - Tesseract Creator"
                         className="w-full h-full object-cover rounded-full"
                       />

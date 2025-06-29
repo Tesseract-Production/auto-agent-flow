@@ -47,7 +47,7 @@ export const Testimonials = React.memo(function Testimonials() {
   const [activeIndex, setActiveIndex] = useState(0);
 
   return (
-    <section className="bg-white dark:bg-[#060606] px-4 py-16 sm:py-12 sm:px-6 lg:px-8">
+    <section id="testimonials" className="bg-white dark:bg-[#060606] px-4 py-16 sm:py-12 sm:px-6 lg:px-8">
       <div className="mx-auto max-w-7xl">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -128,7 +128,16 @@ export const Testimonials = React.memo(function Testimonials() {
           viewport={{ once: true }}
           className="text-center"
         >
-          <button className="btn-secondary group">
+          <button 
+            className="btn-secondary group"
+            onClick={() => {
+              // Scroll to existing testimonials section
+              const element = document.getElementById('testimonials');
+              if (element) {
+                element.scrollIntoView({ behavior: 'smooth' });
+              }
+            }}
+          >
             Watch Video Success Stories
             <span className="ml-2 inline-block transition-transform group-hover:translate-x-1">
               →

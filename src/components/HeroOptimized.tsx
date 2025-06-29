@@ -131,7 +131,7 @@ export function HeroOptimized() {
   );
 
   return (
-    <section className="relative overflow-hidden pb-20">
+    <section id="hero" className="relative overflow-hidden pb-20">
       <NodeNetworkBackground />
 
       <ContainerScroll titleComponent={titleComponent}>

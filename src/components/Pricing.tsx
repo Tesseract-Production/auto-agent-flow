@@ -19,7 +19,7 @@ const pricing = {
       'Basic implementation guide',
       'Community support',
     ],
-    cta: 'Resources',
+    cta: 'Get Resources',
     popular: false,
   },
   academy: {
@@ -40,20 +40,20 @@ const pricing = {
     cta: 'Join the Academy',
     popular: true,
   },
-  team: {
-    name: 'Team License',
-    price: 999,
-    originalPrice: 1497,
-    description: 'Train your entire team (4 seats)',
+  udemy: {
+    name: 'Udemy Version',
+    price: 49,
+    originalPrice: 89,
+    description: 'Course access on Udemy platform',
     features: [
-      'Everything in Full Academy',
-      '4 user licenses',
-      'Priority support channel',
-      'Team progress tracking',
-      'Custom onboarding session',
-      'Volume discount on additional seats',
+      'Core masterclass content',
+      'Udemy mobile app access',
+      'Lifetime access',
+      'Certificate of completion',
+      'Q&A community support',
+      'Standard Udemy features',
     ],
-    cta: 'Get Team Access',
+    cta: 'View on Udemy',
     popular: false,
   },
 };
@@ -122,12 +122,10 @@ export function Pricing() {
           </div>
         </motion.div>
 
-        {/* Bento Grid Pricing */}
-        <div className="mb-12 mt-8 grid gap-8 lg:grid-cols-2 lg:items-stretch" role="group" aria-labelledby="pricing-options-label">
+        {/* Three Column Grid Pricing */}
+        <div className="mb-12 mt-8 grid gap-8 lg:grid-cols-3 lg:items-stretch" role="group" aria-labelledby="pricing-options-label">
           <h3 id="pricing-options-label" className="sr-only">Pricing Options</h3>
-          {Object.entries(pricing)
-            .filter(([key]) => key !== 'team') // Hide team card
-            .map(([key, plan]) => (
+          {Object.entries(pricing).map(([key, plan]) => (
             <motion.div
               key={key}
               initial={{ opacity: 0, y: 20 }}
@@ -139,21 +137,14 @@ export function Pricing() {
               aria-describedby={`plan-description-${key} plan-price-${key} plan-features-${key}`}
             >
               <TesseractLiquidGlass
-                variant={plan.popular ? 'interactive' : 'card'}
+                variant="card"
                 enableShimmer={false}
                 enableScrollEffects={false}
                 className={cn(
-                  'relative p-8 transition-all duration-300 flex flex-col w-full',
+                  'relative p-8 flex flex-col w-full h-full',
                   plan.popular && 'shadow-brand-glow ring-2 ring-brand-accent'
                 )}
               >
-                {plan.popular && (
-                  <div className="absolute -top-4 left-1/2 z-10 -translate-x-1/2 -translate-y-1/2">
-                    <div className="rounded-full bg-brand-accent px-4 py-2 text-sm font-medium text-white shadow-lg" role="banner" aria-label="Most popular pricing plan">
-                      <span className="text-white">Most Popular</span>
-                    </div>
-                  </div>
-                )}
 
                 <div className="mb-8">
                   <h3 id={`plan-title-${key}`} className="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-gray-100">{plan.name}</h3>
@@ -194,6 +185,8 @@ export function Pricing() {
                       window.open('https://build.tesseract.nexus/', '_blank');
                     } else if (key === 'academy') {
                       window.open('https://academy.tesseract.nexus/course/n8n-full-stack-masterclass-2025-building-generative-multimedia-production-system', '_blank');
+                    } else if (key === 'udemy') {
+                      window.open('https://www.udemy.com/course/n8n-masterclass-build-multi-agent-ai-api-orchestrations/?referralCode=46746C047330EF867E46', '_blank');
                     }
                   }}
                   aria-label={`${plan.cta} - ${plan.name} plan for ${plan.price === 0 ? 'free' : '$' + plan.price}`}
@@ -204,46 +197,6 @@ export function Pricing() {
               </TesseractLiquidGlass>
             </motion.div>
           ))}
-          
-          {/* Udemy Option - Smaller Card */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="lg:col-span-2 flex justify-center"
-            role="article"
-            aria-labelledby="udemy-plan-title"
-            aria-describedby="udemy-plan-description udemy-plan-price"
-          >
-            <TesseractLiquidGlass
-              variant="card"
-              enableShimmer={false}
-              className="max-w-md p-6 transition-all duration-300 hover:shadow-lg"
-            >
-              <div className="text-center">
-                <div className="mb-4">
-                  <img
-                    src="/assets/images/udemy-thumbnail.png"
-                    alt="Udemy Course Thumbnail"
-                    className="w-full h-32 object-cover rounded-brand mb-3"
-                  />
-                </div>
-                <h3 id="udemy-plan-title" className="mb-2 text-lg font-semibold text-gray-900 dark:text-gray-100">Udemy Alternative</h3>
-                <p id="udemy-plan-description" className="mb-4 text-sm text-gray-600 dark:text-gray-400">Prefer Udemy's platform? Get the course there too.</p>
-                <button
-                  type="button"
-                  className="w-full rounded-brand py-3 text-sm font-semibold btn-secondary transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-brand-accent focus:ring-offset-2 focus:ring-offset-white dark:focus:ring-offset-gray-900"
-                  onClick={() => {
-                    window.open('https://www.udemy.com/course/n8n-masterclass-build-multi-agent-ai-api-orchestrations/?referralCode=46746C047330EF867E46', '_blank');
-                  }}
-                  aria-label="View course on Udemy platform - opens in new tab"
-                  aria-describedby="udemy-plan-description"
-                >
-                  View on Udemy
-                </button>
-              </div>
-            </TesseractLiquidGlass>
-          </motion.div>
         </div>
 
         {/* Trust Guarantees - Temporarily commented out */}

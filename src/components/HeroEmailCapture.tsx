@@ -51,6 +51,17 @@ export function HeroEmailCapture() {
     }
   };
 
+  const handleInputFocus = (e: React.FocusEvent<HTMLInputElement>) => {
+    // Prevent automatic scrolling on input focus
+    e.preventDefault();
+    // Small delay to ensure the input gets focus but prevents scroll
+    setTimeout(() => {
+      if (e.target) {
+        e.target.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      }
+    }, 100);
+  };
+
   if (isSubmitted || success) {
     return (
       <motion.div initial={{ opacity: 0, scale: 0.95 }} animate={{ opacity: 1, scale: 1 }}>
@@ -82,6 +93,7 @@ export function HeroEmailCapture() {
               type="text"
               value={firstName}
               onChange={(e) => setFirstName(e.target.value)}
+              onFocus={handleInputFocus}
               placeholder="First name"
               className="h-12 flex-1 min-w-0 rounded-l-full border border-r-0 border-gray-200 bg-white/50 px-4 text-gray-900 placeholder-gray-500 backdrop-blur-sm transition-all duration-300 focus:border-brand-accent focus:bg-white focus:ring-2 focus:ring-brand-accent/20 focus:z-10 dark:border-gray-600 dark:bg-gray-800/50 dark:text-gray-100 dark:placeholder-gray-400 dark:focus:bg-gray-800"
               required
@@ -95,6 +107,7 @@ export function HeroEmailCapture() {
               type="email"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
+              onFocus={handleInputFocus}
               placeholder="Email address"
               className="h-12 flex-1 min-w-0 rounded-r-full border border-l-0 border-gray-200 bg-white/50 px-4 text-gray-900 placeholder-gray-500 backdrop-blur-sm transition-all duration-300 focus:border-brand-accent focus:bg-white focus:ring-2 focus:ring-brand-accent/20 focus:z-10 dark:border-gray-600 dark:bg-gray-800/50 dark:text-gray-100 dark:placeholder-gray-400 dark:focus:bg-gray-800"
               required
