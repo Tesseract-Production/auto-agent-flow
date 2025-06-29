@@ -41,7 +41,7 @@ describe('Navigation', () => {
     render(<Navigation />);
     
     const courseOutlineLink = screen.getByRole('link', { name: 'Course Outline' });
-    expect(courseOutlineLink).toHaveAttribute('href', '#outline');
+    expect(courseOutlineLink).toHaveAttribute('href', '#course-outline');
     
     const pricingLink = screen.getByRole('link', { name: 'Pricing' });
     expect(pricingLink).toHaveAttribute('href', '#pricing');

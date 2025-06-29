@@ -27,6 +27,12 @@ describe('Pricing', () => {
     expect(screen.getByText('Core tutorial & essential assets')).toBeInTheDocument();
     expect(screen.getByText('Free')).toBeInTheDocument();
     
+    // Check for Udemy Version card
+    expect(screen.getByText('Udemy Version')).toBeInTheDocument();
+    expect(screen.getByText('Course access on Udemy platform')).toBeInTheDocument();
+    expect(screen.getByText('$49')).toBeInTheDocument();
+    expect(screen.getByText('$89')).toBeInTheDocument(); // Original price
+    
     // Check for Full Academy Access card
     expect(screen.getByText('Full Academy Access')).toBeInTheDocument();
     expect(screen.getByText('Complete masterclass experience')).toBeInTheDocument();
@@ -34,17 +40,18 @@ describe('Pricing', () => {
     expect(screen.getByText('$199')).toBeInTheDocument(); // Original price
   });
 
-  it('shows popular badge on academy card', () => {
+  it('shows academy card with special styling', () => {
     render(<Pricing />);
     
-    expect(screen.getByText('Most Popular')).toBeInTheDocument();
+    // Academy card should have special ring styling (popular plan)
+    expect(screen.getByText('Full Academy Access')).toBeInTheDocument();
   });
 
-  it('displays Udemy alternative card', () => {
+  it('displays Udemy version card', () => {
     render(<Pricing />);
     
-    expect(screen.getByText('Udemy Alternative')).toBeInTheDocument();
-    expect(screen.getByText('Prefer Udemy\'s platform? Get the course there too.')).toBeInTheDocument();
+    expect(screen.getByText('Udemy Version')).toBeInTheDocument();
+    expect(screen.getByText('Course access on Udemy platform')).toBeInTheDocument();
     expect(screen.getByText('View on Udemy')).toBeInTheDocument();
   });
 
