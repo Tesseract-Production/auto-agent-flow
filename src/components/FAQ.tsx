@@ -166,20 +166,29 @@ export function FAQ() {
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="mt-12 p-8 rounded-brand-lg text-center glass-effect"
+          className="mt-12"
         >
-          <h3 className="mb-4 font-semibold text-2xl tracking-tight">Still Have Questions?</h3>
-          <p className="mb-6 text-gray-600 dark:text-gray-400">
-            Our team is here to help you make the right decision
-          </p>
-          <button 
-            onClick={() => {
-              window.open('https://tesseract.nexus/contact/', '_blank');
-            }}
-            className="btn-secondary"
+          <TesseractLiquidGlass
+            variant="card"
+            enableShimmer={true}
+            className="p-8 text-center"
           >
-            Contact Support
-          </button>
+            <div className="mb-4 flex justify-center">
+              <div className="flex h-12 w-12 items-center justify-center rounded-full bg-gradient-to-r from-brand-primary to-brand-accent">
+                <HelpCircle className="h-6 w-6 text-white" />
+              </div>
+            </div>
+            <h3 className="mb-4 font-semibold text-2xl tracking-tight text-gray-900 dark:text-gray-100">Still Have Questions?</h3>
+            <p className="mb-6 text-gray-600 dark:text-gray-400">
+              Our team is here to help you make the right decision
+            </p>
+            <button 
+              onClick={() => setIsSupportPopupOpen(true)}
+              className="btn-secondary"
+            >
+              Contact Support
+            </button>
+          </TesseractLiquidGlass>
         </motion.div>
       </div>
 

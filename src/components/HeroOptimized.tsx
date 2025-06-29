@@ -29,6 +29,19 @@ const MuxPlayer = dynamic(() => import('@mux/mux-player-react'), {
 
 export function HeroOptimized() {
   const [titleNumber, setTitleNumber] = useState(0);
+  const [isMobile, setIsMobile] = useState(false);
+
+  // Check if mobile on mount and resize
+  useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth < 768);
+    };
+    
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+    
+    return () => window.removeEventListener('resize', checkMobile);
+  }, []);
   const rotatingTexts = useMemo(() => [
     'NODE AUTOMATION',
     'AI DEVELOPMENT', 
@@ -132,7 +145,7 @@ export function HeroOptimized() {
 
   return (
     <section id="hero" className="relative overflow-hidden pb-20">
-      <NodeNetworkBackground />
+      {!isMobile && <NodeNetworkBackground />}
 
       <ContainerScroll titleComponent={titleComponent}>
         <div className="h-full w-full rounded-lg overflow-hidden">

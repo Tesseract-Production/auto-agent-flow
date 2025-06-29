@@ -8,13 +8,26 @@ import { TesseractLiquidGlass } from './TesseractLiquidGlass';
 export function LastSectionPopup() {
   const [isVisible, setIsVisible] = useState(false);
   const [hasTriggered, setHasTriggered] = useState(false);
+  const [isMobile, setIsMobile] = useState(false);
+
+  // Check if mobile on mount and resize
+  useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth < 768);
+    };
+    
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+    
+    return () => window.removeEventListener('resize', checkMobile);
+  }, []);
 
   useEffect(() => {
     const handleScroll = () => {
       // Get the FAQ section (last main component before footer)
       const faqSection = document.getElementById('faq');
       
-      if (!faqSection || hasTriggered) return;
+      if (!faqSection || hasTriggered || isMobile) return;
 
       const rect = faqSection.getBoundingClientRect();
       const windowHeight = window.innerHeight;
@@ -37,7 +50,7 @@ export function LastSectionPopup() {
     handleScroll(); // Check initial state
     
     return () => window.removeEventListener('scroll', handleScroll);
-  }, [hasTriggered, isVisible]);
+  }, [hasTriggered, isVisible, isMobile]);
 
   const handleCTAClick = () => {
     // Scroll to pricing section

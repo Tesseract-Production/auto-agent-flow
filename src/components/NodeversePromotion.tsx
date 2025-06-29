@@ -20,7 +20,7 @@ export function NodeversePromotion() {
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="mb-12 text-center"
+          className="mb-12 text-center md:text-center"
         >
           <TesseractLiquidGlass
             variant="interactive"
@@ -32,11 +32,11 @@ export function NodeversePromotion() {
           </TesseractLiquidGlass>
 
           <div className="max-w-4xl mx-auto">
-            <h2 className="mb-4 text-4xl font-bold tracking-tight sm:text-5xl text-gray-900 dark:text-gray-100">
+            <h2 className="mb-4 text-4xl font-bold tracking-tight sm:text-5xl text-gray-900 dark:text-gray-100 text-left md:text-center">
               Discover the <span className="gradient-text">Nodeverse</span>
             </h2>
 
-            <p className="text-xl text-gray-600 dark:text-gray-400">
+            <p className="text-xl text-gray-600 dark:text-gray-400 text-left md:text-center">
               Dive into our exclusive graphic novel, "Nodeverse: Adventures of Tesseractian McMartian."
               Join in the automation quest and explore the wonders of our masterclass walkthrough.
             </p>
@@ -65,7 +65,7 @@ export function NodeversePromotion() {
             viewport={{ once: true }}
             className="order-1 lg:order-2"
           >
-            <h3 className="mb-6 text-3xl font-bold tracking-tight text-gray-900 dark:text-gray-100">An Epic Automation Adventure</h3>
+            <h3 className="mb-6 text-3xl font-bold tracking-tight text-gray-900 dark:text-gray-100 text-left">An Epic Automation Adventure</h3>
             <p className="mb-8 text-lg text-gray-600 dark:text-gray-400">
               Follow Tesseractian McMartian on an incredible journey through the world of automation. 
               This exclusive graphic novel brings the concepts from our masterclass to life through 

@@ -7,6 +7,19 @@ import { motion, AnimatePresence } from 'framer-motion';
 export function FloatingScrollButton() {
   const [isVisible, setIsVisible] = useState(true);
   const [currentSection, setCurrentSection] = useState(0);
+  const [isMobile, setIsMobile] = useState(false);
+
+  // Check if mobile on mount and resize
+  useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth < 768);
+    };
+    
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+    
+    return () => window.removeEventListener('resize', checkMobile);
+  }, []);
 
   // Define the sections in order
   const sections = useMemo(() => [
@@ -79,7 +92,7 @@ export function FloatingScrollButton() {
 
   return (
     <AnimatePresence>
-      {isVisible && (
+      {isVisible && !isMobile && (
         <motion.button
           initial={{ opacity: 0, scale: 0.8 }}
           animate={{ opacity: 1, scale: 1 }}

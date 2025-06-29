@@ -96,13 +96,13 @@ export const VideoPreview = React.memo(function VideoPreview() {
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="mt-12 px-4"
+          className="mt-12"
         >
           <h2 className="mb-2 font-bold text-gray-900 dark:text-gray-100 text-4xl sm:text-5xl text-center tracking-tight">
             See the <span className="gradient-text">Workflows in Action</span>
           </h2>
           
-          <div className="relative mx-auto px-4 sm:px-8 lg:px-12 py-8 max-w-4xl">
+          <div className="relative mx-auto px-4 md:px-8 lg:px-12 py-8 max-w-4xl">
             <div className="overflow-hidden" ref={emblaRef}>
               <div className="flex">
                 {[
@@ -132,7 +132,7 @@ export const VideoPreview = React.memo(function VideoPreview() {
                     description: 'Scalable enterprise workflow solutions'
                   },
                 ].map((workflow, index) => (
-                  <div key={index} className="flex-[0_0_100%] px-4 sm:px-6 lg:px-8 py-4 min-w-0">
+                  <div key={index} className="flex-[0_0_100%] px-4 sm:px-4 md:px-6 lg:px-8 py-4 min-w-0">
                     <div className="group hover:scale-[1.02] transition-transform cursor-pointer">
                       <TesseractLiquidGlass
                         variant="card"

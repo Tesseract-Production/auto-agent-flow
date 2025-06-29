@@ -18,6 +18,19 @@ export function SocialProofPopup() {
   const [currentItem, setCurrentItem] = useState<SocialProofItem | null>(null);
   const [socialProofItems, setSocialProofItems] = useState<SocialProofItem[]>([]);
   const [currentIndex, setCurrentIndex] = useState(0);
+  const [isMobile, setIsMobile] = useState(false);
+
+  // Check if mobile on mount and resize
+  useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth < 768);
+    };
+    
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+    
+    return () => window.removeEventListener('resize', checkMobile);
+  }, []);
 
   // Fetch social proof data
   useEffect(() => {
@@ -38,7 +51,7 @@ export function SocialProofPopup() {
 
   // Show popup every 15 seconds and cycle through items
   useEffect(() => {
-    if (socialProofItems.length === 0) return;
+    if (socialProofItems.length === 0 || isMobile) return;
 
     const interval = setInterval(() => {
       setCurrentItem(socialProofItems[currentIndex]);
@@ -54,7 +67,7 @@ export function SocialProofPopup() {
     }, 15000);
 
     return () => clearInterval(interval);
-  }, [socialProofItems, currentIndex]);
+  }, [socialProofItems, currentIndex, isMobile]);
 
   if (!currentItem) return null;
 
