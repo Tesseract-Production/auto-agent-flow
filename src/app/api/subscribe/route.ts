@@ -220,52 +220,66 @@ export async function POST(request: NextRequest) {
     // Validate request body
     const validatedData = subscribeSchema.parse(body);
 
-    // Check if email already exists
-    const { data: existingSubscriber, error: checkError } = await supabaseServer
-      .from('email_subscribers')
-      .select('id')
-      .eq('email', validatedData.email)
-      .single();
+    // Check if Supabase is available
+    if (!supabaseServer) {
+      console.warn('Supabase not available, proceeding with external integrations only');
+      // Skip database operations but continue with email integrations
+    } else {
+      // Check if email already exists
+      const { data: existingSubscriber, error: checkError } = await supabaseServer
+        .from('email_subscribers')
+        .select('id')
+        .eq('email', validatedData.email)
+        .single();
 
-    if (checkError && checkError.code !== 'PGRST116') {
-      console.error('Error checking existing subscriber:', checkError);
-      return NextResponse.json({ error: 'Database error occurred' }, { status: 500 });
-    }
+      if (checkError && checkError.code !== 'PGRST116') {
+        console.error('Error checking existing subscriber:', checkError);
+        // Don't fail here, continue with integrations
+        console.warn('Continuing with external integrations despite database error');
+      }
 
-    if (existingSubscriber) {
-      return NextResponse.json(
-        { 
-          message: 'Email already subscribed', 
-          alreadySubscribed: true,
-          showConfetti: true 
-        },
-        { status: 200 }
-      );
+      if (existingSubscriber) {
+        return NextResponse.json(
+          { 
+            message: 'Email already subscribed', 
+            alreadySubscribed: true,
+            showConfetti: true 
+          },
+          { status: 200 }
+        );
+      }
     }
 
     // Extract first name from metadata
     const firstName = (typeof validatedData.metadata?.firstName === 'string' ? validatedData.metadata.firstName : undefined);
     
-    // Remove firstName from metadata since it's now a separate column
-    const cleanMetadata = validatedData.metadata ? 
-      Object.fromEntries(Object.entries(validatedData.metadata).filter(([key]) => key !== 'firstName')) :
-      {};
+    let data = null;
     
-    // Insert new subscriber
-    const { data, error } = await supabaseServer
-      .from('email_subscribers')
-      .insert({
-        email: validatedData.email,
-        first_name: firstName,
-        source: validatedData.source,
-        metadata: cleanMetadata,
-      })
-      .select()
-      .single();
+    // Only insert to database if Supabase is available
+    if (supabaseServer) {
+      // Remove firstName from metadata since it's now a separate column
+      const cleanMetadata = validatedData.metadata ? 
+        Object.fromEntries(Object.entries(validatedData.metadata).filter(([key]) => key !== 'firstName')) :
+        {};
+      
+      // Insert new subscriber
+      const { data: insertData, error } = await supabaseServer
+        .from('email_subscribers')
+        .insert({
+          email: validatedData.email,
+          first_name: firstName,
+          source: validatedData.source,
+          metadata: cleanMetadata,
+        })
+        .select()
+        .single();
 
-    if (error) {
-      console.error('Error inserting subscriber:', error);
-      return NextResponse.json({ error: 'Failed to subscribe email' }, { status: 500 });
+      if (error) {
+        console.error('Error inserting subscriber:', error);
+        console.warn('Continuing with external integrations despite database error');
+      } else {
+        data = insertData;
+      }
     }
 
     // After successful Supabase insertion, trigger additional integrations
