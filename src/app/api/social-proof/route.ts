@@ -35,12 +35,18 @@ export async function GET() {
       .select('*', { count: 'exact', head: true })
 
     // Transform data for social proof messages
-    const socialProofItems = data.map((subscriber: any, index: number) => {
-      const timeAgo = getTimeAgo(new Date(subscriber.created_at))
+    const socialProofItems = data.map((subscriber, index: number) => {
+      // Type assertion for Supabase data
+      const typedSubscriber = subscriber as {
+        first_name: string;
+        created_at: string;
+        source: string;
+      };
+      const timeAgo = getTimeAgo(new Date(typedSubscriber.created_at))
       
       // Different actions based on source
       let action = 'just joined the masterclass'
-      switch (subscriber.source) {
+      switch (typedSubscriber.source) {
         case 'hero':
           action = 'just enrolled for early access'
           break
@@ -56,7 +62,7 @@ export async function GET() {
 
       return {
         id: index + 1,
-        name: `${subscriber.first_name} ${getRandomLastInitial()}.`,
+        name: `${typedSubscriber.first_name} ${getRandomLastInitial()}.`,
         location: getRandomLocation(),
         action,
         timeAgo
